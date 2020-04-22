@@ -1,0 +1,313 @@
+.register{
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    padding: 3vh 7%;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+input{
+    outline: none;
+}
+
+button{
+    outline: none;
+}
+
+select{
+    appearance: none;
+    outline: none;
+    background: url("../../assets/svgs/dropdown.svg") no-repeat;
+    background-position-x: 85%;
+    background-position-y: 50%;
+    background-size: 1em;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url("../../assets/svgs/calendar.svg") no-repeat;
+    background-size: 100% 100%;
+    width: 1.2em;
+    height: 1.2em;
+    border-width: thin;
+}
+
+.top{
+    width: 100%;
+    height: 8.5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.institute_logo{
+    width: auto;
+    height: 100%;
+}
+
+.help{
+    display: flex;
+    align-items: center;
+
+}
+.help_logo{
+    width: auto;
+    height: 90%;
+    margin-right:4%;
+
+}
+
+.help_text{
+    color: #10116E;
+    font-size: 1.4em;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.register_box{
+    width: 100%;
+    height: 93.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -3vh;
+}
+
+.heading{
+    width: 100%;
+    height: 1em;
+    font-size: 2.5em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    color:#10116E;
+}
+
+.inputs_form{
+    width: 65%;
+    height: 95%;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.field{
+    width: 100%;
+    height: calc(100%/6);
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+}
+
+.field label{
+    width: 100%;
+    height: 1em;
+    font-weight: 700 ;
+    color: #10116E;
+    margin: 1.4vh 0%;
+}
+
+.field input{
+    width: 100%;
+    height: 100%;
+    background-color: #DCDCDC;
+    padding: 0px 3%;
+    border: 0px;
+    border-radius: 10px;
+}
+.two_field{
+    width: 100%;
+    height: calc(100%/6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.field_left{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+}
+
+.field_left label{
+    width: 100%;
+    height: 1em;
+    font-weight: 700 ;
+    color: #10116E;
+    margin: 1.4vh 0%;
+}
+
+.field_left input{
+    width: 100%;
+    height: 100%;
+    background-color: #DCDCDC;
+    padding: 0px 5%;
+    border: 0px;
+    border-radius: 10px;
+}
+
+.field_right{
+    width: 32%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+}
+
+.field_right label{
+    height: 1em;
+    font-weight: 700 ;
+    color: #10116E;
+    margin: 1.4vh 0%;
+}
+
+.field_right input{
+    width: 100%;
+    height: 100%;
+    background-color: #DCDCDC;
+    padding: 0px 9.375%;
+    text-align: center;
+    border: 0px;
+    border-radius: 10px;
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.batch{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+}
+
+.batch label{
+    height: 1em;
+    font-weight: 700 ;
+    color: #10116E;
+    margin: 1.4vh 0%;
+}
+
+.batch_name{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.batch_name select{
+    width: 45%;
+    height: 100%;
+    background-color: #DCDCDC;
+    padding: 0px 9.375%;
+    box-sizing: border-box;
+    text-align: center;
+    border: 0px;
+    border-radius: 10px;
+}
+
+.register_button{
+    width: 35%;
+    height: 3em;
+    font-size: 1.6em;
+    font-weight: bold;
+    color: white;
+    background-color: #10116E;
+    border: 0px;
+    border-radius: 15px;
+    display: flex;
+    margin-top:30px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.next_arrow{
+    margin-left: 20px;
+    height: 1.6em;
+}
+
+.line{
+    margin-top:20px;
+    margin-bottom: 20px;
+    border: 1px solid #707070;
+    width: 80%;
+}
+
+.login_not_registered{
+    margin: 0px;
+}
+.register_link{
+    color:#10116E;
+}
+
+
+/* RegisterForm1 */
+.current_designation{
+    width: 48%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+}
+
+.current_designation label{
+    width: 100%;
+    height: 1em;
+    font-weight: 700 ;
+    color: #10116E;
+    margin: 1.4vh 0%;
+}
+
+.current_designation input{
+    width: 100%;
+    height: 100%;
+    background-color: #DCDCDC;
+    padding: 0px 9.375%;
+    border: 0px;
+    border-radius: 10px;
+}
+
+
+.gender{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+}
+
+.gender label{
+    width: 100%;
+    height: 1em;
+    font-weight: 700 ;
+    color: #10116E;
+    margin: 1.4vh 0%;
+}
+
+.gender select{
+    width: 100%;
+    height: 100%;
+    background-color: #DCDCDC;
+    padding: 0px 9.375%;
+    border: 0px;
+    border-radius: 10px;
+}
+
+@media(max-width:1200px){
+    .register{
+        font-size: 0.8rem;
+    }
+}

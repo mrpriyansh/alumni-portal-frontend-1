@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { Route, useHistory, Switch } from 'react-router-dom';
+import { AuthContext } from './components/Hooks/Auth';
+import styles from './App.module.css';
+import Landing from './containers/Landing/Landing';
+import Home from './components/Home/Home';
 
 function App() {
+  const [authToken, setAuthToken] = useState(false);
+  const [currentUser, setCurrentUser] = useState();
+  const history = useHistory();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider value={{ authToken, setAuthToken, currentUser }}>
+      <Switch>
+        <Route exact path="/">
+          {authToken ? <Home /> : <Landing />}
+        </Route>
+        <Route exact path="/register">
+          {authToken ? <Home /> : <Landing />}
+        </Route>
+      </Switch>
+    </AuthContext.Provider>
   );
 }
 

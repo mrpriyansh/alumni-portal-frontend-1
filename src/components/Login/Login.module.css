@@ -46,7 +46,8 @@
     margin-top:8%;
 }
 
-.heading p{
+.heading_upper{
+   margin-bottom: 8%;
    margin: 0%; 
    color: #10116E;
    font-size: 2em;
@@ -54,13 +55,18 @@
    font-family: 'Open San', sans-serif;
    display: flex;
    justify-content: center;
+
 }
 
-.heading_upper{
-    margin-bottom: 8%;
-}
 .heading_lower{
+    margin-bottom: 8%;
+    margin: 0%; 
     font-size: 2.75em;
+    color: #10116E;
+    font-weight: bold;
+    font-family: 'Open San', sans-serif;
+    display: flex;
+    justify-content: center;
 }
 
 .inputs_form{

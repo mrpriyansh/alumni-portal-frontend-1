@@ -3,10 +3,10 @@ import { Route, useHistory, Switch } from 'react-router-dom';
 import { AuthContext } from './components/Hooks/Auth';
 import styles from './App.module.css';
 import Landing from './containers/Landing/Landing';
-import Home from './components/Home/Home';
+import Home from './containers/Home/Home';
 
 function App() {
-  const [authToken, setAuthToken] = useState(false);
+  const [authToken, setAuthToken] = useState(true);
   const [currentUser, setCurrentUser] = useState();
   const history = useHistory();
 

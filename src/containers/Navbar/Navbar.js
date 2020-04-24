@@ -2,6 +2,7 @@ import React from 'react';
 import instituteLogo from '../../assets/images/instituteLogo.png';
 import styles from './Navbar.module.css';
 import { ReactComponent as NotificationBell } from '../../assets/svgs/notification_bell.svg';
+import { ReactComponent as HelpIcon } from '../../assets/svgs/help.svg';
 import helpIcon from '../../assets/svgs/help_navbar.svg';
 import SearchIcon from '../../assets/svgs/search.svg';
 
@@ -21,11 +22,12 @@ function Navbar() {
         </div>
       </div>
       <div className={styles.right}>
-        <NotificationBell width="2em" height="2em" />
+        <NotificationBell width="2em" height="2em" fill="#10116E" />
         {/* <img className={styles.notification_bell} src={notificationBell} alt="notifcation" /> */}
         <button className={styles.logout_button}> Logout </button>
         <hr className={styles.line}></hr>
-        <img className={styles.help} src={helpIcon} alt="help" />
+        <HelpIcon fill="#878787" />
+        {/* <img className={styles.help} src={helpIcon} alt="help" /> */}
       </div>
     </div>
   );

@@ -7,6 +7,9 @@
     border-radius: 14px;
 }
 
+.left_buttons .a{
+    fill:#fff;
+}
 .heading{
     margin: 0px;
     color: #10116E;

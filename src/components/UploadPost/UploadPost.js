@@ -22,7 +22,6 @@ function UploadPost() {
             Jobs/Intern
           </button>
           <button onClick={handleChoiceButton} className={styles.button}>
-            {' '}
             Ask Referal
           </button>
           <button onClick={handleChoiceButton} className={styles.button}>
@@ -34,7 +33,6 @@ function UploadPost() {
             Upload Photo/Video
           </button>
           <button onClick={handlePost} className={styles.upload_Post}>
-            {' '}
             Post
           </button>
         </div>

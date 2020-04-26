@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import styles from './Register.module.css';
 import { useForm } from '../Hooks/handleInputs';
 import instituteLogo from '../../assets/images/instituteLogo.png';
-import helpSVG from '../../assets/svgs/help.svg';
+import { ReactComponent as HelpSVG } from '../../assets/svgs/help.svg';
 import { ReactComponent as Next } from '../../assets/svgs/next.svg';
 import RegisterForm0 from './RegisterForm0';
 import RegisterForm1 from './RegisterForm1';
@@ -57,7 +57,7 @@ function Register() {
       <div className={styles.top}>
         <img className={styles.institute_logo} src={instituteLogo} alt="logo" />
         <div className={styles.help}>
-          <img className={styles.help_logo} src={helpSVG} alt="help" />
+          <HelpSVG className={styles.help_logo} height="1.4em" width="1.4em" fill="#10116E" />
           <span className={styles.help_text}>Help</span>
         </div>
       </div>
@@ -68,17 +68,19 @@ function Register() {
         ) : (
           <RegisterForm1 inputs={inputs} changeInputs={changeInputs} />
         )}
-        <button type="submit" onClick={handleRegister} className={styles.register_button}>
-          {' '}
-          Register <Next className={styles.next_arrow} />{' '}
-        </button>
-        <hr className={styles.line}></hr>
-        <h4 className={styles.login_not_registered}>
-          Already have an account?
-          <Link to="/" className={styles.register_link}>
-            Login{' '}
-          </Link>
-        </h4>
+        <div class={styles.lower}>
+          <button type="submit" onClick={handleRegister} className={styles.register_button}>
+            {' '}
+            Register <Next className={styles.next_arrow} fill="#ffffff" />{' '}
+          </button>
+          <hr className={styles.line}></hr>
+          <h4 className={styles.login_not_registered}>
+            Already have an account?
+            <Link to="/" className={styles.register_link}>
+              Login{' '}
+            </Link>
+          </h4>
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,7 @@
 .register{
     width: 100%;
     height: 100%;
-    min-width: 100%;
-    padding: 3vh 7%;
+    padding: 4% 7%;
     font-size: 1rem;
     display: flex;
     flex-direction: column;
@@ -39,7 +38,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .top{
     width: 100%;
-    height: 8.5%;
+    height: 8%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -51,14 +50,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .help{
+    width: 60%;
+    height: 100%;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
 
 }
 .help_logo{
     width: auto;
-    height: 90%;
-    margin-right:4%;
+    margin-right:3%;
 
 }
 
@@ -71,12 +72,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .register_box{
     width: 100%;
-    height: 93.5%;
+    height: 95%;
+    /* min-height: 550px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: -3vh;
+    position: relative;
+    top: -3%;
 }
 
 .heading{
@@ -91,11 +94,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .inputs_form{
     width: 65%;
-    height: 95%;
+    height: 100%;
     min-width: 400px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .field{
@@ -111,7 +114,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 1em;
     font-weight: 700 ;
     color: #10116E;
-    margin: 1.4vh 0%;
+    margin-bottom: 2% 
 }
 
 .field input{
@@ -130,7 +133,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     align-items: center;
 }
 .field_left{
-    width: 60%;
+    width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -142,7 +145,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 1em;
     font-weight: 700 ;
     color: #10116E;
-    margin: 1.4vh 0%;
+    margin-bottom: 4% 
+    
 }
 
 .field_left input{
@@ -155,7 +159,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .field_right{
-    width: 32%;
+    width: 36%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -166,7 +170,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 1em;
     font-weight: 700 ;
     color: #10116E;
-    margin: 1.4vh 0%;
+    margin-bottom: 5.607% 
+
 }
 
 .field_right input{
@@ -199,7 +204,7 @@ input[type=number] {
     height: 1em;
     font-weight: 700 ;
     color: #10116E;
-    margin: 1.4vh 0%;
+    margin-bottom: 3.344%;
 }
 
 .batch_name{
@@ -218,9 +223,18 @@ input[type=number] {
     border-radius: 10px;
 }
 
+/* lower*/
+.lower{
+    width: 100%;
+    height: 6.2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .register_button{
     width: 35%;
-    height: 3em;
+    height: 2em;
     font-size: 1.6em;
     font-weight: bold;
     color: white;
@@ -228,7 +242,6 @@ input[type=number] {
     border: 0px;
     border-radius: 15px;
     display: flex;
-    margin-top:30px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
@@ -240,13 +253,14 @@ input[type=number] {
 }
 
 .line{
-    margin-top:20px;
-    margin-bottom: 20px;
     border: 1px solid #707070;
+    margin-top: calc(1em - 1px);
+    margin-bottom: calc(1em - 1px);
     width: 80%;
 }
 
 .login_not_registered{
+    height: 1em;
     margin: 0px;
 }
 .register_link{
@@ -255,6 +269,22 @@ input[type=number] {
 
 
 /* RegisterForm1 */
+.container1{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inputs_form_1{
+    width: 65%;
+    height: 100%;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
 .current_designation{
     width: 48%;
     height: 100%;
@@ -268,7 +298,7 @@ input[type=number] {
     height: 1em;
     font-weight: 700 ;
     color: #10116E;
-    margin: 1.4vh 0%;
+    margin-bottom: 4.18%;
 }
 
 .current_designation input{
@@ -294,7 +324,7 @@ input[type=number] {
     height: 1em;
     font-weight: 700 ;
     color: #10116E;
-    margin: 1.4vh 0%;
+    margin-bottom: 4.86745%;
 }
 
 .gender select{
@@ -306,7 +336,7 @@ input[type=number] {
     border-radius: 10px;
 }
 
-@media(max-width:1200px){
+@media(max-width:1280px){
     .register{
         font-size: 0.8rem;
     }

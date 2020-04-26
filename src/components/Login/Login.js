@@ -23,45 +23,47 @@ function Login() {
           <span className={styles.help_text}>Help</span>
         </div>
       </div>
-      <div className={styles.login_box}>
-        <div className={styles.heading}>
-          <p className={styles.heading_upper}> Welcome to</p>
-          <p className={styles.heading_lower}> ABV-IIITM's</p>
-          <p className={styles.heading_lower}> Alumni Portal</p>
-        </div>
-        <div className={styles.inputs_form}>
-          <div className={styles.field}>
-            <label htmlFor="email-address">E-mail Address</label>
-            <input
-              onChange={changeInputs}
-              type="email"
-              name="email"
-              value={inputs.email}
-              placeholder="Enter E-mail address"
-            />
+      <div className={styles.container}>
+        <div className={styles.login_box}>
+          <div className={styles.heading}>
+            <p className={styles.heading_upper}> Welcome to</p>
+            <p className={styles.heading_lower}> ABV-IIITM's</p>
+            <p className={styles.heading_lower}> Alumni Portal</p>
           </div>
-          <div className={styles.field}>
-            <label htmlFor="password">Password</label>
-            <input
-              onChange={changeInputs}
-              type="password"
-              name="password"
-              value={inputs.password}
-              placeholder="Enter Password"
-            />
+          <div className={styles.inputs_form}>
+            <div className={styles.field}>
+              <label htmlFor="email-address">E-mail Address</label>
+              <input
+                onChange={changeInputs}
+                type="email"
+                name="email"
+                value={inputs.email}
+                placeholder="Enter E-mail address"
+              />
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="password">Password</label>
+              <input
+                onChange={changeInputs}
+                type="password"
+                name="password"
+                value={inputs.password}
+                placeholder="Enter Password"
+              />
+            </div>
           </div>
-        </div>
-        <div className={styles.lower}>
-          <button type="submit" onClick={handleLogin} className={styles.login_button}>
-            Login <Next className={styles.next_arrow} fill="#ffffff" />
-          </button>
-          <hr className={styles.line}></hr>
-          <h4 className={styles.login_not_registered}>
-            Don't have an account yet?
-            <Link to="/register" className={styles.register_link}>
-              Register{' '}
-            </Link>
-          </h4>
+          <div className={styles.lower}>
+            <button type="submit" onClick={handleLogin} className={styles.login_button}>
+              Login <Next className={styles.next_arrow} fill="#ffffff" />
+            </button>
+            <hr className={styles.line}></hr>
+            <h4 className={styles.login_not_registered}>
+              Don't have an account yet?
+              <Link to="/register" className={styles.register_link}>
+                Register{' '}
+              </Link>
+            </h4>
+          </div>
         </div>
       </div>
     </div>

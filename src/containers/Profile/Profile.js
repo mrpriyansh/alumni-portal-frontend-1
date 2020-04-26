@@ -1,20 +1,19 @@
 import React from 'react';
-import styles from './Admin.module.css';
+import styles from './Profile.module.css';
 import Navbar from '../Navbar/Navbar';
+import Timeline from '../../components/Timeline/Timeline';
 import { ReactComponent as EditProfileIcon } from '../../assets/svgs/setting.svg';
 import { ReactComponent as LinkedinIcon } from '../../assets/svgs/linkedin.svg';
 import { ReactComponent as EmailIcon } from '../../assets/svgs/email.svg';
 import { ReactComponent as TickIcon } from '../../assets/svgs/tick.svg';
 import profilePic from '../../assets/images/profile.jpg';
-import Users from '../../components/Users/Users';
 
-function Admin() {
+function Profile() {
   return (
     <div>
       <Navbar />
-      <div className={styles.admin}>
+      <div className={styles.profile}>
         <div className={styles.left}>
-          <p className={styles.left_heading}>Admin Portal</p>
           <div className={styles.left_top}>
             <EditProfileIcon
               className={styles.edit_profile_icon}
@@ -23,7 +22,7 @@ function Admin() {
               fill="#10116E"
             />
             <img className={styles.profile_pic} src={profilePic} alt="Profile" />
-            <p className={styles.name}> Anuj Ashok Kumar</p>
+            <p className={styles.name}> Priyansh Gaharana</p>
             <p className={styles.batch}> 2017 IPG(MBA)</p>
             <hr className={styles.line}></hr>
             <p className={styles.position}> CEO, Google LLC</p>
@@ -32,26 +31,30 @@ function Admin() {
               <EmailIcon width="1.2em" height="1.2em" fill="#10116E" />
             </div>
           </div>
+          <div className={styles.left_bottom}>
+            <p className={styles.left_heading}> Filters</p>
+            <div className={styles.filter_item}>
+              <TickIcon className={styles.tick_icon} width="0.8em" height="0.8em" fill="#DCDCDC" />
+              <p className={styles.filter_text}> Job Opportunities</p>
+            </div>
+            <hr className={styles.line}></hr>
+            <div className={styles.filter_item}>
+              <TickIcon className={styles.tick_icon} width="0.8em" height="0.8em" fill="#DCDCDC" />
+              <p className={styles.filter_text}>Asked Referals</p>
+            </div>
+            <hr className={styles.line}></hr>
+            <div className={styles.filter_item}>
+              <TickIcon className={styles.tick_icon} width="0.8em" height="0.8em" fill="#DCDCDC" />
+              <p className={styles.filter_text}> Activities</p>
+            </div>
+          </div>
         </div>
         <div className={styles.main}>
-          <div className={styles.heading_box}>
-            <span className={styles.main_heading}>Waiting for approval</span>
-            <div className={styles.buttons}>
-              <button>Posts</button>
-              <button className={styles.active_button}>Users</button>
-            </div>
-            <div className={styles.search_box}>
-              <input className={styles.search} type="text" placeholder="Search User" />
-            </div>
-          </div>
-          <hr></hr>
-          <div className={styles.content}>
-            <Users />
-          </div>
+          <Timeline />
         </div>
       </div>
     </div>
   );
 }
 
-export default Admin;
+export default Profile;

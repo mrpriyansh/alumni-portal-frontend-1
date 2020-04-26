@@ -5,8 +5,10 @@ import { ReactComponent as NotificationBell } from '../../assets/svgs/notificati
 import { ReactComponent as HelpIcon } from '../../assets/svgs/help.svg';
 import helpIcon from '../../assets/svgs/help_navbar.svg';
 import SearchIcon from '../../assets/svgs/search.svg';
+import { useAuth } from '../../components/Hooks/Auth';
 
 function Navbar() {
+  const authToken = useAuth();
   return (
     <div className={styles.navbar}>
       <div className={styles.left}>
@@ -22,9 +24,13 @@ function Navbar() {
         </div>
       </div>
       <div className={styles.right}>
+        {console.log(authToken)}
         <NotificationBell width="2em" height="2em" fill="#10116E" />
-        {/* <img className={styles.notification_bell} src={notificationBell} alt="notifcation" /> */}
-        <button className={styles.logout_button}> Logout </button>
+        {authToken ? (
+          <button className={styles.logout_button}> Logout </button>
+        ) : (
+          <button className={styles.logout_button}> Login </button>
+        )}
         <hr className={styles.line}></hr>
         <HelpIcon fill="#878787" />
         {/* <img className={styles.help} src={helpIcon} alt="help" /> */}

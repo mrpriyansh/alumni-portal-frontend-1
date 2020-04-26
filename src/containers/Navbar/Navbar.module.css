@@ -1,6 +1,7 @@
 .navbar{
-    width: 100vw;
+    width: 100%;
     height: 8vh;
+    min-width: 990px;
     min-height: 52px;
     display: flex;
     justify-content: space-between;
@@ -23,7 +24,7 @@
 }
 
 .title{
-    width: auto;
+    width: max-content;
     height: 100%;
     display: flex;
     flex-direction: column;

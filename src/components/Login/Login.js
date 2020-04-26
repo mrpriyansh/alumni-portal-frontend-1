@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Login.module.css';
 import instituteLogo from '../../assets/images/instituteLogo.png';
-import helpSVG from '../../assets/svgs/help.svg';
+import { ReactComponent as HelpSVG } from '../../assets/svgs/help.svg';
 import { useForm } from '../Hooks/handleInputs';
 import { ReactComponent as Next } from '../../assets/svgs/next.svg';
 import { useAuth } from '../Hooks/Auth';
@@ -19,7 +19,7 @@ function Login() {
       <div className={styles.top}>
         <img className={styles.institute_logo} src={instituteLogo} alt="logo" />
         <div className={styles.help}>
-          <img className={styles.help_logo} src={helpSVG} alt="help" />
+          <HelpSVG className={styles.help_logo} height="1.4em" width="1.4em" fill="#10116E" />
           <span className={styles.help_text}>Help</span>
         </div>
       </div>
@@ -51,17 +51,18 @@ function Login() {
             />
           </div>
         </div>
-        <button type="submit" onClick={handleLogin} className={styles.login_button}>
-          {' '}
-          Login <Next className={styles.next_arrow} />{' '}
-        </button>
-        <hr className={styles.line}></hr>
-        <h4 className={styles.login_not_registered}>
-          Don't have an account yet?
-          <Link to="/register" className={styles.register_link}>
-            Register{' '}
-          </Link>
-        </h4>
+        <div className={styles.lower}>
+          <button type="submit" onClick={handleLogin} className={styles.login_button}>
+            Login <Next className={styles.next_arrow} fill="#ffffff" />
+          </button>
+          <hr className={styles.line}></hr>
+          <h4 className={styles.login_not_registered}>
+            Don't have an account yet?
+            <Link to="/register" className={styles.register_link}>
+              Register{' '}
+            </Link>
+          </h4>
+        </div>
       </div>
     </div>
   );

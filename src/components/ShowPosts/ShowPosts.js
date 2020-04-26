@@ -25,10 +25,15 @@ function ShowPosts() {
           reprehenderit eu ullamco commodo. Non nostrud magna commodo sint amet eiusmod nostrud
           adipisicing nisi esse proident officia laborum.
         </p>
-        <div className={styles.images}>
-          <img className={styles.photo} src={photo1} alt="photo1" />
-          <img className={styles.photo} src={photo2} alt="photo1" />
-          <img className={styles.photo} src={photo3} alt="photo1" />
+        <div className={`${styles.images} ${styles.slider}`}>
+          <div className={styles.slide}>
+            <img className={styles.photo} src={photo1} alt="photo1" />
+            <img className={styles.photo} src={photo2} alt="photo1" />
+            <img className={styles.photo} src={photo3} alt="photo1" />
+            <img className={styles.photo} src={photo2} alt="photo1" />
+            <img className={styles.photo} src={photo1} alt="photo1" />
+            <img className={styles.photo} src={photo3} alt="photo1" />
+          </div>
         </div>
         <div className={styles.reactions}>
           <span>

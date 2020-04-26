@@ -7,9 +7,6 @@ import { ReactComponent as EmailIcon } from '../../assets/svgs/email.svg';
 import { ReactComponent as TickIcon } from '../../assets/svgs/tick.svg';
 import profilePic from '../../assets/images/profile.jpg';
 import Timeline from '../../components/Timeline/Timeline';
-import { ReactComponent as UploadIcon } from '../../assets/svgs/upload.svg';
-import { ReactComponent as PostIcon } from '../../assets/svgs/post.svg';
-import { ReactComponent as LikeIcon } from '../../assets/svgs/like.svg';
 
 function Home() {
   return (

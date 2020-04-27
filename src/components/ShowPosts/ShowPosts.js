@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ShowPosts.module.css';
-import { ReactComponent as LikeIcon } from '../../assets/svgs/like.svg';
-import { ReactComponent as ShareIcon } from '../../assets/svgs/share.svg';
+import { ReactComponent as LikeIcon } from '../../assets/icons/like.svg';
+import { ReactComponent as ShareIcon } from '../../assets/icons/share.svg';
 import profilePic from '../../assets/images/profile.jpg';
 import photo1 from '../../assets/images/photo1.png';
 import photo2 from '../../assets/images/photo2.png';

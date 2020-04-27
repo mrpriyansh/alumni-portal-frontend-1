@@ -1,6 +1,9 @@
+import React from 'react';
+import { useHistory, Redirect, Route } from 'react-router-dom';
 import Swal from 'sweetalert2/src/sweetalert2';
 import '@sweetalert2/theme-dark/dark.css';
 import './styles.css';
+import registerPopsvg from '../../assets/images/registerPopup.svg';
 
 const getAlert = () => {
   const Toast = Swal.mixin({
@@ -8,7 +11,7 @@ const getAlert = () => {
     position: 'bottom-end',
     showConfirmButton: false,
     timer: 3000,
-    background: '#124479',
+    background: '#10116E',
     timerProgressBar: true,
     onOpen: toast => {
       toast.addEventListener('mouseenter', Swal.stopTimer);
@@ -23,4 +26,33 @@ export const triggerAlert = data => {
   toast.fire(data);
 };
 
+const redirectToLanding = () => {
+  const { location } = window;
+  location.replace('/');
+};
+export const registerPopup = notify => {
+  Swal.fire({
+    timer: 4500,
+    title: 'Thank You for registration!!',
+    text: notify,
+    imageUrl: registerPopsvg,
+    background: '#fff',
+    width: '30%',
+    // height: '16.875%',
+    imageWidth: '80%',
+    imageHeight: '80%',
+    imageAlt: 'Custom image',
+    timerProgressBar: true,
+    // animation: false,
+    customClass: {
+      container: 'container-class',
+      popup: 'popup-class',
+      header: 'header-class',
+      title: 'title-class',
+      content: 'content-class',
+      actions: 'actions-class',
+    },
+    // onClose: redirectToLanding,
+  });
+};
 export default getAlert;

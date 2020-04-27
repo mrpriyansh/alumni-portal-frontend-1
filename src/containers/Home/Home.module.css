@@ -46,8 +46,8 @@
 
 
 .profile_pic{
-    width: 45%;
-    height: auto;
+    width: auto;
+    height: 35%;
     border-radius: 50%;
     box-shadow: 6px 6px 9px #00000040;
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './Admin.module.css';
 import Navbar from '../Navbar/Navbar';
-import { ReactComponent as EditProfileIcon } from '../../assets/svgs/setting.svg';
-import { ReactComponent as LinkedinIcon } from '../../assets/svgs/linkedin.svg';
-import { ReactComponent as EmailIcon } from '../../assets/svgs/email.svg';
-import { ReactComponent as TickIcon } from '../../assets/svgs/tick.svg';
+import { ReactComponent as EditProfileIcon } from '../../assets/icons/setting.svg';
+import { ReactComponent as LinkedinIcon } from '../../assets/icons/linkedin.svg';
+import { ReactComponent as EmailIcon } from '../../assets/icons/email.svg';
+import { ReactComponent as TickIcon } from '../../assets/icons/tick.svg';
 import profilePic from '../../assets/images/profile.jpg';
 import Users from '../../components/Users/Users';
 

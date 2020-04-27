@@ -69,7 +69,7 @@
     width: 70%;
     height: 55%;
     border: 0px;
-    background: url("../../assets/svgs/search.svg") no-repeat;
+    background: url("../../assets/icons/search.svg") no-repeat;
     background-color: #DCDCDC;
     background-position: 5% 50%;
     border-radius: 8px;
@@ -99,6 +99,7 @@
     color: #FFFFFF;
     background-color: #10116E;
     margin-left: 4%;
+    cursor: pointer;
 }
 
 .notification_bell{

@@ -1,18 +1,28 @@
 import React from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import instituteLogo from '../../assets/images/instituteLogo.png';
 import styles from './Navbar.module.css';
-import { ReactComponent as NotificationBell } from '../../assets/svgs/notification_bell.svg';
-import { ReactComponent as HelpIcon } from '../../assets/svgs/help.svg';
-import helpIcon from '../../assets/svgs/help_navbar.svg';
-import SearchIcon from '../../assets/svgs/search.svg';
+import { ReactComponent as NotificationBell } from '../../assets/icons/notification_bell.svg';
+import { ReactComponent as HelpIcon } from '../../assets/icons/help.svg';
+import helpIcon from '../../assets/icons/help_navbar.svg';
+import SearchIcon from '../../assets/icons/search.svg';
 import { useAuth } from '../../components/Hooks/Auth';
 
 function Navbar() {
-  const authToken = useAuth();
+  const { authToken, setAuthToken, setCurrentUser } = useAuth();
+  const history = useHistory();
+  const handleLogout = () => {
+    setAuthToken(null);
+    localStorage.removeItem('token');
+    setCurrentUser(null);
+    history.replace('/');
+  };
   return (
     <div className={styles.navbar}>
       <div className={styles.left}>
-        <img className={styles.institute_logo} src={instituteLogo} alt="logo" />
+        <Link to="/">
+          <img className={styles.institute_logo} src={instituteLogo} alt="logo" />
+        </Link>
         <div className={styles.title}>
           <p className={styles.institute_name}>ABV-IIITM's</p>
           <p className={styles.portal_name}>Alumni Association Portal</p>
@@ -27,7 +37,10 @@ function Navbar() {
         {console.log(authToken)}
         <NotificationBell width="2em" height="2em" fill="#10116E" />
         {authToken ? (
-          <button className={styles.logout_button}> Logout </button>
+          <button onClick={handleLogout} className={styles.logout_button}>
+            {' '}
+            Logout{' '}
+          </button>
         ) : (
           <button className={styles.logout_button}> Login </button>
         )}

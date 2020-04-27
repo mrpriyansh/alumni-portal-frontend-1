@@ -59,7 +59,7 @@
 .left_buttons button{
     width: calc(90%/3);
     height: 1.7em;
-    background: url('../../assets/svgs/tick_white.svg') no-repeat;
+    background: url('../../assets/icons/tick_white.svg') no-repeat;
     background-size: 1em 1em;
     background-position: 8%;
     background-color: #DCDCDC;
@@ -94,7 +94,7 @@
 .right_buttons button:nth-child(1){
     width: 65%;
     align-items: center;
-    background: url('../../assets/svgs/upload.svg') no-repeat;
+    background: url('../../assets/icons/upload.svg') no-repeat;
     background-size: 1em 1em;
     background-position-x: 8%;
     background-position-y: 50%;
@@ -104,7 +104,7 @@
 
 .right_buttons button:nth-child(2){
     width: 25%;
-    background: url('../../assets/svgs/post.svg') no-repeat;
+    background: url('../../assets/icons/post.svg') no-repeat;
     background-size: 1em 1em;
     background-position-x: 10%;
     background-position-y: 50%;

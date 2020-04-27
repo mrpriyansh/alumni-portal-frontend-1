@@ -2,22 +2,46 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Login.module.css';
 import instituteLogo from '../../assets/images/instituteLogo.png';
-import { ReactComponent as HelpSVG } from '../../assets/svgs/help.svg';
+import { ReactComponent as HelpSVG } from '../../assets/icons/help.svg';
 import { useForm } from '../Hooks/handleInputs';
-import { ReactComponent as Next } from '../../assets/svgs/next.svg';
+import { ReactComponent as Next } from '../../assets/icons/next.svg';
 import { useAuth } from '../Hooks/Auth';
+import { emailValidation } from '../../utils/validateData';
+import { triggerAlert } from '../../utils/getAlert/getAlert';
 
 function Login() {
   const { setAuthToken } = useAuth();
   const [inputs, changeInputs] = useForm({ email: '', password: '' });
   const handleLogin = event => {
     event.preventDefault();
-    setAuthToken(true);
+    if (emailValidation(inputs.email) && inputs.password.length >= 6) {
+      console.log(inputs);
+      fetch('http://localhost:4000/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(inputs),
+      })
+        .then(response => response.json())
+        .then(res => {
+          if (res.response === 'success') {
+            setAuthToken(res.data);
+            window.localStorage.setItem('token', res.data);
+          } else {
+            triggerAlert({ icon: 'error', title: res.response });
+          }
+        });
+    } else {
+      emailValidation(inputs.email)
+        ? triggerAlert({ icon: 'error', title: 'Enter valid Password' })
+        : triggerAlert({ icon: 'error', title: 'Enter valid Email' });
+    }
   };
   return (
     <div className={styles.login}>
       <div className={styles.top}>
-        <img className={styles.institute_logo} src={instituteLogo} alt="logo" />
+        <Link to="/">
+          <img className={styles.institute_logo} src={instituteLogo} alt="logo" />
+        </Link>
         <div className={styles.help}>
           <HelpSVG className={styles.help_logo} height="1.4em" width="1.4em" fill="#10116E" />
           <span className={styles.help_text}>Help</span>
@@ -30,7 +54,7 @@ function Login() {
             <p className={styles.heading_lower}> ABV-IIITM's</p>
             <p className={styles.heading_lower}> Alumni Portal</p>
           </div>
-          <div className={styles.inputs_form}>
+          <form className={styles.inputs_form}>
             <div className={styles.field}>
               <label htmlFor="email-address">E-mail Address</label>
               <input
@@ -51,11 +75,11 @@ function Login() {
                 placeholder="Enter Password"
               />
             </div>
-          </div>
-          <div className={styles.lower}>
             <button type="submit" onClick={handleLogin} className={styles.login_button}>
               Login <Next className={styles.next_arrow} fill="#ffffff" />
             </button>
+          </form>
+          <div className={styles.lower}>
             <hr className={styles.line}></hr>
             <h4 className={styles.login_not_registered}>
               Don't have an account yet?

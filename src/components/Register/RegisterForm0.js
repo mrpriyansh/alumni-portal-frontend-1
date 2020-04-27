@@ -63,7 +63,7 @@ function RegisterForm0({ inputs, changeInputs }) {
           <input
             onChange={changeInputs}
             type="number"
-            min="1999"
+            min="1998"
             max={currentYear - julyFlag}
             name="admissionYear"
             value={inputs.admissionYear}

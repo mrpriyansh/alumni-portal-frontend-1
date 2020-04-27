@@ -1,7 +1,7 @@
 .register{
     width: 100%;
     height: 100%;
-    padding: 4% 7%;
+    padding: max(15px,3vh) 7%;
     font-size: 1rem;
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@ button{
 select{
     appearance: none;
     outline: none;
-    background: url("../../assets/svgs/dropdown.svg") no-repeat;
+    background: url("../../assets/icons/dropdown.svg") no-repeat;
     background-position-x: 85%;
     background-position-y: 50%;
     background-size: 1em;
@@ -29,13 +29,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: rgba(0, 0, 0, 0);
     opacity: 1;
     display: block;
-    background: url("../../assets/svgs/calendar.svg") no-repeat;
+    background: url("../../assets/icons/calendar.svg") no-repeat;
     background-size: 100% 100%;
     width: 1.2em;
     height: 1.2em;
     border-width: thin;
 }
-
+/* 
+input[type="number"]{
+    background: url('../../assets/icons/double-chevron.svg') no-repeat;
+    background-size: 1.5em 1.5em;
+    background-position: 90% 50%;
+} */
 .top{
     width: 100%;
     height: 8%;
@@ -44,6 +49,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     align-items: center;
 }
 
+.top a{
+    height: 100%;
+}
 .institute_logo{
     width: auto;
     height: 100%;
@@ -223,14 +231,6 @@ input[type=number] {
     border-radius: 10px;
 }
 
-/* lower*/
-.lower{
-    width: 100%;
-    height: 6.2em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 .register_button{
     width: 35%;
@@ -245,6 +245,15 @@ input[type=number] {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+
+/* lower*/
+.lower{
+    width: 100%;
+    height: 4.2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .next_arrow{

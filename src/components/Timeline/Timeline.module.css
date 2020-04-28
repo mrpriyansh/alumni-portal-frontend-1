@@ -1,0 +1,21 @@
+.timeline{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.upload_post{
+    width: 100%;
+    height: 37%;
+    min-width: 530px;
+    min-height: 240px;
+    margin-bottom: max(7vh, 10px);
+}
+
+.show_posts{
+    width: 100%;
+    height: 10%;
+    min-width: 530px;
+
+}

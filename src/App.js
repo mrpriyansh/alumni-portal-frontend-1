@@ -7,6 +7,8 @@ import Home from './containers/Home/Home';
 import Admin from './containers/Admin/Admin';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Profile from './containers/Profile/Profile';
+import Navbar from './containers/Navbar/Navbar';
+import Loader from './components/Loader/Loader';
 
 function App() {
   const [authToken, setAuthToken] = useState(false);
@@ -18,7 +20,6 @@ function App() {
     const token = window.localStorage.getItem('token');
     if (token) {
       setAuthToken(token);
-      console.log(token, 'app.js');
     }
   }, []);
   // load User
@@ -38,10 +39,27 @@ function App() {
     <AuthContext.Provider value={{ authToken, setAuthToken, currentUser, setCurrentUser }}>
       <Switch>
         <Route exact path="/">
-          {authToken ? <Home /> : <Landing />}
+          {authToken ? (
+            <>
+              <Navbar />
+              <Home />
+            </>
+          ) : (
+            <Landing />
+          )}
+        </Route>
+        <Route exact path="/loader">
+          <Loader />
         </Route>
         <Route exact path="/register">
-          {authToken ? <Home /> : <Landing />}
+          {authToken ? (
+            <>
+              <Navbar />
+              <Home />
+            </>
+          ) : (
+            <Landing />
+          )}
         </Route>
         <ProtectedRoute path="/admin">
           {' '}
@@ -49,6 +67,7 @@ function App() {
         </ProtectedRoute>
         <Route exact path="/profile">
           {' '}
+          <Navbar />
           <Profile />{' '}
         </Route>
       </Switch>

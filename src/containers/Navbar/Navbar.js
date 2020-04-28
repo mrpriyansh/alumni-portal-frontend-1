@@ -17,6 +17,9 @@ function Navbar() {
     setCurrentUser(null);
     history.replace('/');
   };
+  const handleLogin = () => {
+    history.push('/');
+  };
   return (
     <div className={styles.navbar}>
       <div className={styles.left}>
@@ -34,7 +37,6 @@ function Navbar() {
         </div>
       </div>
       <div className={styles.right}>
-        {console.log(authToken)}
         <NotificationBell width="2em" height="2em" fill="#10116E" />
         {authToken ? (
           <button onClick={handleLogout} className={styles.logout_button}>
@@ -42,7 +44,10 @@ function Navbar() {
             Logout{' '}
           </button>
         ) : (
-          <button className={styles.logout_button}> Login </button>
+          <button onClick={handleLogin} className={styles.logout_button}>
+            {' '}
+            Login{' '}
+          </button>
         )}
         <hr className={styles.line}></hr>
         <HelpIcon fill="#878787" />

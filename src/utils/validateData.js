@@ -6,14 +6,34 @@ export const emailValidation = email => {
   return match;
 };
 
+export const instituteEmailValidation = email => {
+  const regx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@iiitm.ac.in/;
+  const match = regx.test(email);
+  return match;
+};
+
 export const phonenoValidation = phoneno => {
   const regx = /^\d{10}$/;
   const match = regx.test(phoneno);
   return match;
 };
 
-export const gradutationYearValidation = (actualYear, inputYear) => {
-  if (actualYear > inputYear) {
+export const gradutationYearValidation = (batchName, admissionYear, graduationYear) => {
+  if (batchName === 'PhD') {
+    return 1;
+  }
+  let duration = 0;
+  switch (batchName) {
+    case 'IPG':
+      duration = 5;
+      break;
+    case 'BCS':
+      duration = 4;
+      break;
+    default:
+      duration = 2;
+  }
+  if (admissionYear + duration > graduationYear) {
     triggerAlert({ icon: 'error', title: 'Please Enter correct Graduation Year' });
     return 0;
   }

@@ -75,6 +75,8 @@
     border-radius: 8px;
     padding: 0px 8%;   
 }
+
+/* right*/
 .right{
     width: calc(94%/3);
     height: 100%;

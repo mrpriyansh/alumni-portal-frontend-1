@@ -15,7 +15,6 @@ function Login() {
   const handleLogin = event => {
     event.preventDefault();
     if (emailValidation(inputs.email) && inputs.password.length >= 6) {
-      console.log(inputs);
       fetch('http://localhost:4000/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

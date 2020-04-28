@@ -13,6 +13,7 @@ import {
   emailValidation,
   phonenoValidation,
   gradutationYearValidation,
+  instituteEmailValidation,
 } from '../../utils/validateData';
 import { triggerAlert, registerPopup } from '../../utils/getAlert/getAlert';
 
@@ -22,6 +23,26 @@ function Register() {
   const julyFlag = Number(date.getMonth() <= 7);
   const history = useHistory();
   const [step, changeStep] = useState(0);
+  const [flag, changeFlag] = useState(0);
+  useEffect(() => {
+    if (flag) {
+      history.push('/');
+      fetch('http://localhost:4000/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(inputs),
+      })
+        .then(response => response.json())
+        .then(res => {
+          if (res.icon === 'success') {
+            // triggerAlert(res);
+            history.replace('/');
+          } else {
+            triggerAlert(res);
+          }
+        });
+    }
+  }, [flag, history, inputs]);
   const [inputs, changeInputs] = useForm({
     name: 'Priyansh',
     email: 'kf@kf.com',
@@ -36,18 +57,10 @@ function Register() {
     userType: 'alumni',
     designation: '',
     company: '',
+    instituteEmail: '',
     gender: 'Male',
   });
-  useEffect(() => {
-    console.log(inputs);
-  }, [inputs]);
-  const changeToStudent = () => {
-    changeInputs({ target: { name: 'userType', value: 'student' } });
-    changeInputs({ target: { name: 'designation', value: 'Student' } });
-    changeInputs({ target: { name: 'company', value: 'ABV-IIITM' } });
-  };
   const handleRegister = event => {
-    console.log(inputs);
     event.preventDefault();
     if (!step) {
       if (
@@ -66,40 +79,39 @@ function Register() {
         triggerAlert({ icon: 'error', title: 'Enter valid details' });
       }
     } else {
-      if (gradutationYearValidation(inputs.batch, inputs.admissionYear, inputs.graduationYear)) {
-        if (
-          inputs.graduationYear <= currentYear - julyFlag &&
-          (!inputs.designation.length || !inputs.company.length)
-        ) {
-          triggerAlert({ icon: 'error', title: 'Enter Designation & Company' });
-        } else {
-          if (inputs.graduationYear > currentYear - julyFlag) {
-            changeToStudent();
-            registerPopup(`Please verify yourself using institute Email-Id!`);
+      // validate the batch, admission Year and graduation Year
+      if (
+        gradutationYearValidation(inputs.batchName, +inputs.admissionYear, +inputs.graduationYear)
+      ) {
+        // validate user is alumni
+        if (inputs.graduationYear > currentYear - julyFlag) {
+          // user is current student and validate institute email
+          if (!instituteEmailValidation(inputs.instituteEmail)) {
+            triggerAlert({ icon: 'error', title: 'Institute Email is not valid' });
           } else {
+            // details are valid
+            changeInputs({ target: { name: 'userType', value: 'student' } });
+            changeInputs({ target: { name: 'designation', value: 'Student' } });
+            changeInputs({ target: { name: 'company', value: 'ABV-IIITM' } });
+            registerPopup(`Please verify yourself using institute Email-Id!`);
+            changeFlag(1);
+          }
+        } else {
+          // validate designation and company
+          if (!inputs.designation.length || !inputs.company.length) {
+            triggerAlert({ icon: 'error', title: 'Enter Designation & Company' });
+          } else {
+            // details are valid
+            changeInputs({ target: { name: 'instituteEmail', value: '' } });
             registerPopup(
               `We will notify you when the account gets approved by the admin in 2-3 working days!`
             );
+            changeFlag(1);
           }
-          history.push('/');
-          // fetch('http://localhost:4000/api/signup', {
-          //   method: 'POST',
-          //   headers: { 'Content-Type': 'application/json' },
-          //   body: JSON.stringify(inputs),
-          // })
-          //   .then(response => response.json())
-          //   .then(res => {
-          //     if (res.icon === 'success') {
-          //       triggerAlert(res);
-          //       history.replace('/');
-          //     } else {
-          //       triggerAlert(res);
-          //     }
-          //   });
         }
-      } else {
-        triggerAlert({ icon: 'error', title: 'Enter valid details.' });
       }
+
+      console.log(inputs);
     }
   };
   useEffect(() => {}, []);

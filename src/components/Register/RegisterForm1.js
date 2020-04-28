@@ -21,7 +21,6 @@ function RegisterForm1({ inputs, changeInputs }) {
   // },[inputs.batchName]);
   const changeBatch = event => {
     changeInputs(event);
-    console.log(event.target.value);
     switch (event.target.value) {
       case 'IPG':
         console.log('IPG');
@@ -47,49 +46,40 @@ function RegisterForm1({ inputs, changeInputs }) {
                 <option value="MTech">M.Tech</option>
                 <option value="MBA">MBA</option>
                 <option value="PhD">PhD</option>
-                <option value="PhD">PGDIT</option>
-                <option value="PhD">PGDMIT</option>
+                <option value="PGDIT">PGDIT</option>
+                <option value="PGDMIT">PGDMIT</option>
               </select>
-              <select name="subBatch" onChange={changeInputs}>
-                {inputs.batchName === 'IPG' ? (
-                  <Fragment>
-                    <option defaultSelected value="MTech">
-                      M.Tech
-                    </option>
-                    <option value="MBA">MBA</option>
-                  </Fragment>
-                ) : inputs.batchName === 'MTech' ? (
-                  <Fragment>
-                    <option value="DC" defaultSelected>
-                      DC
-                    </option>
-                    <option value="CN">CN</option>
-                    <option value="VLSI">VLSI</option>
-                    <option value="ISS">IS</option>
-                  </Fragment>
-                ) : (
-                  <Fragment>
-                    <option value="NA">NA</option>
-                  </Fragment>
-                )}
-              </select>
-              {/* {inputs.batchName === 'IPG' ? (
+              {inputs.batchName === 'IPG' ? (
                 <select name="subBatch" onChange={changeInputs}>
-                  <option selected value="MTech">M.Tech</option>
-                  <option value="MBA">MBA</option>
+                  <option key="MTech" value="MTech">
+                    M.Tech
+                  </option>
+                  <option key="MBA" value="MBA">
+                    MBA
+                  </option>
                 </select>
               ) : inputs.batchName === 'MTech' ? (
                 <select name="subBatch" onChange={changeInputs}>
-                  <option selected value="DC">DC</option>
-                  <option value="CN">CN</option>
-                  <option value="VLSI">VLSI</option>
-                  <option value="ISS">IS</option>
+                  <option key="DC" value="DC">
+                    DC
+                  </option>
+                  <option key="CN" value="CN">
+                    CN
+                  </option>
+                  <option key="VLSI" value="VLSI">
+                    VLSI
+                  </option>
+                  <option key="ISS" value="ISS">
+                    ISS
+                  </option>
                 </select>
               ) : (
                 <select disabled name="subBatch" onChange={changeInputs}>
-                  <option value="NA">NA</option>
+                  <option key="NA" value="NA">
+                    NA
+                  </option>
                 </select>
-              )} */}
+              )}
             </div>
           </div>
           <div className={styles.field_right}>
@@ -107,6 +97,18 @@ function RegisterForm1({ inputs, changeInputs }) {
         <div className={styles.field}>
           <label htmlFor="dob">Date of Birth </label>
           <input onChange={changeInputs} required type="date" name="dob" value={inputs.dob} />
+        </div>
+        <div className={styles.field}>
+          <label htmlFor="instituteEmail">Institute Email ID </label>
+          <input
+            onChange={changeInputs}
+            required
+            type="email"
+            name="instituteEmail"
+            value={inputs.instituteEmail}
+            disabled={inputs.graduationYear <= currentYear - julyFlag}
+            placeholder="Enter Your institute Email Id"
+          />
         </div>
         <div className={styles.two_field}>
           <div className={styles.current_designation}>

@@ -6,7 +6,7 @@
     min-width: 990px;
     min-height: 570px;
     background-color: #F2F2F5;
-    padding: 2% 3% 0% 3%;
+    padding: max(10px,3vh) 3% 0% 3%;
     display: flex;
     justify-content: space-between;
 }
@@ -65,7 +65,7 @@
 .batch{
     width: 100%;
     margin:2%;
-    font-size:1em;
+    font-size:0.8em;
     font-weight: 600;
     color: #10116E;
     text-align: center;
@@ -81,7 +81,7 @@
     width: 100%;
     margin: 2%;
     color: #10116E;
-    font-size: 1em;
+    font-size: 0.8em;
     font-weight: 600;
     text-align: center;
 }
@@ -96,6 +96,7 @@
 
 .profile_icons *{
     margin: 0px 2%;
+    cursor: pointer;
 }
 
 /*Left Bottom*/

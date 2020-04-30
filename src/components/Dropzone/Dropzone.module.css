@@ -1,0 +1,38 @@
+.dropzone{
+    height: 150px;
+    width: 150px;
+    background-color: #fff;
+    border: 2px dashed #11016E;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.disabled{
+    border: 2px dashed #DCDCDC;
+    cursor: default;
+}
+
+.disabled .upload_text{
+    color: #DCDCDC;
+}
+.icon{
+    opacity: 0.3;
+    height: 64px;
+    width: 64px;
+}
+
+.upload_text{
+    color: #11016E;
+}
+.file_input{
+    display: none;
+}
+
+.highlight{
+    background-color: rgb(188,185,236);
+}

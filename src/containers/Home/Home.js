@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './Home.module.css';
-import Navbar from '../Navbar/Navbar';
 import { ReactComponent as EditProfileIcon } from '../../assets/icons/setting.svg';
 import { ReactComponent as LinkedinIcon } from '../../assets/icons/linkedin.svg';
 import { ReactComponent as EmailIcon } from '../../assets/icons/email.svg';
@@ -12,6 +11,10 @@ import Loader from '../../components/Loader/Loader';
 
 function Home() {
   const { currentUser } = useAuth();
+  const [activeTab, setActiveTab] = useState('tab1');
+  const handleTabChange = tab => {
+    setActiveTab(tab);
+  };
   if (!currentUser) return <Loader />;
   return (
     <div className={styles.home}>
@@ -41,24 +44,59 @@ function Home() {
         </div>
         <div className={styles.left_bottom}>
           <p className={styles.left_heading}> Filters</p>
-          <div className={styles.filter_item}>
-            <TickIcon className={styles.tick_icon} width="0.8em" height="0.8em" fill="#DCDCDC" />
-            <p className={styles.filter_text}> Job Opportunities</p>
+          <div onClick={() => handleTabChange('tab1')} className={styles.filter_item}>
+            <TickIcon
+              className={styles.tick_icon}
+              width="0.8em"
+              height="0.8em"
+              fill={activeTab === 'tab1' ? '10116E' : '#DCDCDC'}
+            />
+            <p
+              className={
+                activeTab === 'tab1' ? `${styles.active_filter_text}` : `${styles.filter_text}`
+              }
+            >
+              {' '}
+              Job Opportunities
+            </p>
           </div>
           <hr className={styles.line}></hr>
-          <div className={styles.filter_item}>
-            <TickIcon className={styles.tick_icon} width="0.8em" height="0.8em" fill="#DCDCDC" />
-            <p className={styles.filter_text}>Asked Referals</p>
+          <div onClick={() => handleTabChange('tab2')} className={styles.filter_item}>
+            <TickIcon
+              className={styles.tick_icon}
+              width="0.8em"
+              height="0.8em"
+              fill={activeTab === 'tab2' ? '10116E' : '#DCDCDC'}
+            />
+            <p
+              className={
+                activeTab === 'tab2' ? `${styles.active_filter_text}` : `${styles.filter_text}`
+              }
+            >
+              Asked Referals
+            </p>
           </div>
           <hr className={styles.line}></hr>
-          <div className={styles.filter_item}>
-            <TickIcon className={styles.tick_icon} width="0.8em" height="0.8em" fill="#DCDCDC" />
-            <p className={styles.filter_text}> Activities</p>
+          <div onClick={() => handleTabChange('tab3')} className={styles.filter_item}>
+            <TickIcon
+              className={styles.tick_icon}
+              width="0.8em"
+              height="0.8em"
+              fill={activeTab === 'tab3' ? '10116E' : '#DCDCDC'}
+            />
+            <p
+              className={
+                activeTab === 'tab3' ? `${styles.active_filter_text}` : `${styles.filter_text}`
+              }
+            >
+              {' '}
+              Activities
+            </p>
           </div>
         </div>
       </div>
       <div className={styles.middle}>
-        <Timeline />
+        <Timeline activeTab={activeTab} />
       </div>
       <div className={styles.right}>
         <div className={styles.right_box}>

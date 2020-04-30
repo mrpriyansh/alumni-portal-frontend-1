@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, useHistory, Switch } from 'react-router-dom';
+import UploadPopUp from './components/UploadPopUp/UploadPopUp';
 import { AuthContext } from './components/Hooks/Auth';
 import styles from './App.module.css';
 import Landing from './containers/Landing/Landing';
@@ -38,6 +39,9 @@ function App() {
   return (
     <AuthContext.Provider value={{ authToken, setAuthToken, currentUser, setCurrentUser }}>
       <Switch>
+        <Route exact path="/uploadpop">
+          <UploadPopUp />
+        </Route>
         <Route exact path="/">
           {authToken ? (
             <>

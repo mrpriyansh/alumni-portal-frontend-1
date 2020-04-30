@@ -128,15 +128,25 @@
     display: flex;
     justify-content: center;
     margin: 2% 0px;
+    cursor: pointer;
 }
 
 .tick_icon{
     margin-right: 8%;
 }
+
 .filter_text{
     width: 100%;
     color: #878787;
     font-size: 0.8em;
+    margin: 0px;
+}
+
+.active_filter_text{
+    width: 100%;
+    color: #10116E;
+    font-size: 0.8em;
+    font-weight: 600;
     margin: 0px;
 }
 

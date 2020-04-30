@@ -49,3 +49,9 @@ export const isNull = ({ obj }) => {
   }
   return 1;
 };
+
+export const urlValidation = url => {
+  const regx = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+  const match = regx.test(url);
+  return match;
+};

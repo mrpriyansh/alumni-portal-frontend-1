@@ -14,7 +14,7 @@ function UploadPost() {
   const [openModal, setOpenModal] = useState(false);
   useEffect(() => {
     changePost({ target: { name: 'type', value: activeTab } });
-  }, [activeTab, changePost]);
+  }, [activeTab]);
   const handleChoiceButton = (event, tab) => {
     event.preventDefault();
     changeActiveTab(tab);

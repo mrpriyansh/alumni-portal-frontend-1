@@ -1,19 +1,18 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useState } from 'react';
 import styles from './UploadPop.module.css';
 import { useAuth } from '../Hooks/Auth';
 import Dropzone from '../Dropzone/Dropzone';
 import { ReactComponent as CancelSVG } from '../../assets/icons/cancel.svg';
 
-function UploadPopUp({ setOpenModal, changePost }) {
+function UploadPopUp({ setOpenModal, changePost, fileName, setFileName }) {
   const { authToken } = useAuth();
-  const [fileName, setFileName] = useState([]);
   const [uploadProgress, setUploadProgress] = useState({});
   const [successfullUploaded, setSuccessfullUploaded] = useState(false);
   const [url, changeURL] = useState([]);
   const [uploading, setUploading] = useState(false);
   const renderProgressBar = file => {
     const progress = uploadProgress[file.name];
-    console.log(progress);
     return (
       <div className={styles.progress_wrapper}>
         <div className={styles.progress_bar}>
@@ -53,18 +52,18 @@ function UploadPopUp({ setOpenModal, changePost }) {
 
       const formData = new FormData();
       formData.append('file', file, file.name);
+      console.log(file);
       req.open('POST', 'http://localhost:4000/api/uploadimage');
       req.setRequestHeader('Authorization', `Bearer ${authToken}`);
       req.send(formData);
       req.onreadystatechange = function() {
         if (req.readyState == XMLHttpRequest.DONE) {
-          console.log(uploadProgress);
           console.log(req.response);
           const response = JSON.parse(req.response);
           // changeImageURLArray(oldImageURL => [...oldImageURL, {fileName:file.name, url: response.data }]);
           changeURL(oldImageURL => [
             ...oldImageURL,
-            { fileName: file.name, uid: response.data, type: response.type },
+            { fileName: file.name, uid: response.data, type: file.type.split('/')[0] },
           ]);
         }
       };
@@ -73,12 +72,14 @@ function UploadPopUp({ setOpenModal, changePost }) {
   const handleProceed = event => {
     event.preventDefault();
     changePost({ target: { name: 'fileUrls', value: url } });
+    console.log(fileName.length, url.length, fileName.length !== url.length);
     setOpenModal(false);
   };
 
   const handleCancel = event => {
     event.preventDefault();
     changePost({ target: { name: 'fileUrls', value: [] } });
+    setFileName([]);
     setOpenModal(false);
   };
 
@@ -128,14 +129,29 @@ function UploadPopUp({ setOpenModal, changePost }) {
         <button onClick={handleCancel} className={styles.cancel}>
           Cancel
         </button>
+        {/* eslint-disable-next-line no-nested-ternary */}
         {uploading || successfullUploaded ? (
-          <button
-            onClick={handleProceed}
-            disabled={uploading}
-            className={uploading ? `${styles.disabled}` : `${styles.submit}`}
-          >
-            Proceed
-          </button>
+          fileName.length !== url.length ? (
+            <button
+              disabled={fileName.length !== url.length}
+              className={fileName.length != url.length ? `${styles.disabled}` : `${styles.submit}`}
+            >
+              {' '}
+              Processing{' '}
+            </button>
+          ) : (
+            <button
+              onClick={handleProceed}
+              disabled={uploading || fileName.length !== url.length}
+              className={
+                uploading || fileName.length !== url.length
+                  ? `${styles.disabled}`
+                  : `${styles.submit}`
+              }
+            >
+              Proceed
+            </button>
+          )
         ) : (
           <button
             onClick={handleUpload}

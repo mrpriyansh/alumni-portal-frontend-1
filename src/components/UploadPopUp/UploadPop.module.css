@@ -70,7 +70,7 @@
 
 .file{
     width: 100%;
-    height: 2.5em;
+    height: 3em;
     margin: 0.25em 0px;
     display: flex;
     flex-direction: column;
@@ -78,9 +78,11 @@
 }
 
 .file_name{
+    width: 100%;
     color: #10116E;
     font-weight: 500;
-    overflow-x: scroll;
+    overflow-x: auto;
+    overflow-y: hidden;
     font-size: 0.8em;
 }
 
@@ -136,7 +138,9 @@
 
 .footer .disabled{
     background: #dcdcdc;
+    cursor: default;
 }
+
 .footer .cancel{
     background: #C81616;
 }

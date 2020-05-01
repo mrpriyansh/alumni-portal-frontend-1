@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Redirect, useLocation } from 'react-router-dom';
 import styles from './Home.module.css';
 import { ReactComponent as EditProfileIcon } from '../../assets/icons/setting.svg';
 import { ReactComponent as LinkedinIcon } from '../../assets/icons/linkedin.svg';
@@ -8,14 +9,26 @@ import profilePic from '../../assets/images/profile.jpg';
 import Timeline from '../../components/Timeline/Timeline';
 import { useAuth } from '../../components/Hooks/Auth';
 import Loader from '../../components/Loader/Loader';
+import Admin from '../Admin/Admin';
 
 function Home() {
   const { currentUser } = useAuth();
   const [activeTab, setActiveTab] = useState('tab1');
+  const location = useLocation();
+  const referer = location.state && location.state.referer ? location.state.referer : '/';
+
+  // return <Redirect to ={referer} />
+  if (!currentUser) return <Loader />;
+  if (referer !== '/') {
+    console.log('dfs', referer, typeof referer);
+    location.state = null;
+    console.log(referer);
+    return <Admin />;
+    console.log('gg');
+  }
   const handleTabChange = tab => {
     setActiveTab(tab);
   };
-  if (!currentUser) return <Loader />;
   return (
     <div className={styles.home}>
       <div className={styles.left}>
@@ -29,8 +42,7 @@ function Home() {
           <img className={styles.profile_pic} src={profilePic} alt="Profile" />
           <p className={styles.name}>{currentUser.name.split(' ')[0]}</p>
           <p className={styles.batch}>
-            {' '}
-            {currentUser.admissionYear} {currentUser.batchName}-{currentUser.subBatch}{' '}
+            {currentUser.admissionYear} {currentUser.batchName}-{currentUser.subBatch}
           </p>
           <hr className={styles.line}></hr>
           <p className={styles.position}>
@@ -49,7 +61,7 @@ function Home() {
               className={styles.tick_icon}
               width="0.8em"
               height="0.8em"
-              fill={activeTab === 'tab1' ? '10116E' : '#DCDCDC'}
+              fill={activeTab === 'tab1' ? '#10116E' : '#DCDCDC'}
             />
             <p
               className={
@@ -66,7 +78,7 @@ function Home() {
               className={styles.tick_icon}
               width="0.8em"
               height="0.8em"
-              fill={activeTab === 'tab2' ? '10116E' : '#DCDCDC'}
+              fill={activeTab === 'tab2' ? '#10116E' : '#DCDCDC'}
             />
             <p
               className={
@@ -82,7 +94,7 @@ function Home() {
               className={styles.tick_icon}
               width="0.8em"
               height="0.8em"
-              fill={activeTab === 'tab3' ? '10116E' : '#DCDCDC'}
+              fill={activeTab === 'tab3' ? '#10116E' : '#DCDCDC'}
             />
             <p
               className={

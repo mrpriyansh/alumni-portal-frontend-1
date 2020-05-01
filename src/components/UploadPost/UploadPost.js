@@ -11,6 +11,7 @@ function UploadPost() {
   const { authToken } = useAuth();
   const [post, changePost] = useForm({ type: '', text: '', url: '', fileUrls: [] });
   const [activeTab, changeActiveTab] = useState('tab1');
+  const [fileName, setFileName] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   useEffect(() => {
     changePost({ target: { name: 'type', value: activeTab } });
@@ -22,12 +23,13 @@ function UploadPost() {
   const handleUpload = event => {
     event.preventDefault();
     changePost({ target: { name: 'fileUrls', value: [] } });
+    setFileName([]);
     setOpenModal(true);
   };
   const handlePost = event => {
     event.preventDefault();
     if (post.url.length && !urlValidation(post.url)) {
-      triggerAlert({ icon: 'error', title: 'URL is not valid' });
+      triggerAlert({ icon: 'error', title: 'URL is not valid! Try to add http:// or https://' });
     } else if (!post.text.length) {
       triggerAlert({ icon: 'error', title: "Post canno't be empty!" });
     } else {
@@ -38,18 +40,24 @@ function UploadPost() {
       })
         .then(response => response.json())
         .then(res => {
-          // changePost({ ...post, text: '', fileUrl: '' });
+          changePost({ target: { name: 'text', value: '' } });
+          changePost({ target: { name: 'url', value: '' } });
+          changePost({ target: { name: 'fileUrls', value: [] } });
+          setFileName([]);
           triggerAlert(res);
         });
     }
   };
-  useEffect(() => {
-    console.log(post);
-  }, [post]);
   return (
     <div className={styles.upload_posts}>
       {openModal ? (
-        <Modal setOpenModal={setOpenModal} Child={UploadPopUp} changePost={changePost} />
+        <Modal
+          setOpenModal={setOpenModal}
+          Child={UploadPopUp}
+          changePost={changePost}
+          fileName={fileName}
+          setFileName={setFileName}
+        />
       ) : null}
       <p className={styles.heading}> Share something!</p>
       <textarea
@@ -57,6 +65,7 @@ function UploadPost() {
         className={styles.text_area}
         name="text"
         placeholder="Write something here"
+        value={post.text}
       />
       <div className={styles.link}>
         <input
@@ -105,7 +114,15 @@ function UploadPost() {
           <button onClick={handleUpload} className={styles.upload_button}>
             Upload Photo/Video
           </button>
-          <button onClick={handlePost} className={styles.upload_Post}>
+          <button
+            onClick={handlePost}
+            disabled={post.fileUrls.length !== fileName.length}
+            className={
+              post.fileUrls.length !== fileName.length
+                ? `${styles.post_button} ${styles.disabled}`
+                : `${styles.post_button}`
+            }
+          >
             Post
           </button>
         </div>

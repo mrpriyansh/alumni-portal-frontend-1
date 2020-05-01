@@ -22,7 +22,8 @@ function ShowPosts({ activeTab }) {
       .then(res => {
         setpostsData(res);
       });
-  }, [activeTab, authToken]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab]);
   if (!postsData) return <Loader />;
   const posts = postsData.map(post => {
     return (

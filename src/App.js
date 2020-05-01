@@ -42,16 +42,6 @@ function App() {
         <Route exact path="/uploadpop">
           <UploadPopUp />
         </Route>
-        <Route exact path="/">
-          {authToken ? (
-            <>
-              <Navbar />
-              <Home />
-            </>
-          ) : (
-            <Landing />
-          )}
-        </Route>
         <Route exact path="/loader">
           <Loader />
         </Route>
@@ -73,6 +63,16 @@ function App() {
           {' '}
           <Navbar />
           <Profile />{' '}
+        </Route>
+        <Route exact path="/">
+          {authToken ? (
+            <>
+              <Navbar />
+              <Home />
+            </>
+          ) : (
+            <Landing />
+          )}
         </Route>
       </Switch>
     </AuthContext.Provider>

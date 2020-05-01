@@ -42,7 +42,8 @@ function Register() {
           }
         });
     }
-  }, [flag, history, inputs]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [flag]);
   const [inputs, changeInputs] = useForm({
     name: 'Priyansh',
     email: 'kf@kf.com',

@@ -3,7 +3,6 @@ import styles from './Dropzone.module.css';
 import { ReactComponent as UploadIcon } from '../../assets/icons/uploadIcon.svg';
 
 function Dropzone({ setFileName, active }) {
-  console.log(active);
   const [highlight, setHighlight] = useState(false);
   const fileInputRef = useRef();
   const openFileDialog = () => {
@@ -20,10 +19,7 @@ function Dropzone({ setFileName, active }) {
   };
   const onFilesAdded = event => {
     const { files } = event.target;
-    console.log(files);
     const array = fileListToArray(files);
-    console.log('aa', array);
-    // return array;
   };
   const onDragOver = event => {
     event.preventDefault();

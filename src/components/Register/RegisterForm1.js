@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useRef, createRef, useEffect, Fragment } from 'react';
+import React from 'react';
 import styles from './Register.module.css';
 
 function RegisterForm1({ inputs, changeInputs }) {
@@ -23,7 +23,6 @@ function RegisterForm1({ inputs, changeInputs }) {
     changeInputs(event);
     switch (event.target.value) {
       case 'IPG':
-        console.log('IPG');
         changeInputs({ target: { name: 'subBatch', value: 'MTech' } });
         break;
       case 'MTech':

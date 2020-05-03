@@ -26,7 +26,6 @@ function Register() {
   const [flag, changeFlag] = useState(0);
   useEffect(() => {
     if (flag) {
-      history.push('/');
       fetch('http://localhost:4000/api/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -36,6 +35,12 @@ function Register() {
         .then(res => {
           if (res.icon === 'success') {
             // triggerAlert(res);
+            if (inputs.userType === 'student')
+              registerPopup(`Please verify yourself using institute Email-Id!`);
+            else
+              registerPopup(
+                `We will notify you when the account gets approved by the admin in 2-3 working days!`
+              );
             history.replace('/');
           } else {
             triggerAlert(res);
@@ -94,7 +99,6 @@ function Register() {
             changeInputs({ target: { name: 'userType', value: 'student' } });
             changeInputs({ target: { name: 'designation', value: 'Student' } });
             changeInputs({ target: { name: 'company', value: 'ABV-IIITM' } });
-            registerPopup(`Please verify yourself using institute Email-Id!`);
             changeFlag(1);
           }
         } else {
@@ -104,15 +108,10 @@ function Register() {
           } else {
             // details are valid
             changeInputs({ target: { name: 'instituteEmail', value: '' } });
-            registerPopup(
-              `We will notify you when the account gets approved by the admin in 2-3 working days!`
-            );
             changeFlag(1);
           }
         }
       }
-
-      console.log(inputs);
     }
   };
   useEffect(() => {}, []);
@@ -137,7 +136,7 @@ function Register() {
         <button type="submit" onClick={handleRegister} className={styles.register_button}>
           Register <Next className={styles.next_arrow} fill="#ffffff" />{' '}
         </button>
-        <div class={styles.lower}>
+        <div className={styles.lower}>
           <hr className={styles.line}></hr>
           <h4 className={styles.login_not_registered}>
             Already have an account?

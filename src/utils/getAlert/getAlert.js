@@ -1,5 +1,3 @@
-import React from 'react';
-import { useHistory, Redirect, Route } from 'react-router-dom';
 import Swal from 'sweetalert2/src/sweetalert2';
 import '@sweetalert2/theme-dark/dark.css';
 import './styles.css';
@@ -26,10 +24,6 @@ export const triggerAlert = data => {
   toast.fire(data);
 };
 
-const redirectToLanding = () => {
-  const { location } = window;
-  location.replace('/');
-};
 export const registerPopup = notify => {
   Swal.fire({
     timer: 4500,

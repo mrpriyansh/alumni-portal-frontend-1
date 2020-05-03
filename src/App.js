@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Route, useHistory, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import UploadPopUp from './components/UploadPopUp/UploadPopUp';
 import { AuthContext } from './components/Hooks/Auth';
-import styles from './App.module.css';
 import Landing from './containers/Landing/Landing';
 import Home from './containers/Home/Home';
 import Admin from './containers/Admin/Admin';
@@ -14,7 +13,6 @@ import Loader from './components/Loader/Loader';
 function App() {
   const [authToken, setAuthToken] = useState(false);
   const [currentUser, setCurrentUser] = useState();
-  const history = useHistory();
 
   // load token from localstorage
   useEffect(() => {

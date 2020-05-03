@@ -4,7 +4,6 @@ import Navbar from '../Navbar/Navbar';
 import { ReactComponent as EditProfileIcon } from '../../assets/icons/setting.svg';
 import { ReactComponent as LinkedinIcon } from '../../assets/icons/linkedin.svg';
 import { ReactComponent as EmailIcon } from '../../assets/icons/email.svg';
-import { ReactComponent as TickIcon } from '../../assets/icons/tick.svg';
 import profilePic from '../../assets/images/profile.jpg';
 import Users from '../../components/Users/Users';
 

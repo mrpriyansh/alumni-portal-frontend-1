@@ -1,10 +1,13 @@
 .show_posts{
     width: 100%;
     height: min-content;
+    min-height: 200px;
     background: #ffffff;
     box-shadow: 1px 0px 20px #00000029;
     border-radius: 14px;
     padding: 2% 3%;
+    display: flex;
+    flex-direction: column;
 }
 
 .post{
@@ -169,4 +172,24 @@
 
 .slide::-webkit-scrollbar-thumb:hover {
  box-shadow: inset 0 0 5px #fff;
+}
+
+
+.no_more_posts{
+    width: 100%;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 500;
+    color:#10116E;
+}
+
+.load_more{
+    width: 30%;
+    height: 2em;
+    background-color: #10116E;
+    color: #fff;
+    border-radius: 10px;
+    border: 0;
+    align-self: center;
+    cursor: pointer;
 }

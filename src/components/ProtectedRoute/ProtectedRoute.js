@@ -5,7 +5,6 @@ import { useAuth } from '../Hooks/Auth';
 const ProtectedRoute = ({ children, ...rest }) => {
   const { authToken } = useAuth();
   const location = useLocation();
-  console.log(authToken);
   return (
     <Route {...rest}>
       {authToken ? (

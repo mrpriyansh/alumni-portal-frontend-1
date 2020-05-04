@@ -1,11 +1,104 @@
 .users{
     width: 100%;
+    padding: 2% 4%;
+    min-height: max-content;
+
+}
+
+
+.heading_box{
+    width: 100%;
+    height: 1.7em;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.main_heading{
+    width: calc(100%/3);
+    color: #10116E;
+    font-weight: bold;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+}
+
+.header_buttons{
+    width: calc(100%/3);
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.header_buttons button{
+    width: 40%;
+    height: 100%;
+    color: #FFFFFF;
+    border:0px;
+    background: url('../../assets/icons/tick_white.svg') no-repeat;
+    background-position: 10% 50%;
+    background-color: #878787;
+    border-radius: 20px;
+}
+
+.header_buttons .active_button{
+    background-color: #10116E;
+}
+
+.filter{
+    width: calc(100%/3);
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.batch_year{
+    width: 30%;
+    border: 0px;
+    background: #DCDCDC;
+    border-radius: 8px;
+    padding: 0px 4%;
+    margin-left:2%
+}
+
+.batch_name{
+    width: 20%;
+    min-width: max-content;
+    border: 0px;
+    background: #DCDCDC;
+    border-radius: 8px;
+    display: flex;
+    text-align: center;
+    text-align-last: center;
+    margin-left:2%
+}
+
+.search_button{
+    width: 20%;
+    border: 0px;
+    color: #fff;
+    background: #10116E;
+    border-radius: 8px;
+    margin-left: 2%;
+
+}
+.line{
+    width: 75%;
+    color: #10116E;
+    margin: 2% auto;
+}
+
+/*content*/
+.content{
+    width: 100%;
     height: min-content;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 
 }
+
 
 /*user*/
 .user{
@@ -21,13 +114,15 @@
 
 .profile{
     width: 100%;
-    height: 3em;
+    height: max-content;
+    min-height: 3em;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
 }
 
 .profile_pic{
-    width: auto;
+    width: 3em;
     height: 3em;
     border-radius: 50%;
     margin-right: 2%;
@@ -36,7 +131,7 @@
 }
 
 .info{
-    width: 100%;
+    width: calc(100% - 3em - 1.5em - 2%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,6 +139,7 @@
 }
 
 .name{
+    font-size: 1em;
     color:#10116E;
     font-weight: bold;
 }
@@ -54,7 +150,16 @@
     font-weight: 500;
 }
 
+.atag{
+    height: max-content;
+}
 
+.profile_icon{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
 /*details*/
 
 .details{
@@ -78,7 +183,7 @@
     font-size: 0.8em;
 }
 
-.buttons{
+.profile_buttons{
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -95,6 +200,7 @@
     background-color: #1E9F0F;
     border-radius: 5px;
     padding-left: 8%;
+    cursor: pointer;
 }
 
 .reject_button{
@@ -108,4 +214,10 @@
     background-color: #C81616;
     border-radius: 5px;
     padding-left: 8%;
+    cursor: pointer;
+}
+
+/*visibility*/
+.visibilty{
+    visibility: hidden;
 }

@@ -63,7 +63,7 @@ function Register() {
     userType: 'alumni',
     designation: '',
     company: '',
-    instituteEmail: '',
+    instituteEmail: 'a@iiitm.ac.in',
     gender: 'Male',
   });
   const handleRegister = event => {

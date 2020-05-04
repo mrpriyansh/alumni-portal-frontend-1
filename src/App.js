@@ -53,15 +53,6 @@ function App() {
             <Landing />
           )}
         </Route>
-        <ProtectedRoute path="/admin">
-          {' '}
-          <Admin />{' '}
-        </ProtectedRoute>
-        <Route exact path="/profile">
-          {' '}
-          <Navbar />
-          <Profile />{' '}
-        </Route>
         <Route exact path="/">
           {authToken ? (
             <>
@@ -72,6 +63,15 @@ function App() {
             <Landing />
           )}
         </Route>
+        <ProtectedRoute path="/admin">
+          <Navbar />
+          <Admin />{' '}
+        </ProtectedRoute>
+        <ProtectedRoute exact path="/profile">
+          {' '}
+          <Navbar />
+          <Profile />{' '}
+        </ProtectedRoute>
       </Switch>
     </AuthContext.Provider>
   );

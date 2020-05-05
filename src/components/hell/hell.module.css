@@ -15,7 +15,7 @@
 }
 
 .main_heading{
-    width: calc(100%/2);
+    width: calc(100%/3);
     color: #10116E;
     font-weight: bold;
     font-size: 1.2em;
@@ -24,14 +24,14 @@
 }
 
 .header_buttons{
-    width: calc(100%/2);
+    width: calc(100%/3);
     height: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-evenly;
 }
 
 .header_buttons button{
-    width: 25%;
+    width: 40%;
     height: 100%;
     color: #FFFFFF;
     border:0px;
@@ -40,7 +40,6 @@
     background-color: #878787;
     border-radius: 20px;
     cursor: pointer;
-    margin-left: 4%;
 }
 
 .header_buttons .active_button{
@@ -48,7 +47,7 @@
 }
 
 .filter{
-    width: calc(100%/2);
+    width: calc(100%/3);
     height: 100%;
     display: flex;
     justify-content: flex-end;
@@ -56,18 +55,16 @@
 }
 
 .batch_year{
-    width: 15%;
-    min-width: max-content;
+    width: 30%;
     border: 0px;
     background: #DCDCDC;
     border-radius: 8px;
-    margin-left:2%;
-    text-align: center;
-    text-align-last: center;
+    padding: 0px 4%;
+    margin-left:2%
 }
 
 .batch_name{
-    width: 15%;
+    width: 20%;
     min-width: max-content;
     border: 0px;
     background: #DCDCDC;

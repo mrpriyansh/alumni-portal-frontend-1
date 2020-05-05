@@ -100,7 +100,6 @@ function Register() {
             changeInputs({ target: { name: 'userType', value: 'student' } });
             changeInputs({ target: { name: 'designation', value: 'Student' } });
             changeInputs({ target: { name: 'company', value: 'ABV-IIITM' } });
-            console.log('a', step, flag);
             changeFlag(1);
           }
         } else {

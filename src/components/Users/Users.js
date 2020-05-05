@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable no-nested-ternary */
+import React, { useState, useEffect, useRef } from 'react';
 import useSWR, { mutate } from 'swr';
 import profilePic from '../../assets/images/profile.jpg';
 import styles from './User.module.css';
@@ -7,21 +8,64 @@ import fetcher from '../../utils/fetcher';
 import { ReactComponent as MailSVG } from '../../assets/icons/email.svg';
 import { triggerAlert } from '../../utils/getAlert/getAlert';
 import { ReactComponent as TickSVG } from '../../assets/icons/tick.svg';
+import { useForm } from '../Hooks/handleInputs';
 
 function Users({ isAdmin }) {
   const date = new Date();
   const currentYear = date.getFullYear();
   const julyFlag = Number(date.getMonth() <= 7);
-  const [fetchingKey, setFetchingKey] = useState();
-  if (isAdmin && fetchingKey !== 'admin') setFetchingKey('admin');
-  const handleButton = async (type, userId) => {
-    console.log(type, userId);
+  const [memberKey, setMemberKey] = useState(1);
+  const [filterDetails, changeFilterDetails] = useState({
+    admissionYear: '2019',
+    batchName: 'IPG',
+  });
+  const [tempDetails, changeTempDetails] = useForm({ admissionYear: '2019', batchName: 'IPG' });
+  const inputRef = useRef();
+
+  const handleSearchButton = () => {
+    console.log(inputRef);
+    let flag = 0;
+    if (
+      tempDetails.batchName === 'PGDMIT' &&
+      +filterDetails.admissionYear >= 1998 &&
+      +tempDetails.admissionYear <= 1999
+    )
+      flag = 1;
+    else if (
+      tempDetails.batchName === 'PGDIT' &&
+      +tempDetails.admissionYear >= 1999 &&
+      +tempDetails.admissionYear <= 2001
+    )
+      flag = 1;
+    else if (tempDetails.batchName === 'BCS' && +tempDetails.admissionYear >= 2017) flag = 1;
+    else if (
+      (tempDetails.batchName === 'IPG' ||
+        tempDetails.batchName === 'MTech' ||
+        tempDetails.batchName === 'MBA' ||
+        tempDetails.batchName === 'PhD') &&
+      +tempDetails.admissionYear >= 2000 &&
+      +tempDetails.admissionYear <= currentYear - julyFlag
+    )
+      flag = 1;
+    setMemberKey(flag);
+    if (flag === 0) {
+      changeTempDetails({ target: { name: 'admissionYear', value: filterDetails.admissionYear } });
+      changeTempDetails({ target: { name: 'batchName', value: filterDetails.batchName } });
+      triggerAlert({ icon: 'error', title: 'Enter valid Admission Year and Course' });
+    } else changeFilterDetails(tempDetails);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  };
+  const handleAdminButton = async (type, userId) => {
     const res = await fetcher(`http://localhost:4000/api/admin/${type}/${userId}`);
     mutate(`http://localhost:4000/api/users/?queryType=admin`, data);
     triggerAlert(res);
   };
   const { data, error } = useSWR(
-    isAdmin ? `http://localhost:4000/api/users/?queryType=admin` : null,
+    isAdmin
+      ? `http://localhost:4000/api/users/?queryType=admin`
+      : memberKey
+      ? `http://localhost:4000/api/users/?queryType=members&admissionYear=${filterDetails.admissionYear}&batchName=${filterDetails.batchName}`
+      : null,
     fetcher,
     { dedupingInterval: 0 }
   );
@@ -32,39 +76,55 @@ function Users({ isAdmin }) {
         <span className={styles.main_heading}>
           {isAdmin ? `Waiting for approval` : `ABV-IIITM Faternity`}
         </span>
-        <div className={styles.header_buttons}>
-          <button>Posts</button>
-          <button className={styles.active_button}>Users</button>
-        </div>
-        <div className={styles.filter}>
-          {isAdmin ? null : (
-            <>
-              <input
-                className={styles.batch_year}
-                type="number"
-                min="1998"
-                max={currentYear - julyFlag}
-                placeholder="Admission Year"
-              />
-              <select className={styles.batch_name}>
-                <option value="IPG">IPG</option>
-                <option value="BCS">BCS</option>
-                <option value="MTech">M.Tech</option>
-                <option value="MBA">MBA</option>
-                <option value="PhD">PhD</option>
-                <option value="PGDIT">PGDIT</option>
-                <option value="PGDMIT">PGDMIT</option>
-              </select>
-              <button className={styles.search_button}>Search</button>
-            </>
-          )}
-        </div>
+        {isAdmin ? (
+          <div className={styles.header_buttons}>
+            <button>Posts</button>
+            <button className={styles.active_button}>Users</button>
+          </div>
+        ) : (
+          <div className={styles.filter}>
+            <input
+              ref={inputRef}
+              onChange={e => {
+                setMemberKey(0);
+                changeTempDetails(e);
+              }}
+              className={styles.batch_year}
+              type="number"
+              min="1998"
+              max={currentYear - julyFlag}
+              placeholder="Admission Year"
+              value={tempDetails.admissionYear}
+              name="admissionYear"
+            />
+            <select
+              onChange={e => {
+                setMemberKey(0);
+                changeTempDetails(e);
+              }}
+              name="batchName"
+              value={tempDetails.batchName}
+              className={styles.batch_name}
+            >
+              <option value="IPG">IPG</option>
+              <option value="BCS">BCS</option>
+              <option value="MTech">M.Tech</option>
+              <option value="MBA">MBA</option>
+              <option value="PhD">PhD</option>
+              <option value="PGDIT">PGDIT</option>
+              <option value="PGDMIT">PGDMIT</option>
+            </select>
+            <button onClick={handleSearchButton} className={styles.search_button}>
+              Search
+            </button>
+          </div>
+        )}
       </div>
       <hr></hr>
       <div className={styles.content}>
         {!data ? (
           <Loader />
-        ) : (
+        ) : data.length ? (
           <>
             {data.map(user => {
               return (
@@ -81,6 +141,7 @@ function Users({ isAdmin }) {
                     <div className={styles.profile_icon}>
                       <a
                         href={`https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=${user.email}`}
+                        // eslint-disable-next-line react/jsx-no-target-blank
                         target="_blank"
                         className={styles.atag}
                       >
@@ -120,24 +181,26 @@ function Users({ isAdmin }) {
                       </span>
                     </div>
                   </div>
-                  <div className={styles.profile_buttons}>
-                    <button
-                      onClick={() => {
-                        handleButton('confirm', user._id);
-                      }}
-                      className={styles.accept_button}
-                    >
-                      Accept
-                    </button>
-                    <button
-                      onClick={() => {
-                        handleButton('delete', user._id);
-                      }}
-                      className={styles.reject_button}
-                    >
-                      Reject
-                    </button>
-                  </div>
+                  {isAdmin ? (
+                    <div className={styles.profile_buttons}>
+                      <button
+                        onClick={() => {
+                          handleAdminButton('confirm', user._id);
+                        }}
+                        className={styles.accept_button}
+                      >
+                        Accept
+                      </button>
+                      <button
+                        onClick={() => {
+                          handleAdminButton('delete', user._id);
+                        }}
+                        className={styles.reject_button}
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  ) : null}
                 </div>
               );
             })}
@@ -145,6 +208,11 @@ function Users({ isAdmin }) {
               return <div className={`${styles.user} ${styles.visibilty}`}> sdfa</div>;
             })}
           </>
+        ) : (
+          <p>
+            No one registered from {filterDetails.admissionYear} {filterDetails.batchName} batch.
+            Invite them!
+          </p>
         )}
       </div>
     </div>

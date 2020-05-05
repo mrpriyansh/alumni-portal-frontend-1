@@ -9,6 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Profile from './containers/Profile/Profile';
 import Navbar from './containers/Navbar/Navbar';
 import Loader from './components/Loader/Loader';
+import Members from './containers/Members/Members';
 
 function App() {
   const [authToken, setAuthToken] = useState(false);
@@ -71,6 +72,10 @@ function App() {
           {' '}
           <Navbar />
           <Profile />{' '}
+        </ProtectedRoute>
+        <ProtectedRoute exact path="/members">
+          <Navbar />
+          <Members />
         </ProtectedRoute>
       </Switch>
     </AuthContext.Provider>

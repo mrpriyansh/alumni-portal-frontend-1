@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Redirect, useLocation } from 'react-router-dom';
+import React, { useState, useRef } from 'react';
+import { Redirect, useLocation, Link } from 'react-router-dom';
 import styles from './Home.module.css';
 import { ReactComponent as EditProfileIcon } from '../../assets/icons/setting.svg';
 import { ReactComponent as LinkedinIcon } from '../../assets/icons/linkedin.svg';
@@ -124,6 +124,10 @@ function Home() {
             <p className={styles.name}> Siddarth </p>
             <p className={styles.batch}> 2017 IPG Mtech</p>
           </div>
+          <hr className={styles.line}></hr>
+          <Link to="/members" className={styles.right_footer}>
+            All Members
+          </Link>
         </div>
       </div>
     </div>

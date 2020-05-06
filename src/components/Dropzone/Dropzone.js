@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styles from './Dropzone.module.css';
 import { ReactComponent as UploadIcon } from '../../assets/icons/uploadIcon.svg';
+import { triggerAlert } from '../../utils/getAlert/getAlert';
 
 function Dropzone({ setFileName, active }) {
   const [highlight, setHighlight] = useState(false);
@@ -9,13 +10,12 @@ function Dropzone({ setFileName, active }) {
     active && fileInputRef.current.click();
   };
   const fileListToArray = list => {
-    const array = [];
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < list.length; ++i) {
-      setFileName(oldArray => [...oldArray, list.item(i)]);
-      array.push(list.item(i));
+      if (list.item(i).size > 20971520)
+        triggerAlert({ icon: 'warning', title: 'You cannot add files bigger than 20MB.' });
+      else setFileName(oldArray => [...oldArray, list.item(i)]);
     }
-    return array;
   };
   const onFilesAdded = event => {
     const { files } = event.target;

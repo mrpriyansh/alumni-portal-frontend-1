@@ -9,7 +9,13 @@ import { useAuth } from '../Hooks/Auth';
 
 function UploadPost() {
   const { authToken } = useAuth();
-  const [post, changePost] = useForm({ type: '', text: '', url: '', fileUrls: [] });
+  const [post, changePost] = useForm({
+    type: '',
+    text: '',
+    url: '',
+    fileUrls: [],
+    currentComment: '',
+  });
   const [activeTab, changeActiveTab] = useState('tab1');
   const [fileName, setFileName] = useState([]);
   const [openModal, setOpenModal] = useState(false);

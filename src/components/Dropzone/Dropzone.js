@@ -19,7 +19,7 @@ function Dropzone({ setFileName, active }) {
   };
   const onFilesAdded = event => {
     const { files } = event.target;
-    const array = fileListToArray(files);
+    fileListToArray(files);
   };
   const onDragOver = event => {
     event.preventDefault();
@@ -33,10 +33,7 @@ function Dropzone({ setFileName, active }) {
     event.preventDefault();
     if (active) {
       const { files } = event.dataTransfer;
-      console.log(files);
-      const array = fileListToArray(files);
-
-      console.log('aa', array);
+      fileListToArray(files);
       setHighlight(false);
     }
   };
@@ -56,11 +53,6 @@ function Dropzone({ setFileName, active }) {
       }
     >
       <UploadIcon fill={active ? '#10116E' : 'DCDCDC'} className={styles.icon} />
-      {/* <img
-        alt="upload"
-        className={styles.icon}
-        src="https://lh3.googleusercontent.com/proxy/ASa6qJYljWSVYiJKdbraZ3WCdGJgAo9O_MzBS008vMaXKMAt3c8MKwLt8Z6tVewfTjCYbqfVab5UawP8cB4g3sl3ncslr-6W1tGNP6Zz_5BEJRDXgEOgd4k"
-      /> */}
       <input
         ref={fileInputRef}
         className={styles.file_input}

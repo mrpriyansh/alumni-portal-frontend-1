@@ -1,14 +1,16 @@
-.admin{
+.members{
     width: 100%;
     /* height: 92vh; */
-    height: min(92vh,calc(100vh - 52px) );
+    height: min(92vh, calc(100vh - 52px));
+    /* height: min(92vh, calc (100vh -52px) ); */
     min-width: 990px;
     min-height: 570px;
     background-color: #F2F2F5;
-    padding: 2% 3% 0% 3%;
+    padding: max(10px,3vh) 3% 0% 3%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
+
 
 /* Left */
 .left{

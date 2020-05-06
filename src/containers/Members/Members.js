@@ -1,23 +1,20 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
-import styles from './Admin.module.css';
-import Navbar from '../Navbar/Navbar';
+import styles from './Members.module.css';
+import { useAuth } from '../../components/Hooks/Auth';
 import { ReactComponent as EditProfileIcon } from '../../assets/icons/setting.svg';
 import { ReactComponent as LinkedinIcon } from '../../assets/icons/linkedin.svg';
-import { ReactComponent as EmailIcon } from '../../assets/icons/email.svg';
 import profilePic from '../../assets/images/profile.jpg';
-import Users from '../../components/Users/Users';
-import { useAuth } from '../../components/Hooks/Auth';
+import { ReactComponent as EmailIcon } from '../../assets/icons/email.svg';
 import Loader from '../../components/Loader/Loader';
+import Users from '../../components/Users/Users';
 
-function Admin() {
+function Members() {
   const { currentUser } = useAuth();
   if (!currentUser) return <Loader />;
-  if (!currentUser.isAdmin) return <p>Go Home Baby!</p>;
+
   return (
-    <div className={styles.admin}>
+    <div className={styles.members}>
       <div className={styles.left}>
-        <p className={styles.left_heading}>Admin Portal</p>
         <div className={styles.left_top}>
           <EditProfileIcon
             className={styles.edit_profile_icon}
@@ -42,10 +39,10 @@ function Admin() {
         </div>
       </div>
       <div className={styles.main}>
-        <Users isAdmin={true} />
+        <Users isAdmin={false} />
       </div>
     </div>
   );
 }
 
-export default Admin;
+export default Members;

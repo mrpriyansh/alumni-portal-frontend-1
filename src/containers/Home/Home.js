@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Redirect, useLocation } from 'react-router-dom';
+import React, { useState, useRef } from 'react';
+import { Redirect, useLocation, Link } from 'react-router-dom';
 import styles from './Home.module.css';
 import { ReactComponent as EditProfileIcon } from '../../assets/icons/setting.svg';
 import { ReactComponent as LinkedinIcon } from '../../assets/icons/linkedin.svg';
@@ -9,26 +9,20 @@ import profilePic from '../../assets/images/profile.jpg';
 import Timeline from '../../components/Timeline/Timeline';
 import { useAuth } from '../../components/Hooks/Auth';
 import Loader from '../../components/Loader/Loader';
-import Admin from '../Admin/Admin';
 
 function Home() {
   const { currentUser } = useAuth();
   const [activeTab, setActiveTab] = useState('tab1');
   const location = useLocation();
   const referer = location.state && location.state.referer ? location.state.referer : '/';
-
-  // return <Redirect to ={referer} />
-  if (!currentUser) return <Loader />;
   if (referer !== '/') {
-    console.log('dfs', referer, typeof referer);
-    location.state = null;
-    console.log(referer);
-    return <Admin />;
-    console.log('gg');
+    return <Redirect to={referer} />;
   }
   const handleTabChange = tab => {
     setActiveTab(tab);
   };
+  if (!currentUser) return <Loader />;
+
   return (
     <div className={styles.home}>
       <div className={styles.left}>
@@ -130,6 +124,10 @@ function Home() {
             <p className={styles.name}> Siddarth </p>
             <p className={styles.batch}> 2017 IPG Mtech</p>
           </div>
+          <hr className={styles.line}></hr>
+          <Link to="/members" className={styles.right_footer}>
+            All Members
+          </Link>
         </div>
       </div>
     </div>

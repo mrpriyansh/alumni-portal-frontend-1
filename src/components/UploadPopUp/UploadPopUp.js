@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styles from './UploadPop.module.css';
 import { useAuth } from '../Hooks/Auth';
 import Dropzone from '../Dropzone/Dropzone';
-import { ReactComponent as CancelSVG } from '../../assets/icons/cancel.svg';
 
 function UploadPopUp({ setOpenModal, changePost, fileName, setFileName }) {
   const { authToken } = useAuth();
@@ -52,13 +51,12 @@ function UploadPopUp({ setOpenModal, changePost, fileName, setFileName }) {
 
       const formData = new FormData();
       formData.append('file', file, file.name);
-      console.log(file);
       req.open('POST', 'http://localhost:4000/api/uploadimage');
       req.setRequestHeader('Authorization', `Bearer ${authToken}`);
       req.send(formData);
+      // eslint-disable-next-line func-names
       req.onreadystatechange = function() {
-        if (req.readyState == XMLHttpRequest.DONE) {
-          console.log(req.response);
+        if (req.readyState === XMLHttpRequest.DONE) {
           const response = JSON.parse(req.response);
           // changeImageURLArray(oldImageURL => [...oldImageURL, {fileName:file.name, url: response.data }]);
           changeURL(oldImageURL => [
@@ -72,7 +70,6 @@ function UploadPopUp({ setOpenModal, changePost, fileName, setFileName }) {
   const handleProceed = event => {
     event.preventDefault();
     changePost({ target: { name: 'fileUrls', value: url } });
-    console.log(fileName.length, url.length, fileName.length !== url.length);
     setOpenModal(false);
   };
 
@@ -95,6 +92,7 @@ function UploadPopUp({ setOpenModal, changePost, fileName, setFileName }) {
       setSuccessfullUploaded(true);
       setUploading(false);
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
     // setOpenModal(false);
@@ -134,7 +132,7 @@ function UploadPopUp({ setOpenModal, changePost, fileName, setFileName }) {
           fileName.length !== url.length ? (
             <button
               disabled={fileName.length !== url.length}
-              className={fileName.length != url.length ? `${styles.disabled}` : `${styles.submit}`}
+              className={fileName.length !== url.length ? `${styles.disabled}` : `${styles.submit}`}
             >
               {' '}
               Processing{' '}

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Route, useHistory, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import UploadPopUp from './components/UploadPopUp/UploadPopUp';
 import { AuthContext } from './components/Hooks/Auth';
-import styles from './App.module.css';
 import Landing from './containers/Landing/Landing';
 import Home from './containers/Home/Home';
 import Admin from './containers/Admin/Admin';
@@ -10,11 +9,11 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Profile from './containers/Profile/Profile';
 import Navbar from './containers/Navbar/Navbar';
 import Loader from './components/Loader/Loader';
+import Members from './containers/Members/Members';
 
 function App() {
   const [authToken, setAuthToken] = useState(false);
   const [currentUser, setCurrentUser] = useState();
-  const history = useHistory();
 
   // load token from localstorage
   useEffect(() => {
@@ -55,15 +54,6 @@ function App() {
             <Landing />
           )}
         </Route>
-        <ProtectedRoute path="/admin">
-          {' '}
-          <Admin />{' '}
-        </ProtectedRoute>
-        <Route exact path="/profile">
-          {' '}
-          <Navbar />
-          <Profile />{' '}
-        </Route>
         <Route exact path="/">
           {authToken ? (
             <>
@@ -74,6 +64,19 @@ function App() {
             <Landing />
           )}
         </Route>
+        <ProtectedRoute path="/admin">
+          <Navbar />
+          <Admin />{' '}
+        </ProtectedRoute>
+        <ProtectedRoute exact path="/profile">
+          {' '}
+          <Navbar />
+          <Profile />{' '}
+        </ProtectedRoute>
+        <ProtectedRoute exact path="/members">
+          <Navbar />
+          <Members />
+        </ProtectedRoute>
       </Switch>
     </AuthContext.Provider>
   );

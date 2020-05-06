@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useSWR, { useSWRPages } from 'swr';
 import styles from './ShowPosts.module.css';
 import { ReactComponent as LikeIcon } from '../../assets/icons/like.svg';
@@ -6,8 +7,49 @@ import { ReactComponent as ShareIcon } from '../../assets/icons/share.svg';
 import profilePic from '../../assets/images/profile.jpg';
 import Loader from '../Loader/Loader';
 import fetcher from '../../utils/fetcher';
+import { useAuth } from '../Hooks/Auth';
+import { triggerAlert } from '../../utils/getAlert/getAlert';
 
 function ShowPosts({ activeTab }) {
+  const { currentUser, authToken } = useAuth();
+  const handleCommentSubmit = (event, postId) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    fetch(`http://localhost:4000/api/posts/${postId}/comment`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${authToken}` },
+      body: JSON.stringify({
+        userId: currentUser._id,
+        userName: currentUser.name,
+        postId,
+        commentText: data.get(postId),
+      }),
+    })
+      .then(response => response.json())
+      .then(res => {
+        triggerAlert(res);
+        if (res.icon === 'success') document.getElementById(postId).value = '';
+      });
+  };
+  // const RenderComment = post => {
+  //   const { data, error } = useSWR(`http://127.0.0.1:4000/api/posts/${post._id}/comments`, fetcher);
+  //   if (error) return <p> Faild to Load </p>;
+  //   if (!data) return <p> Loading </p>;
+  //   return data.map(comment => {
+  //     return (
+  //       <>
+  //         <img src={profilePic} className={styles.comment_profile_pic} alt="profile pic" />
+  //         <div className={styles.comment_text}>
+  //           <Link to={`/profile/${comment.userId}`} className={styles.comment_name}>
+  //             {' '}
+  //             {comment.userName}{' '}
+  //           </Link>
+  //           <span>{comment.commentText} </span>
+  //         </div>
+  //       </>
+  //     );
+  //   });
+  // };
   const { pages, isLoadingMore, isReachingEnd, loadMore } = useSWRPages(
     `posts`,
     ({ offset, withSWR }) => {
@@ -22,7 +64,7 @@ function ShowPosts({ activeTab }) {
       if (!data) return <Loader />;
       return data.posts.map(post => {
         return (
-          <>
+          <React.Fragment key={post._id}>
             <div key={post._id} className={styles.post}>
               <div className={styles.profile}>
                 <img className={styles.profile_pic} src={profilePic} alt="Profile" />
@@ -72,10 +114,37 @@ function ShowPosts({ activeTab }) {
                   <ShareIcon height="1em" width="1em" /> Share
                 </span>
               </div>
-              <input className={styles.add_comment} type="text" placeholder="Add Comment" />
+              <form
+                className={styles.add_comment}
+                onSubmit={e => {
+                  handleCommentSubmit(e, post._id);
+                }}
+              >
+                <img src={profilePic} className={styles.comment_profile_pic} alt="profile pic" />
+                <textarea id={post._id} name={post._id} placeholder="Add Comment" />
+                <button>Comment</button>
+              </form>
+              {/* <input onChange={e=>{changeComments({target:{name:post._id,value: e.target.value}})}} className={styles.add_comment} value={comments[post._id]}  type="text" placeholder="Add Comment" /> */}
+            </div>
+            <div className={styles.show_comments}>
+              {/* {RenderComment(post)} */}
+
+              <img src={profilePic} className={styles.comment_profile_pic} alt="profile pic" />
+              <div className={styles.comment_text}>
+                <Link to={`/profile/${currentUser._id}`} className={styles.comment_name}>
+                  {currentUser.name}
+                </Link>
+                <span>
+                  {/* sds */}
+                  Bla BLa bla bla blaBla Bla BLa bla bla blaBla Bla BLa bla bla blaBla Bla BLa bla
+                  bla blaBla Bla BLa bla bla blaBla Bla BLa bla bla blaBla Bla BLa bla bla blaBla
+                  Bla BLa bla bla blaBla Bla BLa bla bla blaBla Bla BLa bla bla blaBla Bla BLa bla
+                  bla blaBla Bla BLa bla bla blaBla Bla BLa bla bla blaBla Bla BLa bla bla blaBla
+                </span>
+              </div>
             </div>
             <hr className={styles.line}></hr>
-          </>
+          </React.Fragment>
         );
       });
     },

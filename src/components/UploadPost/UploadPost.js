@@ -21,6 +21,7 @@ function UploadPost() {
   const [openModal, setOpenModal] = useState(false);
   useEffect(() => {
     changePost({ target: { name: 'type', value: activeTab } });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab]);
   const handleChoiceButton = (event, tab) => {

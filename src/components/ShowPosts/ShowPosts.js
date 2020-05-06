@@ -1,36 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import useSWR, { useSWRPages } from 'swr';
 import styles from './ShowPosts.module.css';
-import { ReactComponent as LikeIcon } from '../../assets/icons/like.svg';
-import { ReactComponent as ShareIcon } from '../../assets/icons/share.svg';
-import profilePic from '../../assets/images/profile.jpg';
 import Loader from '../Loader/Loader';
 import fetcher from '../../utils/fetcher';
-import { useAuth } from '../Hooks/Auth';
-import { triggerAlert } from '../../utils/getAlert/getAlert';
+import Post from '../Post/Post';
 
 function ShowPosts({ activeTab }) {
-  const { currentUser, authToken } = useAuth();
-  const handleCommentSubmit = (event, postId) => {
-    event.preventDefault();
-    const data = new FormData(event.target);
-    fetch(`http://localhost:4000/api/posts/${postId}/comment`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${authToken}` },
-      body: JSON.stringify({
-        userId: currentUser._id,
-        userName: currentUser.name,
-        postId,
-        commentText: data.get(postId),
-      }),
-    })
-      .then(response => response.json())
-      .then(res => {
-        triggerAlert(res);
-        if (res.icon === 'success') document.getElementById(postId).value = '';
-      });
-  };
   // const RenderComment = post => {
   //   const { data, error } = useSWR(`http://127.0.0.1:4000/api/posts/${post._id}/comments`, fetcher);
   //   if (error) return <p> Faild to Load </p>;
@@ -63,89 +38,7 @@ function ShowPosts({ activeTab }) {
       if (error) return <p> Failed to Load!</p>;
       if (!data) return <Loader />;
       return data.posts.map(post => {
-        return (
-          <React.Fragment key={post._id}>
-            <div key={post._id} className={styles.post}>
-              <div className={styles.profile}>
-                <img className={styles.profile_pic} src={profilePic} alt="Profile" />
-                <div className={styles.info}>
-                  <p className={styles.name}> {post.userName}</p>
-                  <p className={styles.position}>
-                    {' '}
-                    {post.designation}, {post.company}
-                  </p>
-                </div>
-              </div>
-              <p className={styles.post_text}>{post.text}</p>
-              {post.url && (
-                // eslint-disable-next-line react/jsx-no-target-blank
-                <a href={post.url} target="_blank" className={styles.url}>
-                  Related Url
-                </a>
-              )}
-              <div className={styles.file_urls_container}>
-                {post.fileUrls
-                  .filter(file => file.type === 'application')
-                  .map(file => {
-                    return (
-                      // eslint-disable-next-line react/jsx-no-target-blank
-                      <a href={file.uid} key={file.uid} target="_blank" className={styles.url}>
-                        {file.fileName}
-                      </a>
-                    );
-                  })}
-              </div>
-              <div className={`${styles.images} ${styles.slider}`}>
-                <div className={styles.slide}>
-                  {post.fileUrls
-                    .filter(file => file.type === 'image')
-                    .map(file => {
-                      return (
-                        <img key={file.uid} className={styles.photo} src={file.uid} alt="photo1" />
-                      );
-                    })}
-                </div>
-              </div>
-              <div className={styles.reactions}>
-                <span>
-                  <LikeIcon height="1em" width="1em" fill="#FF046B" /> Like{' '}
-                </span>{' '}
-                <span>
-                  <ShareIcon height="1em" width="1em" /> Share
-                </span>
-              </div>
-              <form
-                className={styles.add_comment}
-                onSubmit={e => {
-                  handleCommentSubmit(e, post._id);
-                }}
-              >
-                <img src={profilePic} className={styles.comment_profile_pic} alt="profile pic" />
-                <textarea id={post._id} name={post._id} placeholder="Add Comment" />
-                <button>Comment</button>
-              </form>
-              {/* <input onChange={e=>{changeComments({target:{name:post._id,value: e.target.value}})}} className={styles.add_comment} value={comments[post._id]}  type="text" placeholder="Add Comment" /> */}
-            </div>
-            <div className={styles.show_comments}>
-              {/* {RenderComment(post)} */}
-
-              <img src={profilePic} className={styles.comment_profile_pic} alt="profile pic" />
-              <div className={styles.comment_text}>
-                <Link to={`/profile/${currentUser._id}`} className={styles.comment_name}>
-                  {currentUser.name}
-                </Link>
-                <span>
-                  {/* sds */}
-                  Bla BLa bla bla blaBla Bla BLa bla bla blaBla Bla BLa bla bla blaBla Bla BLa bla
-                  bla blaBla Bla BLa bla bla blaBla Bla BLa bla bla blaBla Bla BLa bla bla blaBla
-                  Bla BLa bla bla blaBla Bla BLa bla bla blaBla Bla BLa bla bla blaBla Bla BLa bla
-                  bla blaBla Bla BLa bla bla blaBla Bla BLa bla bla blaBla Bla BLa bla bla blaBla
-                </span>
-              </div>
-            </div>
-            <hr className={styles.line}></hr>
-          </React.Fragment>
-        );
+        return <Post post={post} />;
       });
     },
 

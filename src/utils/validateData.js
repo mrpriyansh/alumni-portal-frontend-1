@@ -12,12 +12,6 @@ export const instituteEmailValidation = email => {
   return match;
 };
 
-export const phonenoValidation = phoneno => {
-  const regx = /^\d{10}$/;
-  const match = regx.test(phoneno);
-  return match;
-};
-
 export const gradutationYearValidation = (batchName, admissionYear, graduationYear) => {
   if (batchName === 'PhD') {
     return 1;

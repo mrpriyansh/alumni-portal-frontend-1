@@ -68,7 +68,7 @@ function App() {
           <Navbar />
           <Admin />{' '}
         </ProtectedRoute>
-        <ProtectedRoute exact path="/profile">
+        <ProtectedRoute exact path="/profile/:profileId">
           {' '}
           <Navbar />
           <Profile />{' '}

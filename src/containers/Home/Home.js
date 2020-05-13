@@ -34,7 +34,9 @@ function Home() {
             fill="#10116E"
           />
           <img className={styles.profile_pic} src={profilePic} alt="Profile" />
-          <p className={styles.name}>{currentUser.name.split(' ')[0]}</p>
+          <Link to={`/profile/${currentUser._id}`}>
+            <p className={styles.name}>{currentUser.name.split(' ')[0]}</p>
+          </Link>
           <p className={styles.batch}>
             {currentUser.admissionYear} {currentUser.batchName}-{currentUser.subBatch}
           </p>

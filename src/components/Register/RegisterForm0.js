@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './Register.module.css';
+import phoneCode from '../../assets/data/phone-code';
+import { ReactComponent as Next } from '../../assets/icons/next.svg';
 
-function RegisterForm0({ inputs, changeInputs }) {
+function RegisterForm0({ inputs, changeInputs, handleRegister }) {
   const date = new Date();
   const currentYear = date.getFullYear();
   const julyFlag = Number(date.getMonth() <= 7);
@@ -50,13 +52,29 @@ function RegisterForm0({ inputs, changeInputs }) {
       <div className={styles.two_field}>
         <div className={styles.field_left}>
           <label htmlFor="phoneno">Phone Number</label>
-          <input
-            onChange={changeInputs}
-            placeholder="Phone Number"
-            type="text"
-            name="phoneno"
-            value={inputs.phoneno}
-          />
+          <div className={styles.phone_wrapper}>
+            <select className={styles.phone_code} name="phonenoCode" onChange={changeInputs}>
+              {phoneCode.map(code => {
+                return (
+                  <option value={code.dial_code} selected={code.code === 'IN'}>
+                    {code.code} {code.dial_code}
+                  </option>
+                );
+
+                //   <option value='+91'>
+                //   {code.code} {code.dial_code}
+                // </option>
+              })}
+            </select>
+            <input
+              className={styles.phone_no}
+              onChange={changeInputs}
+              placeholder="Phone Number"
+              type="text"
+              name="phoneno"
+              value={inputs.phoneno}
+            />
+          </div>
         </div>
         <div className={styles.field_right}>
           <label htmlFor="admissionYear">Admission Year</label>
@@ -69,6 +87,11 @@ function RegisterForm0({ inputs, changeInputs }) {
             value={inputs.admissionYear}
           />
         </div>
+      </div>
+      <div className={styles.register_button_wrapper}>
+        <button type="submit" onClick={handleRegister} className={styles.register_button}>
+          Register <Next className={styles.next_arrow} fill="#ffffff" />{' '}
+        </button>
       </div>
     </form>
   );

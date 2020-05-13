@@ -1,11 +1,18 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import styles from './Register.module.css';
+import { ReactComponent as Next } from '../../assets/icons/next.svg';
+import { ReactComponent as BackSVG } from '../../assets/icons/arrow.svg';
 
-function RegisterForm1({ inputs, changeInputs }) {
+function RegisterForm1({ inputs, changeInputs, handleRegister, changeStep }) {
   const date = new Date();
   const currentYear = date.getFullYear();
   const julyFlag = Number(date.getMonth() <= 7);
+  const handleBackButton = () => {
+    changeStep(0);
+    changeInputs({ target: { name: 'batchName', value: 'IPG' } });
+    changeInputs({ target: { name: 'phoneno', value: '' } });
+  };
   // useEffect(()=>{
   //   switch (inputs.batchName) {
   //     case 'IPG':
@@ -40,13 +47,27 @@ function RegisterForm1({ inputs, changeInputs }) {
             <label htmlFor="batchName">Batch</label>
             <div className={styles.batch_name}>
               <select name="batchName" onChange={changeBatch}>
-                <option value="IPG">IPG</option>
-                <option value="BCS">BCS</option>
-                <option value="MTech">M.Tech</option>
-                <option value="MBA">MBA</option>
-                <option value="PhD">PhD</option>
-                <option value="PGDIT">PGDIT</option>
-                <option value="PGDMIT">PGDMIT</option>
+                <option key="IPG" value="IPG">
+                  IPG
+                </option>
+                <option key="BCS" value="BCS">
+                  BCS
+                </option>
+                <option key="MTech" value="MTech">
+                  M.Tech
+                </option>
+                <option key="MBA" value="MBA">
+                  MBA
+                </option>
+                <option key="PhD" value="PhD">
+                  PhD
+                </option>
+                <option key="PGDIT" value="PGDIT">
+                  PGDIT
+                </option>
+                <option key="PGDMIT" value="PGDMIT">
+                  PGDMIT
+                </option>
               </select>
               {inputs.batchName === 'IPG' ? (
                 <select name="subBatch" onChange={changeInputs}>
@@ -142,6 +163,18 @@ function RegisterForm1({ inputs, changeInputs }) {
               <option value="Other">Other</option>
             </select>
           </div>
+        </div>
+        <div className={styles.register_button_wrapper}>
+          <BackSVG
+            onClick={handleBackButton}
+            className={styles.back_svg}
+            width="3.2em"
+            height="3.2em"
+          />
+          <button type="submit" onClick={handleRegister} className={styles.register_button}>
+            Register <Next className={styles.next_arrow} fill="#ffffff" />{' '}
+          </button>
+          <div className={styles.invisible}></div>
         </div>
       </form>
     </div>

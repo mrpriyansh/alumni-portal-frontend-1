@@ -5,20 +5,18 @@ import styles from './Profile.module.css';
 import { ReactComponent as EditProfileIcon } from '../../assets/icons/setting.svg';
 import { ReactComponent as LinkedinIcon } from '../../assets/icons/linkedin.svg';
 import { ReactComponent as EmailIcon } from '../../assets/icons/email.svg';
-import { ReactComponent as TickIcon } from '../../assets/icons/tick.svg';
 import profilePic from '../../assets/images/profile.jpg';
 import { ReactComponent as EditSVG } from '../../assets/icons/edit.svg';
 import fetcher from '../../utils/fetcher';
 import Loader from '../../components/Loader/Loader';
+import config from '../../utils/config';
 
 function Profile() {
   const { profileId } = useParams();
-  console.log(useParams());
 
-  const { data, error } = useSWR(`http://localhost:4000/api/profile/${profileId}`, fetcher);
+  const { data, error } = useSWR(`${config.apiUrl}/api/profile/${profileId}`, fetcher);
   if (error) return <p> Check Your Connectivity</p>;
   if (!data) return <Loader />;
-  console.log(data);
 
   return (
     <div className={styles.profile}>

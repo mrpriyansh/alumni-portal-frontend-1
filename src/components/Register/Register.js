@@ -15,6 +15,7 @@ import {
   instituteEmailValidation,
 } from '../../utils/validateData';
 import { triggerAlert, registerPopup } from '../../utils/getAlert/getAlert';
+import config from '../../utils/config';
 
 function Register() {
   const date = new Date();
@@ -42,9 +43,8 @@ function Register() {
     gender: 'Male',
   });
   useEffect(() => {
-    console.log(inputs);
     if (flag) {
-      fetch('http://localhost:4000/api/signup', {
+      fetch(`${config.apiUrl}/api/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(inputs),
@@ -64,7 +64,6 @@ function Register() {
   }, [flag]);
   const phonenoValidation = phoneno => {
     const number = parsePhoneNumberFromString(phoneno);
-    console.log(number);
     if (number && number.isValid()) {
       changeInputs({ target: { name: 'phoneno', value: number.nationalNumber } });
       return 1;
@@ -77,7 +76,6 @@ function Register() {
     changeInputs({
       target: { name: 'instituteEmail', value: inputs.instituteEmail.toLowerCase() },
     });
-    console.log(inputs);
     if (!step) {
       if (
         inputs.name.length &&

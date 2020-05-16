@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import useSWR, { mutate } from 'swr';
 import profilePic from '../../assets/images/profile.jpg';
 import styles from './User.module.css';
@@ -9,6 +9,7 @@ import { ReactComponent as MailSVG } from '../../assets/icons/email.svg';
 import { triggerAlert } from '../../utils/getAlert/getAlert';
 import { ReactComponent as TickSVG } from '../../assets/icons/tick.svg';
 import { useForm } from '../Hooks/handleInputs';
+import config from '../../utils/config';
 
 function Users({ isAdmin }) {
   const date = new Date();
@@ -23,7 +24,6 @@ function Users({ isAdmin }) {
   const inputRef = useRef();
 
   const handleSearchButton = () => {
-    console.log(inputRef);
     let flag = 0;
     if (
       tempDetails.batchName === 'PGDMIT' &&
@@ -56,15 +56,15 @@ function Users({ isAdmin }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   };
   const handleAdminButton = async (type, userId) => {
-    const res = await fetcher(`http://localhost:4000/api/admin/${type}/${userId}`);
-    mutate(`http://localhost:4000/api/users/?queryType=admin`, data);
+    const res = await fetcher(`${config.apiUrl}/api/admin/${type}/${userId}`);
+    mutate(`${config.apiUrl}/api/users/?queryType=admin`, data);
     triggerAlert(res);
   };
   const { data, error } = useSWR(
     isAdmin
-      ? `http://localhost:4000/api/users/?queryType=admin`
+      ? `${config.apiUrl}/api/users/?queryType=admin`
       : memberKey
-      ? `http://localhost:4000/api/users/?queryType=members&admissionYear=${filterDetails.admissionYear}&batchName=${filterDetails.batchName}`
+      ? `${config.apiUrl}/api/users/?queryType=members&admissionYear=${filterDetails.admissionYear}&batchName=${filterDetails.batchName}`
       : null,
     fetcher,
     { dedupingInterval: 0 }

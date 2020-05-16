@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import useSWR, { useSWRPages, mutate } from 'swr';
+import useSWR, { useSWRPages } from 'swr';
 import styles from './Post.module.css';
 import { ReactComponent as LikeIcon } from '../../assets/icons/like.svg';
 import { ReactComponent as ShareIcon } from '../../assets/icons/share.svg';
@@ -8,19 +8,18 @@ import profilePic from '../../assets/images/profile.jpg';
 import { useAuth } from '../Hooks/Auth';
 import { triggerAlert } from '../../utils/getAlert/getAlert';
 import fetcher from '../../utils/fetcher';
+import config from '../../utils/config';
 
 function Post({ post }) {
   const { currentUser, authToken } = useAuth();
-  const { pages, pageCount, pageSWRs, isReachingEnd, loadMore } = useSWRPages(
+  const { pages, pageSWRs, isReachingEnd, loadMore } = useSWRPages(
     `comments${post._id}`,
     ({ offset, withSWR }) => {
       const { data, error } = withSWR(
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        useSWR(
-          `http://localhost:4000/api/posts/${post._id}/comments?&offset=${offset || 0}`,
-          fetcher,
-          { refreshInterval: 30000 }
-        )
+        useSWR(`${config.apiUrl}/api/posts/${post._id}/comments?&offset=${offset || 0}`, fetcher, {
+          refreshInterval: 30000,
+        })
       );
       if (error) {
         return <p></p>;
@@ -56,7 +55,7 @@ function Post({ post }) {
   const handleCommentSubmit = (event, postId) => {
     event.preventDefault();
     const data = new FormData(event.target);
-    fetch(`http://localhost:4000/api/posts/${postId}/comment`, {
+    fetch(`${config.apiUrl}/api/posts/${postId}/comment`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${authToken}` },
       body: JSON.stringify({
@@ -71,6 +70,7 @@ function Post({ post }) {
         triggerAlert(res);
         if (res.icon === 'success') {
           document.getElementById(postId).value = '';
+          // eslint-disable-next-line array-callback-return
           pageSWRs.map(page => {
             page.revalidate();
           });

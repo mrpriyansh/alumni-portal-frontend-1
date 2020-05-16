@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styles from './UploadPop.module.css';
 import { useAuth } from '../Hooks/Auth';
 import Dropzone from '../Dropzone/Dropzone';
+import config from '../../utils/config';
 
 function UploadPopUp({ setOpenModal, changePost, fileName, setFileName }) {
   const { authToken } = useAuth();
@@ -51,7 +52,7 @@ function UploadPopUp({ setOpenModal, changePost, fileName, setFileName }) {
 
       const formData = new FormData();
       formData.append('file', file, file.name);
-      req.open('POST', 'http://localhost:4000/api/uploadimage');
+      req.open('POST', `${config.apiUrl}/api/uploadimage`);
       req.setRequestHeader('Authorization', `Bearer ${authToken}`);
       req.send(formData);
       // eslint-disable-next-line func-names

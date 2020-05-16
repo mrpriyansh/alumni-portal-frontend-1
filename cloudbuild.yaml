@@ -1,0 +1,15 @@
+steps:
+- name: node:10.15.1
+  entrypoint: yarn
+  args: [""]
+- name: node:10.15.1
+  entrypoint: yarn
+  args: ["build"]
+- name: "gcr.io/cloud-builders/gcloud"
+  args: ["app", "deploy"]
+- name: "gcr.io/cloud-builders/gcloud"
+  args: ["app", "deploy", "dispatch.yaml"]
+- name: "ubuntu"
+  entrypoint: bash
+  args: ['-c', "ls"]
+timeout: "600s"

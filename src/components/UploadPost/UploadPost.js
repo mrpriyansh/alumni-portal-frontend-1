@@ -6,6 +6,7 @@ import Modal from '../../containers/Modal/Modal';
 import { urlValidation } from '../../utils/validateData';
 import { triggerAlert } from '../../utils/getAlert/getAlert';
 import { useAuth } from '../Hooks/Auth';
+import config from '../../utils/config';
 
 function UploadPost() {
   const { authToken } = useAuth();
@@ -41,7 +42,7 @@ function UploadPost() {
     } else if (!post.text.length) {
       triggerAlert({ icon: 'error', title: "Post canno't be empty!" });
     } else {
-      fetch('http://localhost:4000/api/uploadPost', {
+      fetch(`${config.apiUrl}/api/uploadPost`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${authToken}` },
         body: JSON.stringify(post),

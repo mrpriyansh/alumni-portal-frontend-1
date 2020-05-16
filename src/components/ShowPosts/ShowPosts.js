@@ -3,6 +3,7 @@ import useSWR, { useSWRPages } from 'swr';
 import styles from './ShowPosts.module.css';
 import Loader from '../Loader/Loader';
 import fetcher from '../../utils/fetcher';
+import config from '../../utils/config';
 import Post from '../Post/Post';
 
 function ShowPosts({ activeTab }) {
@@ -31,7 +32,7 @@ function ShowPosts({ activeTab }) {
       const { data, error } = withSWR(
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useSWR(
-          `http://localhost:4000/api/fetchposts/ALL?type=${activeTab}&offset=${offset || 0}`,
+          `${config.apiUrl}/api/fetchposts/ALL?type=${activeTab}&offset=${offset || 0}`,
           fetcher
         )
       );

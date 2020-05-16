@@ -2,3 +2,10 @@ runtime: nodejs10
 
 #service
 service: alumni-portal-frontend
+
+handlers:
+  - url: /
+    static_files: build/index.html
+    upload: build/index.html
+  - url: /
+    static_dir: build

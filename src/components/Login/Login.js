@@ -8,6 +8,7 @@ import { ReactComponent as Next } from '../../assets/icons/next.svg';
 import { useAuth } from '../Hooks/Auth';
 import { emailValidation } from '../../utils/validateData';
 import { triggerAlert } from '../../utils/getAlert/getAlert';
+import config from '../../utils/config';
 
 function Login() {
   const { setAuthToken } = useAuth();
@@ -15,7 +16,7 @@ function Login() {
   const handleLogin = event => {
     event.preventDefault();
     if (emailValidation(inputs.email) && inputs.password.length >= 6) {
-      fetch('http://localhost:4000/api/login', {
+      fetch(`${config.apiUrl}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(inputs),

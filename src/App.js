@@ -10,6 +10,7 @@ import Profile from './containers/Profile/Profile';
 import Navbar from './containers/Navbar/Navbar';
 import Loader from './components/Loader/Loader';
 import Members from './containers/Members/Members';
+import config from './utils/config';
 
 function App() {
   const [authToken, setAuthToken] = useState(false);
@@ -25,7 +26,7 @@ function App() {
   // load User
   useEffect(() => {
     if (authToken) {
-      fetch('http://localhost:4000/api/userdetails', {
+      fetch(`${config.apiUrl}/api/userdetails`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${authToken}` },
       })

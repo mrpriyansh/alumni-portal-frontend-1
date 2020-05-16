@@ -1,14 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Redirect, useLocation, Link } from 'react-router-dom';
-import styles from './Home.module.css';
-import { ReactComponent as EditProfileIcon } from '../../assets/icons/setting.svg';
-import { ReactComponent as LinkedinIcon } from '../../assets/icons/linkedin.svg';
-import { ReactComponent as EmailIcon } from '../../assets/icons/email.svg';
-import { ReactComponent as TickIcon } from '../../assets/icons/tick.svg';
 import profilePic from '../../assets/images/profile.jpg';
+import styles from './Home.module.css';
 import Timeline from '../../components/Timeline/Timeline';
 import { useAuth } from '../../components/Hooks/Auth';
 import Loader from '../../components/Loader/Loader';
+import HomeLeft from '../../components/HomeLeft/HomeLeft';
 
 function Home() {
   const { currentUser } = useAuth();
@@ -26,82 +23,12 @@ function Home() {
   return (
     <div className={styles.home}>
       <div className={styles.left}>
-        <div className={styles.left_top}>
-          <EditProfileIcon
-            className={styles.edit_profile_icon}
-            width="1em"
-            height="1em"
-            fill="#10116E"
-          />
-          <img className={styles.profile_pic} src={profilePic} alt="Profile" />
-          <Link to={`/profile/${currentUser._id}`}>
-            <p className={styles.name}>{currentUser.name.split(' ')[0]}</p>
-          </Link>
-          <p className={styles.batch}>
-            {currentUser.admissionYear} {currentUser.batchName}-{currentUser.subBatch}
-          </p>
-          <hr className={styles.line}></hr>
-          <p className={styles.position}>
-            {' '}
-            {currentUser.designation} at {currentUser.company}{' '}
-          </p>
-          <div className={styles.profile_icons}>
-            <LinkedinIcon width="1.2em" height="1.2em" fill="#10116E" />
-            <EmailIcon width="1.2em" height="1.2em" fill="#10116E" />
-          </div>
-        </div>
-        <div className={styles.left_bottom}>
-          <p className={styles.left_heading}> Filters</p>
-          <div onClick={() => handleTabChange('tab1')} className={styles.filter_item}>
-            <TickIcon
-              className={styles.tick_icon}
-              width="0.8em"
-              height="0.8em"
-              fill={activeTab === 'tab1' ? '#10116E' : '#DCDCDC'}
-            />
-            <p
-              className={
-                activeTab === 'tab1' ? `${styles.active_filter_text}` : `${styles.filter_text}`
-              }
-            >
-              {' '}
-              Job Opportunities
-            </p>
-          </div>
-          <hr className={styles.line}></hr>
-          <div onClick={() => handleTabChange('tab2')} className={styles.filter_item}>
-            <TickIcon
-              className={styles.tick_icon}
-              width="0.8em"
-              height="0.8em"
-              fill={activeTab === 'tab2' ? '#10116E' : '#DCDCDC'}
-            />
-            <p
-              className={
-                activeTab === 'tab2' ? `${styles.active_filter_text}` : `${styles.filter_text}`
-              }
-            >
-              Asked Referals
-            </p>
-          </div>
-          <hr className={styles.line}></hr>
-          <div onClick={() => handleTabChange('tab3')} className={styles.filter_item}>
-            <TickIcon
-              className={styles.tick_icon}
-              width="0.8em"
-              height="0.8em"
-              fill={activeTab === 'tab3' ? '#10116E' : '#DCDCDC'}
-            />
-            <p
-              className={
-                activeTab === 'tab3' ? `${styles.active_filter_text}` : `${styles.filter_text}`
-              }
-            >
-              {' '}
-              Activities
-            </p>
-          </div>
-        </div>
+        <HomeLeft
+          user={currentUser}
+          activeTab={activeTab}
+          handleTabChange={handleTabChange}
+          isBottom={true}
+        />
       </div>
       <div className={styles.middle}>
         <Timeline activeTab={activeTab} />

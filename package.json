@@ -41,7 +41,8 @@
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.7",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.1"
   },
   "husky": {
     "hooks": {
@@ -58,7 +59,6 @@
       "prettier"
     ],
     "rules": {
-      "prettier/prettier": "error",
       "no-underscore-dangle": 0
     }
   },

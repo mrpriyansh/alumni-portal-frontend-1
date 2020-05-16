@@ -17,9 +17,8 @@ function Post({ post }) {
     ({ offset, withSWR }) => {
       const { data, error } = withSWR(
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        useSWR(`${config.apiUrl}/api/posts/${post._id}/comments?&offset=${offset || 0}`, fetcher, {
-          refreshInterval: 30000,
-        })
+        useSWR(`${config.apiUrl}/api/posts/${post._id}/comments?&offset=${offset || 0}`, fetcher, { refreshInterval: 30000 }
+        )
       );
       if (error) {
         return <p></p>;
@@ -70,6 +69,7 @@ function Post({ post }) {
         triggerAlert(res);
         if (res.icon === 'success') {
           document.getElementById(postId).value = '';
+          // eslint-disable-next-line array-callback-return
           pageSWRs.map(page => {
             page.revalidate();
           });

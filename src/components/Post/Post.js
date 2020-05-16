@@ -17,11 +17,9 @@ function Post({ post }) {
     ({ offset, withSWR }) => {
       const { data, error } = withSWR(
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        useSWR(
-          `http://localhost:4000/api/posts/${post._id}/comments?&offset=${offset || 0}`,
-          fetcher,
-          { refreshInterval: 30000 }
-        )
+        useSWR(`${config.apiUrl}/api/posts/${post._id}/comments?&offset=${offset || 0}`, fetcher, {
+          refreshInterval: 30000,
+        })
       );
       if (error) {
         return <p></p>;

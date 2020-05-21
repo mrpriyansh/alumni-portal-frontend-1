@@ -11,6 +11,7 @@ import Navbar from './containers/Navbar/Navbar';
 import Loader from './components/Loader/Loader';
 import Members from './containers/Members/Members';
 import config from './utils/config';
+import EditProfilePic from './components/EditProfilePic/EditProfilePic';
 
 function App() {
   const [authToken, setAuthToken] = useState(false);
@@ -78,6 +79,9 @@ function App() {
           <Navbar />
           <Members />
         </ProtectedRoute>
+        <Route exact path="/test">
+          <EditProfilePic />
+        </Route>
       </Switch>
     </AuthContext.Provider>
   );

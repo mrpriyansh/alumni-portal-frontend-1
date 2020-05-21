@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './HomeLeft.module.css';
 import profilePic from '../../assets/images/profile.jpg';
@@ -6,20 +6,42 @@ import { ReactComponent as EditProfileIcon } from '../../assets/icons/setting.sv
 import { ReactComponent as LinkedinIcon } from '../../assets/icons/linkedin.svg';
 import { ReactComponent as EmailIcon } from '../../assets/icons/email.svg';
 import { ReactComponent as TickIcon } from '../../assets/icons/tick.svg';
+import Modal from '../../containers/Modal/Modal';
+import EditProfilePic from '../EditProfilePic/EditProfilePic';
 
 function HomeLeft({ user, handleTabChange, activeTab, isBottom, isEditProfilePic }) {
+  const [openModal, setOpenModal] = useState(false);
+  const handleEditProfilePic = () => {
+    setOpenModal(true);
+  };
   return (
     <div className={styles.home_left}>
+      {openModal && (
+        <Modal
+          childName={'EditProfilePic'}
+          Child={EditProfilePic}
+          setOpenModal={setOpenModal}
+          userInfo={{ id: user._id, imageUrl: user.profilePicUrl }}
+        />
+      )}
       <div className={styles.left_top}>
-        {isEditProfilePic && (
+        {/* {isEditProfilePic && (
           <EditProfileIcon
             className={styles.edit_profile_icon}
             width="1em"
             height="1em"
             fill="#10116E"
+            onClick={handleEditProfilePic}
           />
-        )}
-        <img className={styles.profile_pic} src={profilePic} alt="Profile" />
+        )} */}
+        <img
+          className={
+            isEditProfilePic ? `${styles.profile_pic} ${styles.canClick}` : `${styles.profile_pic}`
+          }
+          onClick={handleEditProfilePic}
+          src={user.profilePicUrl}
+          alt="Profile"
+        />
         <Link to={`/profile/${user._id}`}>
           <p className={styles.name}>{user.name.split(' ')[0]}</p>
         </Link>

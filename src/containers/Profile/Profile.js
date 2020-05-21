@@ -16,6 +16,7 @@ function Profile() {
   const { data, error } = useSWR(`${config.apiUrl}/api/profile/${profileId}`, fetcher);
   if (error) return <p> Check Your Connectivity</p>;
   if (!data) return <Loader />;
+  if (!currentUser) return <Loader />;
 
   return (
     <div className={styles.profile}>

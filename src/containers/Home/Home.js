@@ -28,6 +28,7 @@ function Home() {
           activeTab={activeTab}
           handleTabChange={handleTabChange}
           isBottom={true}
+          isEditProfilePic={true}
         />
       </div>
       <div className={styles.middle}>

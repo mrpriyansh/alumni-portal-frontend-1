@@ -13,7 +13,7 @@ function Admin() {
     <div className={styles.admin}>
       <div className={styles.left}>
         <p className={styles.left_heading}>Admin Portal</p>
-        <HomeLeft user={currentUser} isBottom={false} />
+        <HomeLeft user={currentUser} isBottom={false} isEditProfilePic={true} />
       </div>
       <div className={styles.main}>
         <Users isAdmin={true} />

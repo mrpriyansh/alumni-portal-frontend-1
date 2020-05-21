@@ -12,7 +12,7 @@ function Members() {
   return (
     <div className={styles.members}>
       <div className={styles.left}>
-        <HomeLeft user={currentUser} isBottom={false} />
+        <HomeLeft user={currentUser} isBottom={false} isEditProfilePic={true} />
       </div>
       <div className={styles.main}>
         <Users isAdmin={false} />

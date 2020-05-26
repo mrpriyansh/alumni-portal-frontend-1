@@ -62,6 +62,7 @@ function UploadPost() {
       {openModal ? (
         <Modal
           setOpenModal={setOpenModal}
+          childName={'UploadPost'}
           Child={UploadPopUp}
           changePost={changePost}
           fileName={fileName}
@@ -121,7 +122,7 @@ function UploadPost() {
         </div>
         <div className={styles.right_buttons}>
           <button onClick={handleUpload} className={styles.upload_button}>
-            Upload Photo/Video
+            Upload Media
           </button>
           <button
             onClick={handlePost}

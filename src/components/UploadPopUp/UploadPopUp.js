@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useState } from 'react';
-import styles from './UploadPop.module.css';
+import styles from './UploadPopUp.module.css';
 import { useAuth } from '../Hooks/Auth';
 import Dropzone from '../Dropzone/Dropzone';
 import config from '../../utils/config';

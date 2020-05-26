@@ -1,16 +1,19 @@
 import React from 'react';
 import styles from './Modal.module.css';
-import UploadPopUp from '../../components/UploadPopUp/UploadPopUp';
+import EditProfilePic from '../../components/EditProfilePic/EditProfilePic';
 
-function Modal({ setOpenModal, Child, changePost, fileName, setFileName }) {
+function Modal({ setOpenModal, childName, Child, changePost, fileName, setFileName, userInfo }) {
   return (
     <div className={styles.modal}>
-      <Child
-        setOpenModal={setOpenModal}
-        changePost={changePost}
-        fileName={fileName}
-        setFileName={setFileName}
-      />
+      {childName === 'EditProfilePic' && <Child setOpenModal={setOpenModal} userInfo={userInfo} />}
+      {childName === 'UploadPost' && (
+        <Child
+          setOpenModal={setOpenModal}
+          changePost={changePost}
+          fileName={fileName}
+          setFileName={setFileName}
+        />
+      )}
     </div>
   );
 }

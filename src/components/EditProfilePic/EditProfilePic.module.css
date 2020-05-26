@@ -1,0 +1,129 @@
+.edit_profile_pic{
+    width: 340px;
+    max-width: 500px;
+    /* height: 40%; */
+    display: flex;
+    border-radius: 8px;
+    padding: 10px 2% 20px;
+    flex-direction: column;
+    background-color: #fff;
+    font-size: 1rem;
+}
+
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #10116E;
+    font-size: 1.2em;
+    font-weight: 600;
+
+}
+.content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pic{
+    width: 50%;
+    height: 147.5px;
+    border-radius: 50%;
+    margin: 1em 0;
+}
+
+.optionsbuttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.optionsbuttons button{
+    width: 45%;
+    height: 3em;
+    border: 0;
+    border-radius: 5px;
+    font-size: 0.7em;
+    font-weight: 600;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+
+.upload_button{
+    background: url(../../assets/icons/upload.svg) no-repeat;
+    background-position: 30% 50%;
+    background-size: 1.2em;
+    padding-left: calc(25% - 1.2em);
+    color: #fff;
+    background-color: #10116E;
+}
+
+.upload_input{
+    display: none;
+}
+
+.linkedin_button{
+    background: url(../../assets/icons/linkedin_white.svg) no-repeat;
+    background-position: 20% 50%;
+    background-size: 1.2em;
+    padding-left: calc(20% - 1.2em);
+    color: #fff;
+    background-color: #0077B5;
+}
+
+.line{
+    margin: 1em;
+    width: 100%;
+}
+
+.footer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer button{
+    width: 45%;
+    height: 3em;
+    border: 0;
+    border-radius: 5px;
+    font-size: 0.7em;
+    font-weight: 600;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+
+.reject_button{
+    background: url(../../assets/icons/cancel_white.svg) no-repeat;
+    background-position: 30% 50%;
+    background-size: 1.2em;
+    padding-left: calc(25% - 1.2em);
+    color: #fff;
+    background-color: #C40000;
+}
+
+
+.save_button{
+    background: url(../../assets/icons/tick_white.svg) no-repeat;
+    background-position: 30% 50%;
+    background-size: 1.2em;
+    padding-left: calc(25% - 1.2em);
+    color: #fff;
+    background-color: #1E9F0F;
+}
+
+.optionsbuttons button:disabled{
+    background-color: #DCDCDC;
+    cursor: default;
+}
+
+.footer button:disabled{
+    background-color: #DCDCDC;
+    cursor: default;
+}

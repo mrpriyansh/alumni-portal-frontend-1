@@ -34,14 +34,21 @@ function HomeLeft({ user, handleTabChange, activeTab, isBottom, isEditProfilePic
             onClick={handleEditProfilePic}
           />
         )} */}
-        <img
-          className={
-            isEditProfilePic ? `${styles.profile_pic} ${styles.canClick}` : `${styles.profile_pic}`
-          }
-          onClick={handleEditProfilePic}
-          src={user.profilePicUrl}
-          alt="Profile"
-        />
+        <div className={styles.wrapper_profile_pic}>
+          <span className={styles.dp_hover} onClick={handleEditProfilePic}>
+            Upload DP
+          </span>
+          <img
+            className={
+              isEditProfilePic
+                ? `${styles.profile_pic} ${styles.canClick}`
+                : `${styles.profile_pic}`
+            }
+            onClick={handleEditProfilePic}
+            src={user.profilePicUrl}
+            alt="Profile"
+          />
+        </div>
         <Link to={`/profile/${user._id}`}>
           <p className={styles.name}>{user.name.split(' ')[0]}</p>
         </Link>

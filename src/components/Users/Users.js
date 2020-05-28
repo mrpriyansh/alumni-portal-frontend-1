@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import useSWR, { mutate } from 'swr';
 import profilePic from '../../assets/images/profile.jpg';
-import styles from './User.module.css';
+import styles from './Users.module.css';
 import Loader from '../Loader/Loader';
 import fetcher from '../../utils/fetcher';
 import { ReactComponent as MailSVG } from '../../assets/icons/email.svg';

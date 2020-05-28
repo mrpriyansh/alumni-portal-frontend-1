@@ -172,6 +172,7 @@
 }
 
 .heading{
+    color: #10116E;
     font-size: 1.5em;
     font-weight: 700;
 }
@@ -179,6 +180,7 @@
 .edit_svg{
     box-shadow: 3px 3px 6px #00000040;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .content{
@@ -200,7 +202,7 @@
 }
 .label{
     width: 25%;
-    color: #000;
+    color: #10116E;
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -208,15 +210,36 @@
 
 .field{
     width: 75%;
+    color: #10116E;
     background: #F2F2F5;
     border-radius: 8px;
     padding: 8px 4%;
+    font-size: 0.8em;
     display: flex;
     align-items: center;
-    overflow-wrap: anywhere;
+    /* overflow-wrap: anywhere; */
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.details_input{
+    width: 75%;
+    color: #10116E;
+    background: #F2F2F5;
+    border-radius: 8px;
+    padding: 8px 4%;
+    resize: none;
+    outline: 0;
+    font-size: 0.8em;
+    /* align-items: center; */
+    border: 0;
 }
 
 .about_details div{
+    white-space: normal;
+    overflow-wrap: anywhere;
+    overflow-x: hidden;
     overflow-y: scroll;
     align-items: flex-start;
 }
@@ -227,7 +250,7 @@
 /* line */
 .vertical_line{
     height: 90%;
-    border: 0.5px solid #000;
+    border: 0.5px solid #10116E;
     margin: 0px 5%; 
     align-self: center;
 }
@@ -310,6 +333,7 @@
     display: flex;
     align-items: center;
 }
+
 .links_url{
     width: calc(90% - 1em);
     height: 100%;
@@ -320,5 +344,30 @@
     background: #f2f2f5;
     padding: 0 4%;
     border-radius: 10px;
-    overflow-wrap: anywhere;
+    white-space: nowrap;
+    overflow-x: auto;
+    color: #10116E;
+}
+
+.links_url::-webkit-scrollbar {
+    display: none;
+}
+.links_input{
+    width: calc(90% - 1em);
+    height: 100%;
+    min-height: max-content;
+    display: flex;
+    align-items: center;
+    font-size: 0.8em;
+    background: #f2f2f5;
+    padding: 0 4%;
+    border: 0;
+    color: #10116E;
+    border-radius: 10px;
+    /* overflow-wrap: anywhere; */
+}
+
+.disabled_text{
+    color: #736e6e;
+    cursor: default;
 }

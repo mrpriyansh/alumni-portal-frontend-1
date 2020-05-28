@@ -28,8 +28,8 @@
 }
 
 .pic{
-    width: 50%;
-    height: 147.5px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     margin: 1em 0;
 }
@@ -51,6 +51,15 @@
     justify-content: flex-start;
     align-items: center;
     cursor: pointer;
+}
+
+.choose_button{
+    background: url(../../assets/icons/camera.svg) no-repeat;
+    background-position: 20% 50%;
+    background-size: 1.8em;
+    padding-left: calc(20% - 0.8em);
+    color: #fff;
+    background-color: #10116E;
 }
 
 .upload_button{
@@ -126,4 +135,51 @@
 .footer button:disabled{
     background-color: #DCDCDC;
     cursor: default;
+}
+
+/* crop */
+
+/* crop wrapper */
+.crop_wrapper{
+    width: 100%;
+    height: max-content;
+    margin: 0.25em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* position: fixed; */
+    align-items: center;
+}
+
+/* slider */
+
+.slider_wrapper{
+    width: 150px;
+    height: 1.5em;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.reload{
+    cursor: pointer;
+}
+
+.slider{
+    width: 100px;
+    height: 1em;
+    justify-self: first baseline;
+    cursor: pointer;
+}
+
+/* crop container */
+.crop_container{
+    width: 150px;
+    height: 150px;
+    position: relative !important;
+}
+
+.crop_area{
+    width: 150px !important;
+    height: 150px !important;
 }

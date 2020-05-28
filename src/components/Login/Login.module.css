@@ -134,6 +134,11 @@
     align-items: center;
     cursor: pointer;
 }
+
+.login_button:disabled{
+    background-color: #DCDCDC;
+    cursor: default;
+}
 /* lower */
 .lower{
     width: 100%;

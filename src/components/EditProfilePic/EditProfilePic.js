@@ -11,6 +11,7 @@ import getCroppedImg from './cropImage';
 function EditProfilePic({ setOpenModal, userInfo }) {
   const { currentUser, setCurrentUser } = useAuth();
   const [active, setActive] = useState(true);
+  const [activeSave, setActiveSave] = useState(false);
   const [tempUrl, changetempUrl] = useState(userInfo.imageUrl);
   const imageInputRef = useRef();
   // for file operation
@@ -30,6 +31,7 @@ function EditProfilePic({ setOpenModal, userInfo }) {
           event.data.profile.profilePicture['displayImage~'].elements[3].identifiers[0].identifier
         );
         setFileOperation(false);
+        setActiveSave(true);
       } else {
         triggerAlert({ icon: 'info', title: 'No DP found!' });
       }
@@ -82,6 +84,7 @@ function EditProfilePic({ setOpenModal, userInfo }) {
           setActive(true);
           changetempUrl(res.data);
           setFileOperation(false);
+          setActiveSave(true);
         });
     } catch (e) {
       triggerAlert({ icon: 'error', title: 'Please Try Again!' });
@@ -91,6 +94,7 @@ function EditProfilePic({ setOpenModal, userInfo }) {
   }, [croppedAreaPixels]);
 
   const handleSaveButton = () => {
+    setActiveSave(false);
     fetch(`${config.apiUrl}/api/updateprofile`, {
       method: 'PUT',
       headers: {
@@ -116,7 +120,7 @@ function EditProfilePic({ setOpenModal, userInfo }) {
       reader.readAsDataURL(file);
     });
   }
-  const handleOperation = async event => {
+  const handleChangeInut = async event => {
     if (event.target.files) {
       const file = event.target.files[0];
       console.log(file);
@@ -132,6 +136,7 @@ function EditProfilePic({ setOpenModal, userInfo }) {
   };
   const handleReload = () => {
     setFileOperation(false);
+    setActiveSave(false);
   };
   // eslint-disable-next-line no-shadow
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
@@ -190,7 +195,7 @@ function EditProfilePic({ setOpenModal, userInfo }) {
                 type="file"
                 className={styles.upload_input}
                 accept="image/*"
-                onChange={handleOperation}
+                onChange={handleChangeInut}
                 disabled={!active}
               />{' '}
               Pick Image{' '}
@@ -214,12 +219,17 @@ function EditProfilePic({ setOpenModal, userInfo }) {
             Via Linkedin{' '}
           </button>
         </div>
+        {console.log(!active && activeSave)}
         <hr className={styles.line} />
         <div className={styles.footer}>
           <button className={styles.reject_button} onClick={handleRejectButton}>
             Reject
           </button>
-          <button className={styles.save_button} disabled={!active} onClick={handleSaveButton}>
+          <button
+            className={styles.save_button}
+            disabled={!activeSave && tempUrl === currentUser.profilePicUrl}
+            onClick={handleSaveButton}
+          >
             Save{' '}
           </button>
         </div>

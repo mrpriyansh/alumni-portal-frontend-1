@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Login.module.css';
 import instituteLogo from '../../assets/images/instituteLogo.png';
@@ -12,9 +12,11 @@ import config from '../../utils/config';
 
 function Login() {
   const { setAuthToken } = useAuth();
+  const [loading, setLoading] = useState(false);
   const [inputs, changeInputs] = useForm({ email: '', password: '' });
   const handleLogin = event => {
     event.preventDefault();
+    setLoading(true);
     if (emailValidation(inputs.email) && inputs.password.length >= 6) {
       fetch(`${config.apiUrl}/api/login`, {
         method: 'POST',
@@ -23,6 +25,7 @@ function Login() {
       })
         .then(response => response.json())
         .then(res => {
+          setLoading(false);
           if (res.response === 'success') {
             setAuthToken(res.data);
             window.localStorage.setItem('token', res.data);
@@ -31,6 +34,7 @@ function Login() {
           }
         });
     } else {
+      setLoading(false);
       emailValidation(inputs.email)
         ? triggerAlert({ icon: 'error', title: 'Enter valid Password' })
         : triggerAlert({ icon: 'error', title: 'Enter valid Email' });
@@ -75,7 +79,12 @@ function Login() {
                 placeholder="Enter Password"
               />
             </div>
-            <button type="submit" onClick={handleLogin} className={styles.login_button}>
+            <button
+              type="submit"
+              onClick={handleLogin}
+              className={styles.login_button}
+              disabled={loading}
+            >
               Login <Next className={styles.next_arrow} fill="#ffffff" />
             </button>
           </form>

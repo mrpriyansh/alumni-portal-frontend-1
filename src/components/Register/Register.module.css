@@ -279,6 +279,11 @@ input[type=number] {
     cursor: pointer;
 }
 
+.register_button:disabled{
+    background-color: #DCDCDC;
+    cursor: default;
+}
+
 .invisible{
     width: 3.2em;
 

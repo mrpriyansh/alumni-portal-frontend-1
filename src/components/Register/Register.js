@@ -22,6 +22,7 @@ function Register() {
   const currentYear = date.getFullYear();
   const julyFlag = Number(date.getMonth() <= 7);
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
   const [step, changeStep] = useState(0);
   const [flag, changeFlag] = useState(0);
   const [inputs, changeInputs] = useForm({
@@ -51,6 +52,7 @@ function Register() {
       })
         .then(response => response.json())
         .then(res => {
+          setLoading(false);
           if (res.icon === 'success') {
             registerPopup(res.title);
             history.replace('/');
@@ -107,6 +109,7 @@ function Register() {
             changeInputs({ target: { name: 'userType', value: 'student' } });
             changeInputs({ target: { name: 'designation', value: 'Student' } });
             changeInputs({ target: { name: 'company', value: 'ABV-IIITM' } });
+            setLoading(true);
             changeFlag(1);
           }
         } else {
@@ -116,6 +119,7 @@ function Register() {
           } else {
             // details are valid
             changeInputs({ target: { name: 'instituteEmail', value: '' } });
+            setLoading(true);
             changeFlag(1);
           }
         }
@@ -147,6 +151,7 @@ function Register() {
             changeInputs={changeInputs}
             handleRegister={handleRegister}
             changeStep={changeStep}
+            loading={loading}
           />
         )}
         <div className={styles.lower}>

@@ -4,7 +4,7 @@ import styles from './Register.module.css';
 import { ReactComponent as Next } from '../../assets/icons/next.svg';
 import { ReactComponent as BackSVG } from '../../assets/icons/arrow.svg';
 
-function RegisterForm1({ inputs, changeInputs, handleRegister, changeStep }) {
+function RegisterForm1({ inputs, changeInputs, handleRegister, changeStep, loading }) {
   const date = new Date();
   const currentYear = date.getFullYear();
   const julyFlag = Number(date.getMonth() <= 7);
@@ -171,7 +171,12 @@ function RegisterForm1({ inputs, changeInputs, handleRegister, changeStep }) {
             width="3.2em"
             height="3.2em"
           />
-          <button type="submit" onClick={handleRegister} className={styles.register_button}>
+          <button
+            type="submit"
+            onClick={handleRegister}
+            className={styles.register_button}
+            disabled={loading}
+          >
             Register <Next className={styles.next_arrow} fill="#ffffff" />{' '}
           </button>
           <div className={styles.invisible}></div>

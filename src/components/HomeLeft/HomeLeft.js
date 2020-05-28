@@ -35,9 +35,11 @@ function HomeLeft({ user, handleTabChange, activeTab, isBottom, isEditProfilePic
           />
         )} */}
         <div className={styles.wrapper_profile_pic}>
-          <span className={styles.dp_hover} onClick={handleEditProfilePic}>
-            Upload DP
-          </span>
+          {isEditProfilePic && (
+            <span className={styles.dp_hover} onClick={handleEditProfilePic}>
+              Upload DP
+            </span>
+          )}
           <img
             className={
               isEditProfilePic
@@ -53,7 +55,7 @@ function HomeLeft({ user, handleTabChange, activeTab, isBottom, isEditProfilePic
           <p className={styles.name}>{user.name.split(' ')[0]}</p>
         </Link>
         <p className={styles.batch}>
-          {user.admissionYear} {user.batchName}-{user.subBatch}
+          {user.admissionYear} {user.batchName} {user.subBatch !== 'NA' ? `- ${user.subBatch}` : ''}
         </p>
         <hr className={styles.line}></hr>
         <p className={styles.position}>

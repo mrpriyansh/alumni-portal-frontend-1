@@ -10,6 +10,7 @@ import config from '../../utils/config';
 
 function UploadPost() {
   const { authToken } = useAuth();
+  const [loading, setLoading] = useState(false);
   const [post, changePost] = useForm({
     type: '',
     text: '',
@@ -36,11 +37,14 @@ function UploadPost() {
     setOpenModal(true);
   };
   const handlePost = event => {
+    setLoading(true);
     event.preventDefault();
     if (post.url.length && !urlValidation(post.url)) {
       triggerAlert({ icon: 'error', title: 'URL is not valid! Try to add http:// or https://' });
+      setLoading(false);
     } else if (!post.text.length) {
       triggerAlert({ icon: 'error', title: "Post canno't be empty!" });
+      setLoading(false);
     } else {
       fetch(`${config.apiUrl}/api/uploadPost`, {
         method: 'POST',
@@ -53,6 +57,7 @@ function UploadPost() {
           changePost({ target: { name: 'url', value: '' } });
           changePost({ target: { name: 'fileUrls', value: [] } });
           setFileName([]);
+          setLoading(false);
           triggerAlert(res);
         });
     }
@@ -126,9 +131,9 @@ function UploadPost() {
           </button>
           <button
             onClick={handlePost}
-            disabled={post.fileUrls.length !== fileName.length}
+            disabled={post.fileUrls.length !== fileName.length || loading}
             className={
-              post.fileUrls.length !== fileName.length
+              post.fileUrls.length !== fileName.length || loading
                 ? `${styles.post_button} ${styles.disabled}`
                 : `${styles.post_button}`
             }

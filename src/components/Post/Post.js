@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useSWR, { useSWRPages } from 'swr';
 import styles from './Post.module.css';
@@ -12,6 +12,7 @@ import config from '../../utils/config';
 
 function Post({ post }) {
   const { currentUser, authToken } = useAuth();
+  const [loading, setLoading] = useState(false); // for comment button
   const { pages, pageSWRs, isReachingEnd, loadMore } = useSWRPages(
     `comments${post._id}`,
     ({ offset, withSWR }) => {
@@ -46,15 +47,15 @@ function Post({ post }) {
     },
     [post._id]
   );
-  //   const { data, error } = useSWR(
-  //     `http://localhost:4000/api/posts/${post.postId}/comments`,
-  //     fetcher
-  //   );
-  //   if (error) return <p>Error in Loading Comments</p>;
-  //   if (!data) return <p> Comments are loading</p>;
   const handleCommentSubmit = (event, postId) => {
+    setLoading(true);
     event.preventDefault();
     const data = new FormData(event.target);
+    console.log(data.get(postId), data.get(postId).length);
+    if (!data.get(postId).length) {
+      triggerAlert({ icon: 'error', title: 'Comment Cannot be empty!' });
+      setLoading(false);
+    }
     fetch(`${config.apiUrl}/api/posts/${postId}/comment`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${authToken}` },
@@ -75,6 +76,7 @@ function Post({ post }) {
             page.revalidate();
           });
         }
+        setLoading(false);
       });
   };
   return (
@@ -119,11 +121,11 @@ function Post({ post }) {
           </div>
         </div>
         <div className={styles.reactions}>
-          <span>
+          {/* <span>
             <LikeIcon height="1em" width="1em" fill="#FF046B" /> Like{' '}
-          </span>{' '}
+          </span>{' '} */}
           <span>
-            <ShareIcon height="1em" width="1em" /> Share
+            <ShareIcon height="1.5em" width="1.5em" /> Share
           </span>
         </div>
         <form
@@ -134,7 +136,7 @@ function Post({ post }) {
         >
           <img src={profilePic} className={styles.comment_profile_pic} alt="profile pic" />
           <textarea id={post._id} name={post._id} placeholder="Add Comment" />
-          <button>Comment</button>
+          <button disabled={loading}>Comment</button>
         </form>
         {/* <input onChange={e=>{changeComments({target:{name:post._id,value: e.target.value}})}} className={styles.add_comment} value={comments[post._id]}  type="text" placeholder="Add Comment" /> */}
       </div>

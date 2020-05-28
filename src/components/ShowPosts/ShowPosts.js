@@ -7,25 +7,6 @@ import config from '../../utils/config';
 import Post from '../Post/Post';
 
 function ShowPosts({ activeTab }) {
-  // const RenderComment = post => {
-  //   const { data, error } = useSWR(`http://127.0.0.1:4000/api/posts/${post._id}/comments`, fetcher);
-  //   if (error) return <p> Faild to Load </p>;
-  //   if (!data) return <p> Loading </p>;
-  //   return data.map(comment => {
-  //     return (
-  //       <>
-  //         <img src={profilePic} className={styles.comment_profile_pic} alt="profile pic" />
-  //         <div className={styles.comment_text}>
-  //           <Link to={`/profile/${comment.userId}`} className={styles.comment_name}>
-  //             {' '}
-  //             {comment.userName}{' '}
-  //           </Link>
-  //           <span>{comment.commentText} </span>
-  //         </div>
-  //       </>
-  //     );
-  //   });
-  // };
   const { pages, isLoadingMore, isReachingEnd, loadMore } = useSWRPages(
     `posts`,
     ({ offset, withSWR }) => {

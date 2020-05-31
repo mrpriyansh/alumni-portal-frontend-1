@@ -228,6 +228,7 @@ textarea::-webkit-scrollbar-thumb {
 .comment_name{
     height: 100%;
     color: #10116E;
+    font-size: 1.1em;
     font-weight: 600;
     margin-right: 5px;
     display: inline-block;
@@ -236,6 +237,8 @@ textarea::-webkit-scrollbar-thumb {
 .comment_text{
     height: 100%;
     overflow-wrap: anywhere;
+    color: #000;
+    font-size: 1em;
 }
 
 .load_more_comments{

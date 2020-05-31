@@ -43,7 +43,7 @@ function UploadPost() {
       triggerAlert({ icon: 'error', title: 'URL is not valid! Try to add http:// or https://' });
       setLoading(false);
     } else if (!post.text.length) {
-      triggerAlert({ icon: 'error', title: "Post canno't be empty!" });
+      triggerAlert({ icon: 'error', title: 'Post cannot be empty!' });
       setLoading(false);
     } else {
       fetch(`${config.apiUrl}/api/uploadPost`, {

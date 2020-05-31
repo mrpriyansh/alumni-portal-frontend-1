@@ -12,10 +12,7 @@ function ShowPosts({ activeTab }) {
     ({ offset, withSWR }) => {
       const { data, error } = withSWR(
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        useSWR(
-          `${config.apiUrl}/api/fetchposts/ALL?type=${activeTab}&offset=${offset || 0}`,
-          fetcher
-        )
+        useSWR(`${config.apiUrl}/api/fetchposts/?type=${activeTab}&offset=${offset || 0}`, fetcher)
       );
       if (error) return <p> Failed to Load!</p>;
       if (!data) return <Loader />;

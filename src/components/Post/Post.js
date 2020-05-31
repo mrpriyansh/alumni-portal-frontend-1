@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useSWR, { useSWRPages } from 'swr';
 import styles from './Post.module.css';
-import { ReactComponent as LikeIcon } from '../../assets/icons/like.svg';
 import { ReactComponent as ShareIcon } from '../../assets/icons/share.svg';
-import profilePic from '../../assets/images/profile.jpg';
 import { useAuth } from '../Hooks/Auth';
 import { triggerAlert } from '../../utils/getAlert/getAlert';
 import fetcher from '../../utils/fetcher';
@@ -12,6 +10,7 @@ import config from '../../utils/config';
 
 function Post({ post }) {
   const { currentUser, authToken } = useAuth();
+  const [loading, setLoading] = useState(false); // for comment button
   const { pages, pageSWRs, isReachingEnd, loadMore } = useSWRPages(
     `comments${post._id}`,
     ({ offset, withSWR }) => {
@@ -28,11 +27,15 @@ function Post({ post }) {
       return data.comments.map(comment => {
         return (
           <div className={styles.show_comments}>
-            <img src={profilePic} className={styles.comment_profile_pic} alt="profile pic" />
+            <img
+              src={comment.profilePicUrl}
+              className={styles.comment_profile_pic}
+              alt="profile pic"
+            />
             <div className={styles.comment_text_container}>
               <div className={styles.comment_text_wrapper}>
                 <Link to={`/profile/${comment.userId}`} className={styles.comment_name}>
-                  {comment.userName}
+                  {comment.name}
                 </Link>
                 <span className={styles.comment_text}>{comment.commentText}</span>
               </div>
@@ -46,21 +49,20 @@ function Post({ post }) {
     },
     [post._id]
   );
-  //   const { data, error } = useSWR(
-  //     `http://localhost:4000/api/posts/${post.postId}/comments`,
-  //     fetcher
-  //   );
-  //   if (error) return <p>Error in Loading Comments</p>;
-  //   if (!data) return <p> Comments are loading</p>;
   const handleCommentSubmit = (event, postId) => {
+    setLoading(true);
     event.preventDefault();
     const data = new FormData(event.target);
+    if (!data.get(postId).length) {
+      triggerAlert({ icon: 'error', title: 'Comment Cannot be empty!' });
+      setLoading(false);
+      return;
+    }
     fetch(`${config.apiUrl}/api/posts/${postId}/comment`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${authToken}` },
       body: JSON.stringify({
         userId: currentUser._id,
-        userName: currentUser.name,
         postId,
         commentText: data.get(postId),
       }),
@@ -75,15 +77,19 @@ function Post({ post }) {
             page.revalidate();
           });
         }
+        setLoading(false);
       });
   };
   return (
     <React.Fragment key={post._id}>
       <div key={post._id} className={styles.post}>
         <div className={styles.profile}>
-          <img className={styles.profile_pic} src={profilePic} alt="Profile" />
+          <img className={styles.profile_pic} src={post.profilePicUrl} alt="Profile" />
           <div className={styles.info}>
-            <p className={styles.name}> {post.userName}</p>
+            <Link to={`profile/${post.userId}`} className={styles.name}>
+              {' '}
+              {post.name}
+            </Link>
             <p className={styles.position}>
               {' '}
               {post.designation}, {post.company}
@@ -99,7 +105,7 @@ function Post({ post }) {
         )}
         <div className={styles.file_urls_container}>
           {post.fileUrls
-            .filter(file => file.type === 'application')
+            .filter(file => file.type !== 'image')
             .map(file => {
               return (
                 // eslint-disable-next-line react/jsx-no-target-blank
@@ -119,11 +125,11 @@ function Post({ post }) {
           </div>
         </div>
         <div className={styles.reactions}>
-          <span>
+          {/* <span>
             <LikeIcon height="1em" width="1em" fill="#FF046B" /> Like{' '}
-          </span>{' '}
+          </span>{' '} */}
           <span>
-            <ShareIcon height="1em" width="1em" /> Share
+            <ShareIcon height="1.5em" width="1.5em" /> Share
           </span>
         </div>
         <form
@@ -132,9 +138,13 @@ function Post({ post }) {
             handleCommentSubmit(e, post._id);
           }}
         >
-          <img src={profilePic} className={styles.comment_profile_pic} alt="profile pic" />
+          <img
+            src={currentUser.profilePicUrl}
+            className={styles.comment_profile_pic}
+            alt="profile pic"
+          />
           <textarea id={post._id} name={post._id} placeholder="Add Comment" />
-          <button>Comment</button>
+          <button disabled={loading}>Comment</button>
         </form>
         {/* <input onChange={e=>{changeComments({target:{name:post._id,value: e.target.value}})}} className={styles.add_comment} value={comments[post._id]}  type="text" placeholder="Add Comment" /> */}
       </div>

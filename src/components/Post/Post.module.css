@@ -46,10 +46,11 @@
 
 .post_text{
     width: 100%;
-    font-size: 0.8em;
+    font-size: 0.75em;
     color: #10116E;
     line-height: 1.4em;
     margin: 1% 0px 0% 0px;
+    word-spacing: 1.5px;
 }
 
 .url{
@@ -121,12 +122,29 @@
     color: #10116E;
     font-size: 0.8em;
     margin-right: 2%;
+    display: flex;
+    align-items: center;
+}
+
+.reactions > span > *{
+    margin-right: 0.25em;
 }
 
 .add_comment{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin: 0.3em 0;
+}
+
+.add_comment img{
+    height: 2.25em;
+    width: 2.25em;
+}
+.add_comment button:disabled{
+    background-color: #DCDCDC;
+    cursor: default;
 }
 textarea::-webkit-scrollbar {
     display: none;
@@ -143,10 +161,11 @@ textarea::-webkit-scrollbar-thumb {
 } */
 
 .add_comment textarea{
-    width: calc(100% - 9.5em);
+    width: calc(100% - 10.5em);
     height: 3em;
     background-color: #DCDCDC;
     border: 0.5px solid #10116E;
+    border: 0;
     padding: 0.8em 0px;
     padding-left: 20px;
     border-radius: 10px;
@@ -157,10 +176,12 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .add_comment button{
+    margin-left: 0.5em;
     width: 6em;
+    height: 2.5em;
     border: 0px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: #10116E;
     color: #fff;
     cursor: pointer;
@@ -207,6 +228,7 @@ textarea::-webkit-scrollbar-thumb {
 .comment_name{
     height: 100%;
     color: #10116E;
+    font-size: 1.1em;
     font-weight: 600;
     margin-right: 5px;
     display: inline-block;
@@ -215,6 +237,8 @@ textarea::-webkit-scrollbar-thumb {
 .comment_text{
     height: 100%;
     overflow-wrap: anywhere;
+    color: #000;
+    font-size: 1em;
 }
 
 .load_more_comments{

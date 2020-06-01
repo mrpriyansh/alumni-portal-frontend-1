@@ -32,6 +32,7 @@
     font-size: 1.4em;
     font-weight: bold;
     text-align: center;
+    text-decoration: underline;
 }
 
 .member{
@@ -44,7 +45,7 @@
 }
 
 .right_profile_pic{
-    width: 30%;
+    width: 35%;
     height: auto;
     border-radius: 8px;
 }

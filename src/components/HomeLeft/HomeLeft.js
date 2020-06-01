@@ -62,10 +62,18 @@ function HomeLeft({ user, handleTabChange, activeTab, isBottom, isEditProfilePic
           {' '}
           {user.designation} at {user.company}{' '}
         </p>
-        <div className={styles.profile_icons}>
-          <LinkedinIcon width="1.2em" height="1.2em" fill="#10116E" />
-          <EmailIcon width="1.2em" height="1.2em" fill="#10116E" />
-        </div>
+        {!isEditProfilePic && (
+          <div className={styles.profile_icons}>
+            {user.links.linkedin.lenght && (
+              <a href={user.links.linkedin} target="_blank">
+                <LinkedinIcon width="1.2em" height="1.2em" fill="#10116E" />
+              </a>
+            )}
+            <a href={`mailto:${user.email}`}>
+              <EmailIcon width="1.2em" height="1.2em" fill="#10116E" />
+            </a>
+          </div>
+        )}
       </div>
       {isBottom && (
         <div className={styles.left_bottom}>

@@ -24,7 +24,12 @@ function App() {
       setAuthToken(token);
     }
   }, []);
-  // load User
+
+  // load token from localstorage
+  window.onstorage = () => {
+    const token = window.localStorage.getItem('token');
+    setAuthToken(token);
+  };
   useEffect(() => {
     if (authToken) {
       fetch(`${config.apiUrl}/api/userdetails`, {

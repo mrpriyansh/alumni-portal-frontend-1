@@ -32,7 +32,7 @@
 }
 
 .wrapper_profile_pic{
-    width: 60%;
+    width: 50%;
     height: 40%;
     display: flex;
     justify-content: center;
@@ -73,12 +73,13 @@
 
 .name{
     width: 100%;
-    margin:2%;
+    margin:0.5em 2%;
     font-size: 1.1em;
     display: inline-block;
     color: #10116E;
     font-weight: bold;
     text-align: center;
+    overflow-wrap: anywhere;
 }
 
 .batch{

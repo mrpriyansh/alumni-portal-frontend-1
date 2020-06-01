@@ -146,6 +146,7 @@
 .name{
     font-size: 1em;
     color:#10116E;
+    overflow-wrap: anywhere;
     font-weight: bold;
 }
 

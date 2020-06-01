@@ -26,7 +26,7 @@
 }
 
 .info{
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,6 +35,7 @@
 
 .name{
     color:#10116E;
+    overflow-wrap: anywhere;
     font-weight: bold;
 }
 

@@ -6,6 +6,7 @@ import Timeline from '../../components/Timeline/Timeline';
 import { useAuth } from '../../components/Hooks/Auth';
 import Loader from '../../components/Loader/Loader';
 import HomeLeft from '../../components/HomeLeft/HomeLeft';
+import HomeRight from '../../components/HomeRight/HomeRight';
 
 function Home() {
   const { currentUser } = useAuth();
@@ -35,30 +36,7 @@ function Home() {
         <Timeline activeTab={activeTab} />
       </div>
       <div className={styles.right}>
-        <div className={styles.right_box}>
-          <p className={styles.right_heading}> New Members </p>
-          <div className={styles.member}>
-            <img className={styles.right_profile_pic} src={profilePic} alt="Profile Pic" />
-            <p className={styles.name}> Priyansh </p>
-            <p className={styles.batch}> 2017 IPG Mtech</p>
-          </div>
-          <hr className={styles.line}></hr>
-          <div className={styles.member}>
-            <img className={styles.right_profile_pic} src={profilePic} alt="Profile Pic" />
-            <p className={styles.name}> Anuj </p>
-            <p className={styles.batch}> 2017 IPG Mtech</p>
-          </div>
-          <hr className={styles.line}></hr>
-          <div className={styles.member}>
-            <img className={styles.right_profile_pic} src={profilePic} alt="Profile Pic" />
-            <p className={styles.name}> Siddarth </p>
-            <p className={styles.batch}> 2017 IPG Mtech</p>
-          </div>
-          <hr className={styles.line}></hr>
-          <Link to="/members" className={styles.right_footer}>
-            All Members
-          </Link>
-        </div>
+        <HomeRight />
       </div>
     </div>
   );

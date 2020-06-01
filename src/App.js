@@ -18,13 +18,10 @@ function App() {
   const [currentUser, setCurrentUser] = useState();
 
   // load token from localstorage
-  useEffect(() => {
+  window.onstorage = () => {
     const token = window.localStorage.getItem('token');
-    if (token) {
-      setAuthToken(token);
-    }
-  }, []);
-  // load User
+    setAuthToken(token);
+  };
   useEffect(() => {
     if (authToken) {
       fetch(`${config.apiUrl}/api/userdetails`, {

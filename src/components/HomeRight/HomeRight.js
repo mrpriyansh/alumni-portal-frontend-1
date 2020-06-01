@@ -11,7 +11,6 @@ function HomeRight() {
   const { data, error } = useSWR(`${config.apiUrl}/api/latestusers`, fetcher);
   if (error) return <p>Failed to Load</p>;
   if (!data) return <Loader />;
-  console.log(data);
   return (
     <div className={styles.home_right}>
       <div className={styles.right_box}>

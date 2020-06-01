@@ -18,6 +18,14 @@ function App() {
   const [currentUser, setCurrentUser] = useState();
 
   // load token from localstorage
+  useEffect(() => {
+    const token = window.localStorage.getItem('token');
+    if (token) {
+      setAuthToken(token);
+    }
+  }, []);
+
+  // load token from localstorage
   window.onstorage = () => {
     const token = window.localStorage.getItem('token');
     setAuthToken(token);

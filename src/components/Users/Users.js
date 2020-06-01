@@ -16,6 +16,8 @@ function Users({ isAdmin }) {
   const currentYear = date.getFullYear();
   const julyFlag = Number(date.getMonth() <= 7);
   const [memberKey, setMemberKey] = useState(1);
+  // for admin approval buttons
+  const [loading, setLoading] = useState(false);
   const [filterDetails, changeFilterDetails] = useState({
     admissionYear: '2019',
     batchName: 'IPG',
@@ -56,9 +58,22 @@ function Users({ isAdmin }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   };
   const handleAdminButton = async (type, userId) => {
-    const res = await fetcher(`${config.apiUrl}/api/admin/${type}/${userId}`);
-    mutate(`${config.apiUrl}/api/users/?queryType=admin`, data);
-    triggerAlert(res);
+    setLoading(true);
+    // const res = await fetcher(`${config.apiUrl}/api/admin/${type}/${userId}`);
+    fetch(`${config.apiUrl}/api/admin/${type}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: JSON.stringify({ userId }),
+    })
+      .then(response => response.json())
+      .then(res => {
+        mutate(`${config.apiUrl}/api/users/?queryType=admin`, data);
+        triggerAlert(res);
+        setLoading(false);
+      });
   };
   const { data, error } = useSWR(
     isAdmin
@@ -188,6 +203,7 @@ function Users({ isAdmin }) {
                           handleAdminButton('confirm', user._id);
                         }}
                         className={styles.accept_button}
+                        disabled={loading}
                       >
                         Accept
                       </button>
@@ -195,6 +211,7 @@ function Users({ isAdmin }) {
                         onClick={() => {
                           handleAdminButton('delete', user._id);
                         }}
+                        disabled={loading}
                         className={styles.reject_button}
                       >
                         Reject

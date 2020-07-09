@@ -2,7 +2,7 @@
     width: 100%;
     height: 100%;
     padding: max(15px,3vh) 7%;
-    font-size: 1rem;
+    /* font-size: 1rem; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -388,6 +388,6 @@ input[type=number] {
 
 @media(max-width:1280px){
     .register{
-        font-size: 0.8rem;
+        /* font-size: 0.8rem; */
     }
 }

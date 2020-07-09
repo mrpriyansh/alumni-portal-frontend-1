@@ -31,11 +31,11 @@ function Navbar() {
           <p className={styles.portal_name}>Alumni Association Portal</p>
         </div>
       </div>
-      <div className={styles.middle}>
+      {/* <div className={styles.middle}>
         <div className={styles.search_box}>
           <input className={styles.search_text} type="text" placeholder="Search" name="search" />
         </div>
-      </div>
+      </div> */}
       <div className={styles.right}>
         <NotificationBell width="2em" height="2em" fill="#10116E" />
         {authToken ? (

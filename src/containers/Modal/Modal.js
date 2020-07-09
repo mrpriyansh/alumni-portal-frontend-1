@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './Modal.module.css';
-import EditProfilePic from '../../components/EditProfilePic/EditProfilePic';
 
 function Modal({ setOpenModal, childName, Child, changePost, fileName, setFileName, userInfo }) {
   return (

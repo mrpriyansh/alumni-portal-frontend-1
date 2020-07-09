@@ -7,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 3%;
-    font-size: 1rem;
+    /* font-size: 1rem; */
 }
 
 .left{
@@ -115,3 +115,14 @@
     fill:#10116E;
 }
 
+@media(max-width:480px){
+    .navbar{
+        min-width: 100vw;
+    }
+    .left{
+        width: 100%;
+    }
+    .right{
+        display: none;
+    }
+}

@@ -48,3 +48,19 @@
     margin-bottom: 0%;
     justify-content: flex-start;
 }
+
+@media(max-width: 480px){
+    .home{
+        min-width: 100vw;
+    }
+    .left{
+        display: none;
+    }
+    .middle{
+        min-width: 96%;
+    }
+    .right{
+        display: none;
+    }
+
+}

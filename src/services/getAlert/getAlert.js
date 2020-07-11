@@ -8,7 +8,7 @@ const getAlert = () => {
     toast: true,
     position: 'bottom-end',
     showConfirmButton: false,
-    timer: 3000,
+    timer: 300000,
     background: '#10116E',
     timerProgressBar: true,
     onOpen: toast => {
@@ -26,7 +26,7 @@ export const triggerAlert = data => {
 
 export const registerPopup = notify => {
   Swal.fire({
-    timer: 4500,
+    timer: 45000000,
     title: 'Thank You for registration!!',
     text: notify,
     imageUrl: registerPopsvg,

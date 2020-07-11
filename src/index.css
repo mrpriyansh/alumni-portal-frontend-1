@@ -32,7 +32,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px #DCDCDC inset !important;
+   -webkit-box-shadow: 0 0 0 30px #DCDCDC inset !important;
 }
 
 input{
@@ -44,12 +44,15 @@ button{
 }
 
 select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   outline: none;
   background: url("./assets/icons/dropdown.svg") no-repeat;
   background-position-x: calc(100% - 0.6em);
   background-position-y: 50%;
   background-size: 1em;
+  cursor: pointer;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -64,11 +67,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 option{
+  padding: 1em;
   border-radius: 10px;
   display: flex;
+  border: 1px solid #000;
   justify-content: center;
-  text-align: center;
+  /* background-color: #fff; */
+  text-align-last: center;
 }
+
 /* @media(max-width:768px){
   body{
     font-size: 0.8em;

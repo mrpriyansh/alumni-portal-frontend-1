@@ -53,7 +53,7 @@ function Register() {
         .then(response => response.json().then(data => ({ status: response.status, body: data })))
         .then(res => {
           if (res.status === 200) {
-            registerPopup(res.title);
+            registerPopup(res.body.title);
             history.replace('/');
           } else {
             changeFlag(0);

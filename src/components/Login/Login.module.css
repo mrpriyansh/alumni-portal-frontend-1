@@ -1,8 +1,10 @@
 .login{
-    width: 100%;
-    height: calc(100% - 50px);
+    width: calc(100% - 4rem);
+    height: calc(100% - 50px - 2em);
     display: flex;
     align-items: center;
+    position: absolute;
+    margin-top: 50px;
 }
 
 .login_box{
@@ -132,4 +134,10 @@
     height: 1.25em;
     font-size: 1em;
     color:#10116E;
+}
+
+@media(max-width: 800px){
+    .login{
+        width: calc(100% - 2rem);
+    }
 }

@@ -5,8 +5,6 @@ import { Link, useHistory } from 'react-router-dom';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import styles from './Register.module.css';
 import { useForm } from '../Hooks/handleInputs';
-import instituteLogo from '../../assets/images/instituteLogo.png';
-import { ReactComponent as HelpSVG } from '../../assets/icons/help.svg';
 import RegisterForm0 from './RegisterForm0';
 import RegisterForm1 from './RegisterForm1';
 import {

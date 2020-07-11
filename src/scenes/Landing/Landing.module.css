@@ -14,15 +14,18 @@
 .right{
     width: 48%;
     height: 100%;
+    position: relative;
     padding: 1em 2em;
 }
 
 .top{
-    width: 100%;
+    width: calc(100% - 4em);
     height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 1;
+    position: absolute;
 }
 
 .top a{
@@ -71,6 +74,10 @@
     .right{
         padding: 1em;
         width: 100%;
+    }
+
+    .top{
+        width: calc(100% - 2em);
     }
 }
 

@@ -2,8 +2,8 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import Cropper from 'react-easy-crop';
 import styles from './EditProfilePic.module.css';
-import config from '../../utils/config';
-import { triggerAlert } from '../../utils/getAlert/getAlert';
+import config from '../../services/config';
+import { triggerAlert } from '../../services/getAlert/getAlert';
 import { useAuth } from '../Hooks/Auth';
 import { ReactComponent as ReloadSVG } from '../../assets/icons/reload.svg';
 import getCroppedImg from './cropImage';

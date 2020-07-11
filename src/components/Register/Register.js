@@ -13,9 +13,10 @@ import {
   emailValidation,
   gradutationYearValidation,
   instituteEmailValidation,
-} from '../../utils/validateData';
-import { triggerAlert, registerPopup } from '../../utils/getAlert/getAlert';
-import config from '../../utils/config';
+} from '../../services/validateData';
+import { triggerAlert, registerPopup } from '../../services/getAlert/getAlert';
+import config from '../../services/config';
+import handleError from '../../services/handleError';
 
 function Register() {
   const date = new Date();
@@ -45,22 +46,24 @@ function Register() {
   });
   useEffect(() => {
     if (flag) {
+      setLoading(true);
       fetch(`${config.apiUrl}/api/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(inputs),
       })
-        .then(response => response.json())
+        .then(response => response.json().then(data => ({ status: response.status, body: data })))
         .then(res => {
-          setLoading(false);
-          if (res.icon === 'success') {
+          if (res.status === 200) {
             registerPopup(res.title);
             history.replace('/');
           } else {
             changeFlag(0);
-            triggerAlert(res);
+            throw res;
           }
-        });
+        })
+        .catch(err => handleError(err, triggerAlert))
+        .finally(() => setLoading(false));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flag]);
@@ -84,9 +87,7 @@ function Register() {
         emailValidation(inputs.email) &&
         phonenoValidation(inputs.phonenoCode + inputs.phoneno) &&
         inputs.password.length >= 6 &&
-        inputs.password === inputs.confirmPassword &&
-        inputs.admissionYear <= currentYear - julyFlag &&
-        inputs.admissionYear >= 1998
+        inputs.password === inputs.confirmPassword
       ) {
         changeStep(1);
       } else if (inputs.password !== inputs.confirmPassword) {
@@ -97,7 +98,14 @@ function Register() {
     } else {
       // validate the batch, admission Year and graduation Year
       if (
-        gradutationYearValidation(inputs.batchName, +inputs.admissionYear, +inputs.graduationYear)
+        // inputs.admissionYear <= currentYear - julyFlag &&
+        // inputs.admissionYear >= 1998 &&
+        gradutationYearValidation(
+          inputs.batchName,
+          +inputs.admissionYear,
+          +inputs.graduationYear,
+          currentYear - julyFlag
+        )
       ) {
         // validate user is alumni
         if (inputs.graduationYear > currentYear - julyFlag) {
@@ -128,21 +136,13 @@ function Register() {
   };
   return (
     <div className={styles.register}>
-      <div className={styles.top}>
-        <Link to="/">
-          <img className={styles.institute_logo} src={instituteLogo} alt="logo" />
-        </Link>
-        <div className={styles.help}>
-          <HelpSVG className={styles.help_logo} height="1.4em" width="1.4em" fill="#10116E" />
-          <span className={styles.help_text}>Help</span>
-        </div>
-      </div>
       <div className={styles.register_box}>
         <div className={styles.heading}>Register</div>
         {!step ? (
           <RegisterForm0
             inputs={inputs}
             changeInputs={changeInputs}
+            loading={loading}
             handleRegister={handleRegister}
           />
         ) : (

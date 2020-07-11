@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import styles from './UploadPost.module.css';
 import { useForm } from '../Hooks/handleInputs';
 import UploadPopUp from '../UploadPopUp/UploadPopUp';
-import Modal from '../../containers/Modal/Modal';
-import { urlValidation } from '../../utils/validateData';
-import { triggerAlert } from '../../utils/getAlert/getAlert';
+import Modal from '../../scenes/Modal/Modal';
+import { urlValidation } from '../../services/validateData';
+import { triggerAlert } from '../../services/getAlert/getAlert';
 import { useAuth } from '../Hooks/Auth';
-import config from '../../utils/config';
+import config from '../../services/config';
 
 function UploadPost() {
   const { authToken } = useAuth();

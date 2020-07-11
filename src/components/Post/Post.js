@@ -4,9 +4,9 @@ import useSWR, { useSWRPages } from 'swr';
 import styles from './Post.module.css';
 import { ReactComponent as ShareIcon } from '../../assets/icons/share.svg';
 import { useAuth } from '../Hooks/Auth';
-import { triggerAlert } from '../../utils/getAlert/getAlert';
-import fetcher from '../../utils/fetcher';
-import config from '../../utils/config';
+import { triggerAlert } from '../../services/getAlert/getAlert';
+import fetcher from '../../services/fetcher';
+import config from '../../services/config';
 
 function Post({ post }) {
   const { currentUser, authToken } = useAuth();

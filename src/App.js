@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import UploadPopUp from './components/UploadPopUp/UploadPopUp';
 import { AuthContext } from './components/Hooks/Auth';
-import Landing from './containers/Landing/Landing';
-import Home from './containers/Home/Home';
-import Admin from './containers/Admin/Admin';
+import Landing from './scenes/Landing/Landing';
+import Home from './scenes/Home/Home';
+import Admin from './scenes/Admin/Admin';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-import Profile from './containers/Profile/Profile';
-import Navbar from './containers/Navbar/Navbar';
+import Profile from './scenes/Profile/Profile';
+import Navbar from './scenes/Navbar/Navbar';
 import Loader from './components/Loader/Loader';
-import Members from './containers/Members/Members';
-import config from './utils/config';
+import Members from './scenes/Members/Members';
+import config from './services/config';
 import EditProfilePic from './components/EditProfilePic/EditProfilePic';
+import handleError from './services/handleError';
 
 function App() {
   const [authToken, setAuthToken] = useState(false);
@@ -36,9 +37,16 @@ function App() {
         method: 'GET',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${authToken}` },
       })
-        .then(response => response.json())
-        .then(user => {
-          setCurrentUser(user);
+        .then(response => response.json().then(data => ({ status: response.status, body: data })))
+        .then(res => {
+          if (res.status === 200) {
+            setCurrentUser(res.body);
+          } else {
+            throw res;
+          }
+        })
+        .catch(err => {
+          handleError(err, setAuthToken);
         });
     }
   }, [authToken]);

@@ -2,8 +2,8 @@ import React from 'react';
 import useSWR, { useSWRPages } from 'swr';
 import styles from './ShowPosts.module.css';
 import Loader from '../Loader/Loader';
-import fetcher from '../../utils/fetcher';
-import config from '../../utils/config';
+import fetcher from '../../services/fetcher';
+import config from '../../services/config';
 import Post from '../Post/Post';
 
 function ShowPosts({ activeTab }) {

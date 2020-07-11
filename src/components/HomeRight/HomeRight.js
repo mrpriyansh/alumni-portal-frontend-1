@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import useSWR from 'swr';
 import styles from './HomeRight.module.css';
 import profilePic from '../../assets/images/profile.jpg';
-import fetcher from '../../utils/fetcher';
+import fetcher from '../../services/fetcher';
 import Loader from '../Loader/Loader';
-import config from '../../utils/config';
+import config from '../../services/config';
 
 function HomeRight() {
   const { data, error } = useSWR(`${config.apiUrl}/api/latestusers`, fetcher);

@@ -1,4 +1,6 @@
 body {
+  height: 100vh;
+  width: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -12,6 +14,11 @@ code {
     monospace;
 }
 
+#root{
+  width: 100%;
+  height: 100%;
+}
+
 *{
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
@@ -21,6 +28,47 @@ p{
   margin:0px;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #DCDCDC inset !important;
+}
+
+input{
+  outline: none;
+}
+
+button{
+  outline: none;
+}
+
+select{
+  appearance: none;
+  outline: none;
+  background: url("./assets/icons/dropdown.svg") no-repeat;
+  background-position-x: calc(100% - 0.6em);
+  background-position-y: 50%;
+  background-size: 1em;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: rgba(0, 0, 0, 0);
+  opacity: 1;
+  display: block;
+  background: url("./assets/icons/calendar.svg") no-repeat;
+  background-size: 100% 100%;
+  width: 1.2em;
+  height: 1.2em;
+  border-width: thin;
+}
+
+option{
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
 /* @media(max-width:768px){
   body{
     font-size: 0.8em;

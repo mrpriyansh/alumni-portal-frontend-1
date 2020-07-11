@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styles from './UploadPopUp.module.css';
 import { useAuth } from '../Hooks/Auth';
 import Dropzone from '../Dropzone/Dropzone';
-import config from '../../utils/config';
+import config from '../../services/config';
 
 function UploadPopUp({ setOpenModal, changePost, fileName, setFileName }) {
   const { authToken } = useAuth();

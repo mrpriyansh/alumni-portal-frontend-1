@@ -20,3 +20,13 @@
     
 
 }
+
+@media(max-width: 480px){
+    .upload_post{
+        min-width: 100%;
+        margin-bottom: max(5vh,2em);
+    }
+    .show_posts{
+        min-width: 100%;
+    }
+}

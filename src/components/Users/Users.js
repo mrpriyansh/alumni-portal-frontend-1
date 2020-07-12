@@ -4,12 +4,12 @@ import useSWR, { mutate } from 'swr';
 import profilePic from '../../assets/images/profile.jpg';
 import styles from './Users.module.css';
 import Loader from '../Loader/Loader';
-import fetcher from '../../utils/fetcher';
+import fetcher from '../../services/fetcher';
 import { ReactComponent as MailSVG } from '../../assets/icons/email.svg';
-import { triggerAlert } from '../../utils/getAlert/getAlert';
+import { triggerAlert } from '../../services/getAlert/getAlert';
 import { ReactComponent as TickSVG } from '../../assets/icons/tick.svg';
 import { useForm } from '../Hooks/handleInputs';
-import config from '../../utils/config';
+import config from '../../services/config';
 
 function Users({ isAdmin }) {
   const date = new Date();

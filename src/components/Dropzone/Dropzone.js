@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styles from './Dropzone.module.css';
 import { ReactComponent as UploadIcon } from '../../assets/icons/uploadIcon.svg';
-import { triggerAlert } from '../../utils/getAlert/getAlert';
+import { triggerAlert } from '../../services/getAlert/getAlert';
 
 function Dropzone({ setFileName, active }) {
   const [highlight, setHighlight] = useState(false);

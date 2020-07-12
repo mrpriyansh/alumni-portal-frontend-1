@@ -1,62 +1,17 @@
 .login{
-    width: 100%;
-    height: 100%;
-    padding: max(15px,3vh) 7%;
-    font-size: 1rem;
-}
-
-.top{
-    width: 100%;
-    height: 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.top a{
-    height: 100%;
-
-}
-.institute_logo{
-    width: auto;
-    height: 100%;
-}
-
-.help{
-    width: 60%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-}
-.help_logo{
-    width: auto;
-    margin-right:3%;
-
-}
-
-.help_text{
-    color: #10116E;
-    font-size: 1.4em;
-    font-weight: bold;
-    font-family: 'Open Sans', sans-serif;
-}
-
-.container{
-    width: 100%;
-    height: 92%;
+    width: calc(100% - 4rem);
+    height: calc(100% - 50px - 2em);
     display: flex;
     align-items: center;
+    position: absolute;
+    margin-top: 50px;
 }
+
 .login_box{
     width: 100%;
-    height: 80%;
-    min-height: 400px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    /* padding: 2%; */
+    justify-content: center;
     align-items: center;
 }
 
@@ -70,7 +25,7 @@
    width: 100%;
    margin: 0%; 
    color: #10116E;
-   font-size: 2em;
+   font-size: 1.8em;
    font-weight: bold;
    font-family: 'Open San', sans-serif;
    display: flex;
@@ -82,7 +37,7 @@
     height: 1em;
     width: 100%;
     margin: 0%; 
-    font-size: 2.75em;
+    font-size: 2.5em;
     color: #10116E;
     font-weight: bold;
     font-family: 'Open San', sans-serif;
@@ -91,8 +46,10 @@
 }
 
 .inputs_form{
-    width: 65%;
-    height: 100%;
+    width: 320px;
+    /* width: 55%; */
+    /* min-width: 300px; */
+    /* height: 100%; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -101,69 +58,86 @@
 
 .field{
     width: 100%;
+    height: 6.25em;
     display: flex;
     font-size: 1em;
     flex-direction: column;
 }
 
 .field label{
+    height: 1.75em;
     font-weight: 700 ;
     color: #10116E;
-    margin-bottom: 2%;
 }
 
 .field input{
-    height: 4em;
+    height: 3em;
+    font-size: 1em;
     background-color: #DCDCDC;
-    padding: 3%;
+    padding: 0 3%;
     border: 0px;
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
 .login_button{
-    width: 50%;
+    width: 180px;
     height: 2em;
-    font-size: 1.6em;
-    font-weight: bold;
+    font-size: 1.5em;
+    font-weight: 600;
     color: white;
     background-color: #10116E;
     border: 0px;
-    border-radius: 15px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    margin-top: 0.5em;
+}
+
+.next_arrow{
+    margin-left: 0.5em;
+    height: 1em;
+    width: 1em;
 }
 
 .login_button:disabled{
-    background-color: #DCDCDC;
+    opacity: 0.6;
+    /* background-color: #DCDCDC; */
     cursor: default;
 }
 /* lower */
 .lower{
     width: 100%;
-    height: 4.2em;
+    height: 5.25em;
+    font-size: 1em;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 }
 
-.next_arrow{
-    margin-left: 0.5em;
-    height: 1.6em;
-}
-
 .line{
-    margin-top:1em;
-    margin-bottom: 1em;
+    margin: 1em 0;
+    margin-top: 2.1em;
     border: 1px solid #707070;
     width: 80%;
 }
 
 .login_not_registered{
-    height: 1em;
+    height: 1.25em;
+    font-size: 1em;
     margin: 0px;
+    text-align: center;
 }
 .register_link{
+    height: 1.25em;
+    font-size: 1em;
     color:#10116E;
+}
+
+@media(max-width: 800px){
+    .login{
+        width: calc(100% - 2rem);
+    }
 }

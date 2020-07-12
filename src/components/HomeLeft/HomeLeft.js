@@ -6,7 +6,7 @@ import { ReactComponent as EditProfileIcon } from '../../assets/icons/setting.sv
 import { ReactComponent as LinkedinIcon } from '../../assets/icons/linkedin.svg';
 import { ReactComponent as EmailIcon } from '../../assets/icons/email.svg';
 import { ReactComponent as TickIcon } from '../../assets/icons/tick.svg';
-import Modal from '../../containers/Modal/Modal';
+import Modal from '../../scenes/Modal/Modal';
 import EditProfilePic from '../EditProfilePic/EditProfilePic';
 
 function HomeLeft({ user, handleTabChange, activeTab, isBottom, isEditProfilePic }) {

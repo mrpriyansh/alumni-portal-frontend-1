@@ -8,6 +8,10 @@ import { triggerAlert } from '../../services/getAlert/getAlert';
 import { useAuth } from '../Hooks/Auth';
 import config from '../../services/config';
 
+import { ReactComponent as TickSVG } from '../../assets/icons/tick.svg';
+import { ReactComponent as UploadSVG } from '../../assets/icons/upload.svg';
+import { ReactComponent as PostSVG } from '../../assets/icons/post.svg';
+
 function UploadPost() {
   const { authToken } = useAuth();
   const [loading, setLoading] = useState(false);
@@ -102,7 +106,8 @@ function UploadPost() {
               activeTab === 'tab1' ? `${styles.button} ${styles.active}` : `${styles.button}`
             }
           >
-            Jobs/Intern
+            <TickSVG fill="#fff" width="1em" height="1em" className={styles.tick_svg} />
+            Opportunity
           </button>
           <button
             onClick={event => {
@@ -112,6 +117,7 @@ function UploadPost() {
               activeTab === 'tab2' ? `${styles.button} ${styles.active}` : `${styles.button}`
             }
           >
+            <TickSVG fill="#fff" width="1em" height="1em" className={styles.tick_svg} />
             Ask Referal
           </button>
           <button
@@ -122,11 +128,13 @@ function UploadPost() {
               activeTab === 'tab3' ? `${styles.button} ${styles.active}` : `${styles.button}`
             }
           >
+            <TickSVG fill="#fff" width="1em" height="1em" className={styles.tick_svg} />
             Activities
           </button>
         </div>
         <div className={styles.right_buttons}>
           <button onClick={handleUpload} className={styles.upload_button}>
+            <UploadSVG fill="#fff" width="1em" height="1em" className={styles.tick_svg} />
             Upload Media
           </button>
           <button
@@ -138,6 +146,7 @@ function UploadPost() {
                 : `${styles.post_button}`
             }
           >
+            <PostSVG fill="#fff" width="1em" height="1em" className={styles.tick_svg} />
             Post
           </button>
         </div>

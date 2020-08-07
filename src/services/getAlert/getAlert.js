@@ -8,7 +8,7 @@ const getAlert = () => {
     toast: true,
     position: 'bottom-end',
     showConfirmButton: false,
-    timer: 300000,
+    timer: 3000,
     background: '#10116E',
     timerProgressBar: true,
     onOpen: toast => {

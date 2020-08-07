@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './LandingLeft.module.css';
-import imgTop from '../../assets/images/landingTop.png';
 
 function LandingLeft() {
   return (

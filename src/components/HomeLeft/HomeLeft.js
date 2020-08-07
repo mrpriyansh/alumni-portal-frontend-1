@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './HomeLeft.module.css';
-import profilePic from '../../assets/images/profile.jpg';
-import { ReactComponent as EditProfileIcon } from '../../assets/icons/setting.svg';
 import { ReactComponent as LinkedinIcon } from '../../assets/icons/linkedin.svg';
 import { ReactComponent as EmailIcon } from '../../assets/icons/email.svg';
 import { ReactComponent as TickIcon } from '../../assets/icons/tick.svg';
@@ -65,7 +63,7 @@ function HomeLeft({ user, handleTabChange, activeTab, isBottom, isEditProfilePic
         {!isEditProfilePic && (
           <div className={styles.profile_icons}>
             {user.links.linkedin.lenght && (
-              <a href={user.links.linkedin} target="_blank">
+              <a href={user.links.linkedin} target="_blank" rel="noopener noreferrer">
                 <LinkedinIcon width="1.2em" height="1.2em" fill="#10116E" />
               </a>
             )}

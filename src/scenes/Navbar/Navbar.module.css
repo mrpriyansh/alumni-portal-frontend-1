@@ -29,7 +29,6 @@
 }
 
 .title{
-    width: 232px;
     height: 100%;
     display: flex;
     flex-direction: column;

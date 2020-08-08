@@ -26,12 +26,12 @@
 .middle{
     width: min(calc(96% - 350px), 60%);
     height: 100%;
-    min-width: 530px;
+    min-width: 570px;
     overflow: scroll;
     overflow-x: hidden;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
-    margin: 0px 2%;
+    /* margin: 0px 2%; */
 }
 
 .middle::-webkit-scrollbar {
@@ -51,7 +51,8 @@
 
 @media(max-width: 480px){
     .home{
-        min-width: 100vw;
+        min-width: 380px;
+        justify-content: center;
     }
     .left{
         display: none;

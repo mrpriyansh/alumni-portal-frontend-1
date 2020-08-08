@@ -33,7 +33,7 @@
 
 .link{
     width: 100%;
-    height: calc(calc(100% - 6.6em)*0.3);
+    height: 2em;
     display: flex;
     align-items: center;
 }
@@ -67,27 +67,32 @@
 }
 
 .left_buttons{
+    width: 57%;
     height: 80%;
-    width: 55%;
     display: flex;
     justify-content: space-between;
     overflow-wrap: break-word;
 }
 
+
 .left_buttons button{
-    width: calc(90%/3);
+    width: 32%;
     height: 100%;
-    background: url('../../assets/icons/tick_white.svg') no-repeat;
-    background-size: 1em 1em;
-    background-position: 8%;
     background-color: #DCDCDC;
     border: 0px;
     border-radius: 20px;
-    padding-left: 1.6em;
     color: #ffffff;
     font-size: 0.7em;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.tick_svg{
+    margin-right: 0.5em;
 }
 
 .left_buttons .active{
@@ -108,8 +113,11 @@
     border-radius: 5px;
     font-size: 1em;
     color: #ffffff;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -117,45 +125,28 @@
 .right_buttons button:nth-child(1){
     width: 65%;
     align-items: center;
-    background: url('../../assets/icons/upload.svg') no-repeat;
-    background-size: 1em 1em;
-    background-position-x: 8%;
-    background-position-y: 50%;
     background-color: #0076AB;
-    padding-left: 9%;
 }
 
 .right_buttons .post_button{
-    width: 25%;
-    background: url('../../assets/icons/post.svg') no-repeat;
-    background-size: 1em 1em;
-    background-position-x: 10%;
-    background-position-y: 50%;
+    width: 30%;
     background-color: #1E9F0F;
-    padding-left: 1.5em;
 }
 
 .right_buttons .disabled{
-    width: 25%;
-    background: url('../../assets/icons/post.svg') no-repeat;
-    background-size: 1em 1em;
-    background-position-x: 10%;
-    background-position-y: 50%;
-    padding-left: 7%;
+    /* width: 30%; */
     background-color: #dcdcdc;
     cursor: default;
 }
 @media(max-width:480px){
     
-    .link{
-        height: calc(calc(100% - 8.3em)*0.3);
-    }
+    
     .link input{
         width: 60%;
     }
     .text_area{
         padding: 0.5em 2%;
-        height: calc(calc(100% - 8.3em)*0.7);
+        height: calc(100% - 150px);
     }
     
     .buttons{

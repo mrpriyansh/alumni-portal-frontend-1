@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import React, { useRef, useState, useCallback, useEffect } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 import Cropper from 'react-easy-crop';
 import styles from './EditProfilePic.module.css';
 import config from '../../services/config';

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect, useLocation, Link } from 'react-router-dom';
-import profilePic from '../../assets/images/profile.jpg';
+import { Redirect, useLocation } from 'react-router-dom';
 import styles from './Home.module.css';
 import Timeline from '../../components/Timeline/Timeline';
 import { useAuth } from '../../components/Hooks/Auth';

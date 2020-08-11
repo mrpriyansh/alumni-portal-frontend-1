@@ -1,12 +1,12 @@
 import React from 'react';
-import { ReactComponent as SpinnerIcon } from '../../assets/icons/postLoader.svg';
+import { ReactComponent as PostLoaderSVG } from '../../assets/icons/post_loader.svg';
 import styles from './Loader.module.css';
 
 const PostLoader = ({ width, height }) => {
   console.log(width);
   return (
     <div className={styles.loader}>
-      <SpinnerIcon width={width} height={height} />
+      <PostLoaderSVG width={width} height={height} />
     </div>
   );
 };

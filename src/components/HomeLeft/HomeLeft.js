@@ -6,6 +6,8 @@ import { ReactComponent as EmailIcon } from '../../assets/icons/email.svg';
 import { ReactComponent as TickIcon } from '../../assets/icons/tick.svg';
 import Modal from '../../scenes/Modal/Modal';
 import EditProfilePic from '../EditProfilePic/EditProfilePic';
+import Loader from '../Loader/Loader';
+import HomeTopLeftLoader from '../Loader/HomeTopLeftLoader';
 
 function HomeLeft({ user, handleTabChange, activeTab, isBottom, isEditProfilePic }) {
   const [openModal, setOpenModal] = useState(false);
@@ -32,45 +34,53 @@ function HomeLeft({ user, handleTabChange, activeTab, isBottom, isEditProfilePic
             onClick={handleEditProfilePic}
           />
         )} */}
-        <div className={styles.wrapper_profile_pic}>
-          {isEditProfilePic && (
-            <span className={styles.dp_hover} onClick={handleEditProfilePic}>
-              Upload DP
-            </span>
-          )}
-          <img
-            className={
-              isEditProfilePic
-                ? `${styles.profile_pic} ${styles.canClick}`
-                : `${styles.profile_pic}`
-            }
-            onClick={handleEditProfilePic}
-            src={user.profilePicUrl}
-            alt="Profile"
-          />
-        </div>
-        <Link to={`/profile/${user._id}`}>
-          <p className={styles.name}>{user.name.split(' ')[0]}</p>
-        </Link>
-        <p className={styles.batch}>
-          {user.admissionYear} {user.batchName} {user.subBatch !== 'NA' ? `- ${user.subBatch}` : ''}
-        </p>
-        <hr className={styles.line}></hr>
-        <p className={styles.position}>
-          {' '}
-          {user.designation} at {user.company}{' '}
-        </p>
-        {!isEditProfilePic && (
-          <div className={styles.profile_icons}>
-            {user.links.linkedin.lenght && (
-              <a href={user.links.linkedin} target="_blank" rel="noopener noreferrer">
-                <LinkedinIcon width="1.2em" height="1.2em" fill="#10116E" />
-              </a>
+        {!user ? (
+          <HomeTopLeftLoader width="160px" height="240px" />
+        ) : (
+          <>
+            {' '}
+            <div className={styles.wrapper_profile_pic}>
+              {isEditProfilePic && (
+                <span className={styles.dp_hover} onClick={handleEditProfilePic}>
+                  Upload DP
+                </span>
+              )}
+              <img
+                className={
+                  isEditProfilePic
+                    ? `${styles.profile_pic} ${styles.canClick}`
+                    : `${styles.profile_pic}`
+                }
+                onClick={handleEditProfilePic}
+                src={user?.profilePicUrl}
+                alt="Profile"
+              />
+            </div>
+            <Link to={`/profile/${user._id}`}>
+              <p className={styles.name}>{user.name.split(' ')[0]}</p>
+            </Link>
+            <p className={styles.batch}>
+              {user.admissionYear} {user.batchName}{' '}
+              {user.subBatch !== 'NA' ? `- ${user.subBatch}` : ''}
+            </p>
+            <hr className={styles.line}></hr>
+            <p className={styles.position}>
+              {' '}
+              {user.designation} at {user.company}{' '}
+            </p>
+            {!isEditProfilePic && (
+              <div className={styles.profile_icons}>
+                {user.links.linkedin.lenght && (
+                  <a href={user.links.linkedin} target="_blank" rel="noopener noreferrer">
+                    <LinkedinIcon width="1.2em" height="1.2em" fill="#10116E" />
+                  </a>
+                )}
+                <a href={`mailto:${user.email}`}>
+                  <EmailIcon width="1.2em" height="1.2em" fill="#10116E" />
+                </a>
+              </div>
             )}
-            <a href={`mailto:${user.email}`}>
-              <EmailIcon width="1.2em" height="1.2em" fill="#10116E" />
-            </a>
-          </div>
+          </>
         )}
       </div>
       {isBottom && (

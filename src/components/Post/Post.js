@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import useSWR, { useSWRPages } from 'swr';
 import styles from './Post.module.css';
 import { ReactComponent as ShareIcon } from '../../assets/icons/share.svg';
+import { ReactComponent as PostLoader } from '../../assets/icons/single_post_loader.svg';
 import { useAuth } from '../Hooks/Auth';
 import { triggerAlert } from '../../services/getAlert/getAlert';
 import fetcher from '../../services/fetcher';
 import config from '../../services/config';
+import Loader from '../Loader/Loader';
+// import PostLoader from '../Loader/PostLoader';
 
 function Post({ post }) {
   const { currentUser, authToken } = useAuth();
@@ -49,6 +52,8 @@ function Post({ post }) {
     },
     [post._id]
   );
+  if (!currentUser) return <PostLoader width="100%" height="100%" />;
+
   const handleCommentSubmit = (event, postId) => {
     setLoading(true);
     event.preventDefault();

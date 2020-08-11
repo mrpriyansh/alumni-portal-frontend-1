@@ -118,7 +118,7 @@ function UploadPost() {
             }
           >
             <TickSVG fill="#fff" width="1em" height="1em" className={styles.tick_svg} />
-            Ask Referal
+            Request
           </button>
           <button
             onClick={event => {
@@ -129,7 +129,7 @@ function UploadPost() {
             }
           >
             <TickSVG fill="#fff" width="1em" height="1em" className={styles.tick_svg} />
-            Activities
+            Activity
           </button>
         </div>
         <div className={styles.right_buttons}>

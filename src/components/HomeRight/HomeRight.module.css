@@ -47,6 +47,7 @@
 .right_profile_pic{
     width: 35%;
     height: auto;
+    min-height: 50px;
     border-radius: 8px;
 }
 

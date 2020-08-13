@@ -18,7 +18,7 @@ function Home() {
   const handleTabChange = tab => {
     setActiveTab(tab);
   };
-  // if (!currentUser) return <Loader />;
+  if (!currentUser) return <Loader />;
 
   return (
     <div className={styles.home}>

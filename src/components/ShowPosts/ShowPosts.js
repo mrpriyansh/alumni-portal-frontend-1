@@ -6,7 +6,6 @@ import PostLoader from '../Loader/PostLoader';
 import fetcher from '../../services/fetcher';
 import config from '../../services/config';
 import Post from '../Post/Post';
-import { useAuth } from '../Hooks/Auth';
 
 function ShowPosts({ activeTab }) {
   const { pages, isLoadingMore, isReachingEnd, loadMore } = useSWRPages(

@@ -8,8 +8,6 @@ import { useAuth } from '../Hooks/Auth';
 import { triggerAlert } from '../../services/getAlert/getAlert';
 import fetcher from '../../services/fetcher';
 import config from '../../services/config';
-import Loader from '../Loader/Loader';
-// import PostLoader from '../Loader/PostLoader';
 
 function Post({ post }) {
   const { currentUser, authToken } = useAuth();

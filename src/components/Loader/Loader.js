@@ -1,5 +1,4 @@
 import React from 'react';
-import { ReactComponent as SpinnerIcon } from '../../assets/icons/Spinner.svg';
 import { ReactComponent as HomeLoader } from '../../assets/icons/home_loader.svg';
 import styles from './Loader.module.css';
 

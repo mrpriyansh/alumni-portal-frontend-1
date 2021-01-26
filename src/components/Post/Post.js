@@ -8,8 +8,8 @@ import { ReactComponent as PostLoader } from '../../assets/icons/single_post_loa
 import { useAuth } from '../Hooks/Auth';
 import { triggerAlert } from '../../services/getAlert/getAlert';
 import fetcher from '../../services/fetcher';
+
 import config from '../../services/config';
-import Loader from '../Loader/Loader';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 // import PostLoader from '../Loader/PostLoader';
 
@@ -125,43 +125,26 @@ function Post({ post }) {
         <Carousel
           showArrows={true}
           autoPlay
+          showThumbs={false}
+          showStatus={false}
+          swipeable={true}
+          dynamicHeight={true}
+          showIndicators={false}
           // onChange={onChange}
           // onClickItem={onClickItem}
           // onClickThumb={onClickThumb}
         >
-          {/* <div>
-            <img
-              alt=""
-              src="https://static.toiimg.com/thumb/72975551.cms?width=680&height=512&imgsize=881753"
-            />
-            <p className="legend">Legend 13</p>
-          </div>
-          <div>
-            <img
-              alt=""
-              src="https://image.shutterstock.com/image-photo/mountains-during-sunset-beautiful-natural-260nw-407021107.jpg"
-            />
-            <p className="legend">Legend 14</p>
-          </div> */}
-
-          {/* <div className={`${styles.images} ${styles.slider}`}>
-          <div className={styles.slide}> */}
           {post.fileUrls
             .filter(file => file.type === 'image')
             .map(file => {
               return <img key={file.uid} className={styles.photo} src={file.uid} alt="photo1" />;
             })}
-          {/* </div>
-        </div> */}
         </Carousel>
-        <div className={styles.reactions}>
-          {/* <span>
-            <LikeIcon height="1em" width="1em" fill="#FF046B" /> Like{' '}
-          </span>{' '} */}
+        {/* <div className={styles.reactions}>
           <span>
             <ShareIcon height="1.5em" width="1.5em" /> Share
           </span>
-        </div>
+          </div> */}
         <form
           className={styles.add_comment}
           onSubmit={e => {
@@ -176,7 +159,6 @@ function Post({ post }) {
           <textarea id={post._id} name={post._id} placeholder="Add Comment" />
           <button disabled={loading}>Comment</button>
         </form>
-        {/* <input onChange={e=>{changeComments({target:{name:post._id,value: e.target.value}})}} className={styles.add_comment} value={comments[post._id]}  type="text" placeholder="Add Comment" /> */}
       </div>
       {pages}
       <p
